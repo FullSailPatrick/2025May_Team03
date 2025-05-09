@@ -1,0 +1,38 @@
+name: Commit feed to Discord
+
+on:
+  push:
+    branches:
+      - "**"
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Get commit data
+        id: get_data
+        run: |
+          echo "Repo=${{ github.repository }}" >> $GITHUB_ENV
+          echo "Branch=${GITHUB_REF##*/}" >> $GITHUB_ENV
+          echo "Author=${{ github.event.pusher.name }}" >> $GITHUB_ENV
+          echo "Timestamp=$(date -u '+%A %m-%d-%Y %I:%M %p EST')" >> $GITHUB_ENV
+          echo "CommitInfo=$(git log -1 --pretty=format:'%h %s')" >> $GITHUB_ENV
+          echo "Link=https://github.com/${{ github.repository }}/commit/${{ github.sha }}" >> $GITHUB_ENV
+
+      - name: Post to Discord
+        env:
+          WEBHOOK: https://discord.com/api/webhooks/1370295185694785546/M7B95KXre2KTeX2UdOsm2F0vHVMOZJSM61aRB0NWmPC_kprVhsyh3YxAEarKd1OvBngC
+        run: |
+          echo ":white_check_mark: GitHub push detected" > message.txt
+          echo "Repo: $Repo" >> message.txt
+          echo "Branch: $Branch" >> message.txt
+          echo "Author: $Author" >> message.txt
+          echo "Time: $Timestamp" >> message.txt
+          echo "Commit: $CommitInfo" >> message.txt
+          echo "Link: $Link" >> message.txt
+
+          PAYLOAD=$(jq -Rs '{content: .}' < message.txt)
+          curl -s -H "Content-Type: application/json" -d "$PAYLOAD" "$WEBHOOK"
