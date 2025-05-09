@@ -24,6 +24,7 @@ jobs:
 
       - name: Post to Discord
         env:
+          # Webhook config for Team 3 – matches version 24.2 layout
           WEBHOOK: https://discord.com/api/webhooks/1370295185694785546/M7B95KXre2KTeX2UdOsm2F0vHVMOZJSM61aRB0NWmPC_kprVhsyh3YxAEarKd1OvBngC
         run: |
           echo ":white_check_mark: GitHub push detected" > message.txt
