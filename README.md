@@ -15,7 +15,9 @@ git clone https://github.com/FullSailPatrick/2025May_Team03
 ## Create an emulator
 - Open android studio 
 - Click on `device manager` on the right panel
+- Click Add Device
 - Download `Pixel 7 - API 35` this might take a while.
+  <img alt="API Selection" src="C:\FS\ProjectPorfollioII\Images\Android API Version selection.png"/>
 
 ## Server
 The server folder is where we will be putting our node.js server
