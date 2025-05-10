@@ -16,8 +16,8 @@ git clone https://github.com/FullSailPatrick/2025May_Team03
 - Open android studio 
 - Click on `device manager` on the right panel
 - Click Add Device
-- Download `Pixel 7 - API 35` this might take a while.
-- ![API Selection](C:\FS\ProjectPorfollioII\Images\Android API Version selection.png)
+- Download `Pixel 9 - API 35` this might take a while.
+- [Reference this image if you have issues](https://fullsailedu-my.sharepoint.com/:f:/g/personal/mjbuchanan_student_fullsail_edu/EhrHyqjBZ0xHk7I-8mG2_u4Bq3x29oGsXcUr1cdxfwu2NA?e=N9D0ag)
 
 ## Server
 The server folder is where we will be putting our node.js server
