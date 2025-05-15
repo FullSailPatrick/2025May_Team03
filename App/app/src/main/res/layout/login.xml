@@ -5,31 +5,15 @@
     android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E4EDEF"
-    android:gravity="center">
+    android:background="@drawable/gradient_background"
+    >
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="5dp"
-        android:background="#E2EBED"
-        android:contentDescription="@string/app_logo"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.077"
-        app:srcCompat="@drawable/spotme_main_screen" />
 
     <EditText
         android:id="@+id/username"
         android:layout_width="342dp"
         android:layout_height="59dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="48dp"
         android:autofillHints="Email"
         android:background="@drawable/rounded_text"
         android:hint="@string/Email"
@@ -38,9 +22,8 @@
         android:selectAllOnFocus="true"
         android:textColorHint="#263F53"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView5" />
 
     <EditText
         android:id="@+id/password"
@@ -61,55 +44,67 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/username" />
 
+
     <Button
         android:id="@+id/login"
+        style="@style/GradientButton"
         android:layout_width="230dp"
         android:layout_height="50dp"
-        android:layout_gravity="start"
-        android:layout_marginBottom="64dp"
-        android:backgroundTint="#FBFDFEFF"
-        android:enabled="true"
+        android:backgroundTint="@null"
+        android:fontFamily="@font/inter"
         android:text="@string/action_sign_in"
         android:textColor="#263F53"
-        app:cornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password"
-        app:layout_constraintVertical_bias="0.264" />
+        app:layout_constraintVertical_bias="0.264"
+        app:strokeColor="#263F52"
+        app:strokeWidth="1dp" />
 
     <Button
         android:id="@+id/Create_Account"
         android:layout_width="230dp"
         android:layout_height="50dp"
-        android:layout_gravity="start"
         android:layout_marginBottom="64dp"
         android:backgroundTint="#FBFDFEFF"
-        android:enabled="true"
+        android:enabled="false"
+        android:fontFamily="@font/inter"
         android:text="@string/action_create_account"
         android:textColor="#263F53"
-        app:cornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login"
-        app:layout_constraintVertical_bias="0.248" />
+        app:layout_constraintVertical_bias="0.248"
+        tools:ignore="TextSizeCheck" />
 
     <Button
         android:id="@+id/Forgot_Password"
         android:layout_width="230dp"
         android:layout_height="50dp"
-        android:layout_gravity="start"
         android:backgroundTint="#FBFDFEFF"
         android:enabled="true"
         android:text="@string/action_forgot_password"
         android:textColor="#263F53"
-        app:cornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Create_Account"
-        app:layout_constraintVertical_bias="0.248" />
+        app:layout_constraintVertical_bias="0.248"
+        tools:ignore="TextSizeCheck" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="411dp"
+        android:layout_height="262dp"
+        android:layout_marginTop="28dp"
+        android:contentDescription="@string/spotme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/new_logo"
+        tools:ignore="ImageContrastCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,6 +4,7 @@ package com.spotme.spotme;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -13,6 +14,7 @@ public class MainActivity extends AppCompatActivity
 {
     FrameLayout viewContainer;
     LayoutInflater inflater;
+    private boolean isLoggedIn=false;
 
     @Override
     protected void onCreate(Bundle instance)
@@ -20,16 +22,27 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(instance);
         setContentView(R.layout.main);
 
+
         inflater = LayoutInflater.from(this);
         viewContainer = findViewById(R.id.view_container);
 
         //navbar title settings
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setLabelVisibilityMode(NavigationBarView.LABEL_VISIBILITY_LABELED);
+        View loginView = inflater.inflate(R.layout.login, viewContainer, false);
+        viewContainer.addView(loginView);
+        Button loginButton = loginView.findViewById(R.id.login);
+        loginButton.setOnClickListener(view -> handleLoginEvent());
 
         // TODO: make an if statement to switch between login and home.
-        switchView(R.layout.home);
-
+        if (!isLoggedIn)
+        {
+            switchView(R.layout.login);
+        }
+        else if (isLoggedIn)
+        {
+            switchView(R.layout.home);
+        }
         bottomNav.setOnItemSelectedListener(item ->
         {
             int id = item.getItemId();
@@ -59,6 +72,7 @@ public class MainActivity extends AppCompatActivity
         });
     }
 
+
     //Switch view function based on a layout ID.
     private void switchView(int layoutResId)
     {
@@ -67,5 +81,12 @@ public class MainActivity extends AppCompatActivity
         View view = inflater.inflate(layoutResId, viewContainer, false);
 
         viewContainer.addView(view);
+    }
+    private void handleLoginEvent() {
+        // Set login value to true
+        isLoggedIn = true;
+        // Transition to home screen
+        switchView(R.layout.home);
+
     }
 }
