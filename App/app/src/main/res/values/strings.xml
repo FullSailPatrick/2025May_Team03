@@ -2,10 +2,10 @@
     <string name="app_name">SpotMe</string>
     <string name="app_logo">app_logo</string>
     <string name="Email">Email</string>
-    <string name="prompt_password">prompt_password</string>
+    <string name="prompt_password">Password</string>
     <string name="action_sign_in_short">action_sign_in_short</string>
     <string name="action_sign_in">Log In</string>
     <string name="action_create_account">Create Account</string>
-    <string name="action_forgot_password">Forgot Password</string>
+    <string name="action_forgot_password">Forgot Password?</string>
     <string name="spotme">SpotMe</string>
 </resources>

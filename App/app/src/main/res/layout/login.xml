@@ -5,8 +5,7 @@
     android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_background"
-    >
+    android:background="@drawable/screen_back_ground">
 
 
     <EditText
@@ -51,6 +50,7 @@
         android:layout_width="230dp"
         android:layout_height="50dp"
         android:backgroundTint="@null"
+        android:radius="26dp"
         android:fontFamily="@font/inter"
         android:text="@string/action_sign_in"
         android:textColor="#263F53"
@@ -58,39 +58,44 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password"
-        app:layout_constraintVertical_bias="0.264"
-        app:strokeColor="#263F52"
+        app:layout_constraintVertical_bias="0.405"
+        app:strokeColor="@color/Gray_900"
         app:strokeWidth="1dp" />
 
     <Button
         android:id="@+id/Create_Account"
-        style="@style/GradientButton"
         android:layout_width="230dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="64dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="40dp"
+        android:background="#00FFFFFF"
+        android:contextClickable="true"
         android:fontFamily="@font/inter"
         android:text="@string/action_create_account"
-        android:textColor="#263F53"
+        android:textColor="@color/button_text_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.628"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login"
-        app:layout_constraintVertical_bias="0.248"
+        app:layout_constraintVertical_bias="0.359"
+        app:strokeColor="#00FFFFFF"
         tools:ignore="TextSizeCheck" />
 
     <Button
         android:id="@+id/Forgot_Password"
-        style="@style/GradientButton"
         android:layout_width="230dp"
         android:layout_height="50dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="40dp"
+        android:background="#00FFFFFF"
         android:fontFamily="@font/inter"
         android:text="@string/action_forgot_password"
-        android:textColor="#263F53"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="@color/button_text_color"
+        android:clickable = "true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Create_Account"
-        app:layout_constraintVertical_bias="0.248"
+        app:layout_constraintTop_toBottomOf="@+id/password"
+        app:strokeColor="#00FFFFFF"
         tools:ignore="TextSizeCheck" />
 
     <ImageView
