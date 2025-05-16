@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.WindowCompat;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
@@ -22,6 +24,11 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(instance);
         setContentView(R.layout.main);
 
+        //Hide title bar
+        if (getSupportActionBar() != null)
+        {
+            getSupportActionBar().hide();
+        }
 
         inflater = LayoutInflater.from(this);
         viewContainer = findViewById(R.id.view_container);
