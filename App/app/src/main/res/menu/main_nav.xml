@@ -1,26 +1,28 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
     <item
         android:id="@+id/nav_home"
-        android:icon="@android:drawable/ic_menu_help"
+        android:icon="@drawable/home_icon"
         android:title="Home" />
 
     <item
         android:id="@+id/nav_deals"
-        android:icon="@android:drawable/ic_menu_help"
+        android:icon="@drawable/deals_icon"
         android:title="Deals" />
 
     <item
         android:id="@+id/nav_borrow"
-        android:icon="@android:drawable/ic_menu_help"
+        android:icon="@drawable/borrow_icon"
         android:title="Borrow" />
 
     <item
         android:id="@+id/nav_lend"
-        android:icon="@android:drawable/ic_menu_help"
+        android:icon="@drawable/lend_icon"
         android:title="Lend" />
 
     <item
         android:id="@+id/nav_settings"
-        android:icon="@android:drawable/ic_menu_help"
+        android:icon="@drawable/settings_icon"
         android:title="Settings" />
 </menu>

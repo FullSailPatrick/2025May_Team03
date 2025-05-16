@@ -27,10 +27,12 @@ public class MainActivity extends AppCompatActivity
         viewContainer = findViewById(R.id.view_container);
 
         //navbar title settings
-        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+        BottomNavigationView bottomNav = findViewById(R.id.main_navigation);
         bottomNav.setLabelVisibilityMode(NavigationBarView.LABEL_VISIBILITY_LABELED);
+
         View loginView = inflater.inflate(R.layout.login, viewContainer, false);
         viewContainer.addView(loginView);
+
         Button loginButton = loginView.findViewById(R.id.login);
         loginButton.setOnClickListener(view ->
                 {
@@ -42,6 +44,8 @@ public class MainActivity extends AppCompatActivity
                         switchView(R.layout.home);
                     }
                 });
+
+
         bottomNav.setOnItemSelectedListener(item ->
         {
             int id = item.getItemId();
