@@ -32,17 +32,16 @@ public class MainActivity extends AppCompatActivity
         View loginView = inflater.inflate(R.layout.login, viewContainer, false);
         viewContainer.addView(loginView);
         Button loginButton = loginView.findViewById(R.id.login);
-        loginButton.setOnClickListener(view -> handleLoginEvent());
-
-        // TODO: make an if statement to switch between login and home.
-        if (!isLoggedIn)
-        {
-            switchView(R.layout.login);
-        }
-        else if (isLoggedIn)
-        {
-            switchView(R.layout.home);
-        }
+        loginButton.setOnClickListener(view ->
+                {
+                    handleLoginEvent();
+                    // TODO: make an if statement to switch between login and home.
+                    if (!isLoggedIn) {
+                        switchView(R.layout.login);
+                    } else if (isLoggedIn) {
+                        switchView(R.layout.home);
+                    }
+                });
         bottomNav.setOnItemSelectedListener(item ->
         {
             int id = item.getItemId();

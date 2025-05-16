@@ -64,11 +64,10 @@
 
     <Button
         android:id="@+id/Create_Account"
+        style="@style/GradientButton"
         android:layout_width="230dp"
         android:layout_height="50dp"
         android:layout_marginBottom="64dp"
-        android:backgroundTint="#FBFDFEFF"
-        android:enabled="false"
         android:fontFamily="@font/inter"
         android:text="@string/action_create_account"
         android:textColor="#263F53"
@@ -81,10 +80,10 @@
 
     <Button
         android:id="@+id/Forgot_Password"
+        style="@style/GradientButton"
         android:layout_width="230dp"
         android:layout_height="50dp"
-        android:backgroundTint="#FBFDFEFF"
-        android:enabled="true"
+        android:fontFamily="@font/inter"
         android:text="@string/action_forgot_password"
         android:textColor="#263F53"
         app:layout_constraintBottom_toBottomOf="parent"
