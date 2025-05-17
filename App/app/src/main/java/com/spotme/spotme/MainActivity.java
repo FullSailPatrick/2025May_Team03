@@ -42,15 +42,26 @@ public class MainActivity extends AppCompatActivity
 
         Button loginButton = loginView.findViewById(R.id.login);
         loginButton.setOnClickListener(view ->
-                {
-                    handleLoginEvent();
-                    // TODO: make an if statement to switch between login and home.
-                    if (!isLoggedIn) {
-                        switchView(R.layout.login);
-                    } else if (isLoggedIn) {
-                        switchView(R.layout.home);
-                    }
-                });
+            {
+                handleLoginEvent();
+                // TODO: make an if statement to switch between login and home.
+                if (!isLoggedIn) {
+                    switchView(R.layout.login);
+                } else {
+                    switchView(R.layout.home);
+                }
+            });
+        Button createAccountButton = loginView.findViewById(R.id.Create_Account);
+        createAccountButton.setOnClickListener(view ->
+        {
+            switchView(R.layout.createaccount);
+        });
+        Button forgotPasswordButton = loginView.findViewById(R.id.Forgot_Password);
+        forgotPasswordButton.setOnClickListener(view ->
+        {
+            switchView(R.layout.forgotpassword);
+        });
+
 
 
         bottomNav.setOnItemSelectedListener(item ->
