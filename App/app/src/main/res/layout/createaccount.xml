@@ -166,13 +166,23 @@
                 android:textColorHint="#263F53" />
 
             <CheckedTextView
-                android:id="@+id/checkedTextView"
+                android:id="@+id/confirm_password_requirements"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/passwords_must_match" />
+                android:layout_marginBottom="20dp"
+                android:text="@string/confirm_password_requirements" />
+
+            <TextView
+                android:id="@+id/first_name_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/inter"
+                android:text="@string/first_name"
+                android:textColor="@color/button_text_color" />
 
             <EditText
-                android:id="@+id/editTextText"
+                android:id="@+id/first_name"
                 android:layout_width="340dp"
                 android:layout_height="59dp"
                 android:layout_marginTop="3dp"
@@ -183,11 +193,44 @@
                 android:inputType="text"
                 android:minHeight="48dp"
                 android:selectAllOnFocus="true"
-                android:text="Name"
+                android:text="@string/new_first_name_tip"
                 android:textColorHint="#263F53" />
 
+            <TextView
+                android:id="@+id/last_name_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/inter"
+                android:text="@string/last_name"
+                android:textColor="@color/button_text_color" />
+
             <EditText
-                android:id="@+id/editTextPhone"
+                android:id="@+id/last_name"
+                android:layout_width="340dp"
+                android:layout_height="59dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="8dp"
+                android:autofillHints="Email"
+                android:background="@drawable/rounded_text"
+                android:ems="10"
+                android:inputType="text"
+                android:minHeight="48dp"
+                android:selectAllOnFocus="true"
+                android:text="@string/last_name_tip"
+                android:textColorHint="#263F53" />
+
+            <TextView
+                android:id="@+id/user_phone_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/inter"
+                android:text="@string/user_phone"
+                android:textColor="@color/button_text_color" />
+
+            <EditText
+                android:id="@+id/user_phone_number"
                 android:layout_width="340dp"
                 android:layout_height="59dp"
                 android:layout_marginTop="3dp"
@@ -198,8 +241,17 @@
                 android:inputType="phone"
                 android:minHeight="48dp" />
 
+            <TextView
+                android:id="@+id/user_address_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/inter"
+                android:text="@string/user_address"
+                android:textColor="@color/button_text_color" />
+
             <EditText
-                android:id="@+id/editTextTextPostalAddress"
+                android:id="@+id/user_postal_address"
                 android:layout_width="340dp"
                 android:layout_height="59dp"
                 android:layout_marginTop="3dp"
