@@ -36,22 +36,46 @@ public class MainActivity extends AppCompatActivity
         //navbar title settings
         BottomNavigationView bottomNav = findViewById(R.id.main_navigation);
         bottomNav.setLabelVisibilityMode(NavigationBarView.LABEL_VISIBILITY_LABELED);
-
+        // Inflate views
         View loginView = inflater.inflate(R.layout.login, viewContainer, false);
+        View createAccountView = inflater.inflate(R.layout.createaccount, viewContainer, false);
+
+        // Add views to container
         viewContainer.addView(loginView);
+        viewContainer.addView(createAccountView);
 
+        // Show login view by default, hide create account view
+        loginView.setVisibility(View.VISIBLE);
+        createAccountView.setVisibility(View.GONE);
+
+        // Button references
         Button loginButton = loginView.findViewById(R.id.login);
-        loginButton.setOnClickListener(view ->
-                {
-                    handleLoginEvent();
-                    // TODO: make an if statement to switch between login and home.
-                    if (!isLoggedIn) {
-                        switchView(R.layout.login);
-                    } else if (isLoggedIn) {
-                        switchView(R.layout.home);
-                    }
-                });
+        Button createAccountButton = loginView.findViewById(R.id.Create_Account);
+        Button forgotPasswordButton = loginView.findViewById(R.id.Forgot_Password);
+        Button backToLoginButton = createAccountView.findViewById(R.id.return_to_login);
 
+        // Set up button actions
+        loginButton.setOnClickListener(view -> {
+            handleLoginEvent();
+            if (!isLoggedIn) {
+                loginView.setVisibility(View.VISIBLE);
+                createAccountView.setVisibility(View.GONE);
+            } else {
+                switchView(R.layout.home);
+            }
+        });
+
+        createAccountButton.setOnClickListener(view -> {
+            loginView.setVisibility(View.GONE);
+            createAccountView.setVisibility(View.VISIBLE);
+        });
+
+        backToLoginButton.setOnClickListener(view -> {
+            loginView.setVisibility(View.VISIBLE);
+            createAccountView.setVisibility(View.GONE);
+        });
+
+        forgotPasswordButton.setOnClickListener(view -> switchView(R.layout.forgotpassword));
 
         bottomNav.setOnItemSelectedListener(item ->
         {

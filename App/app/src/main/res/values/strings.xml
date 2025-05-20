@@ -1,11 +1,50 @@
 <resources>
+
+    <!-- Screen Element Labels -->
     <string name="app_name">SpotMe</string>
     <string name="app_logo">app_logo</string>
-    <string name="Email">Email</string>
-    <string name="prompt_password">Password</string>
     <string name="action_sign_in_short">action_sign_in_short</string>
     <string name="action_sign_in">Log In</string>
     <string name="action_create_account">Create Account</string>
     <string name="action_forgot_password">Forgot Password?</string>
     <string name="spotme">SpotMe</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="return_to_login">Already have an account? Login</string>
+
+    <!-- Text Box Labels -->
+    <string name="last_name">Last Name</string>
+    <string name="new_username">Create A Username</string>
+    <string name="new_password">Create Password</string>
+    <string name="first_name">First Name</string>
+    <string name="new_user_password">Re-enter Password</string>
+    <string name="new_user_email">Email Address</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="user_phone">Phone Number</string>
+    <string name="user_address">Mailing Address</string>
+
+    <!-- Text Input tips text -->
+    <string name="Email_tip">Enter Email Or Username</string>
+    <string name="prompt_password_tip">Enter Password</string>
+    <string name="new_user_email_tip">Email</string>
+    <string name="new_confirm_password_tip">Passwords must match</string>
+    <string name="new_password_tip">Password</string>
+    <string name="new_first_name_tip">Legal First Name</string>
+    <string name="new_username_tip">Username</string>
+    <string name="last_name_tip">Legal Last Name</string>
+
+    <!-- Requirements text -->
+    <string name="confirm_password_requirements">Passwords Must Match</string>
+    <string name="new_password_requirements"><![CDATA[
+      - Must be at least 8 characters long\n
+    - Must contain: 1 Number\n
+    - Must contain: 1 Capitol letter\n
+    - Must contain: 1 Special character
+        ]]></string>
+    <string name="new_username_requirements"><![CDATA[
+    - Must be at least 8 characters long\n
+    - Can not match email\n
+    - Can not contain special characters
+        ]]></string>
+
 </resources>

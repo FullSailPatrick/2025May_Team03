@@ -15,7 +15,7 @@
         android:layout_marginTop="48dp"
         android:autofillHints="Email"
         android:background="@drawable/rounded_text"
-        android:hint="@string/Email"
+        android:hint="@string/Email_tip"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
         android:selectAllOnFocus="true"
@@ -24,14 +24,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView5" />
 
+
     <EditText
         android:id="@+id/password"
         android:layout_width="342dp"
         android:layout_height="59dp"
-        android:layout_marginTop="32dp"
-        android:autofillHints="@string/prompt_password"
+        android:layout_marginTop="48dp"
+        android:autofillHints="@string/prompt_password_tip"
         android:background="@drawable/rounded_text"
-        android:hint="@string/prompt_password"
+        android:hint="@string/prompt_password_tip"
         android:imeActionLabel="@string/action_sign_in_short"
         android:imeOptions="actionDone"
         android:inputType="textPassword"
@@ -39,26 +40,27 @@
         android:selectAllOnFocus="true"
         android:textColorHint="#263F53"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintHorizontal_bias="0.536"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/username" />
-
 
     <Button
         android:id="@+id/login"
         style="@style/GradientButton"
         android:layout_width="230dp"
         android:layout_height="50dp"
+        android:layout_marginTop="17dp"
         android:backgroundTint="@null"
-        android:radius="26dp"
         android:fontFamily="@font/inter"
+        android:radius="26dp"
         android:text="@string/action_sign_in"
         android:textColor="#263F53"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password"
-        app:layout_constraintVertical_bias="0.405"
+        app:layout_constraintTop_toBottomOf="@+id/Forgot_Password"
+        app:layout_constraintVertical_bias="0.0"
         app:strokeColor="@color/Gray_900"
         app:strokeWidth="1dp" />
 
@@ -75,10 +77,10 @@
         android:textColor="@color/button_text_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.628"
+        app:layout_constraintHorizontal_bias="0.645"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login"
-        app:layout_constraintVertical_bias="0.359"
+        app:layout_constraintVertical_bias="0.466"
         app:strokeColor="#00FFFFFF"
         tools:ignore="TextSizeCheck" />
 
@@ -86,13 +88,13 @@
         android:id="@+id/Forgot_Password"
         android:layout_width="230dp"
         android:layout_height="50dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="40dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
         android:background="#00FFFFFF"
+        android:clickable="true"
         android:fontFamily="@font/inter"
         android:text="@string/action_forgot_password"
         android:textColor="@color/button_text_color"
-        android:clickable = "true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password"
         app:strokeColor="#00FFFFFF"
@@ -110,5 +112,34 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/new_logo"
         tools:ignore="ImageContrastCheck" />
+
+    <TextView
+        android:id="@+id/username_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/inter"
+        android:text="@string/username"
+        android:textColor="@color/button_text_color"
+        app:layout_constraintBottom_toTopOf="@+id/username"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+
+    <TextView
+        android:id="@+id/password_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/inter"
+        android:text="@string/password"
+        android:textColor="@color/button_text_color"
+        app:layout_constraintBottom_toTopOf="@+id/password"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/username" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
