@@ -2,16 +2,13 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/screen_back_ground"
-    tools:context=".login">
+    android:background="@drawable/screen_back_ground">
 
 
-
-
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/username"
         android:layout_width="342dp"
         android:layout_height="59dp"
@@ -28,7 +25,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView5" />
 
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/password"
         android:layout_width="342dp"
         android:layout_height="59dp"
@@ -143,5 +140,6 @@
         app:layout_constraintBottom_toTopOf="@+id/password"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/username" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
