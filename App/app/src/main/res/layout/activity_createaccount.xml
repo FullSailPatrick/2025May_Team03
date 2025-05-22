@@ -120,19 +120,26 @@
                 android:text="@string/new_password"
                 android:textColor="@color/button_text_color" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/create_password"
-                android:layout_width="340dp"
-                android:layout_height="59dp"
-                android:layout_marginTop="3dp"
-                android:layout_marginBottom="8dp"
-                android:autofillHints="Email"
-                android:background="@drawable/rounded_text"
-                android:hint="@string/new_password_tip"
-                android:inputType="textPassword"
-                android:minHeight="48dp"
-                android:selectAllOnFocus="true"
-                android:textColorHint="#263F53" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/passwordInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:passwordToggleEnabled="true">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/create_password"
+                    android:layout_width="340dp"
+                    android:layout_height="59dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="8dp"
+                    android:autofillHints="Email"
+                    android:background="@drawable/rounded_text"
+                    android:hint="@string/new_password_tip"
+                    android:inputType="textPassword"
+                    android:minHeight="48dp"
+                    android:selectAllOnFocus="true"
+                    android:textColorHint="#263F53" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/create_password_requirements"
@@ -152,20 +159,28 @@
                 android:text="@string/new_user_password"
                 android:textColor="@color/button_text_color" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/confirm_password"
-                android:layout_width="342dp"
-                android:layout_height="59dp"
-                android:layout_marginTop="3dp"
-                android:layout_marginBottom="8dp"
-                android:autofillHints="Email"
-                android:background="@drawable/rounded_text"
-                android:hint="@string/new_confirm_password_tip"
-                android:inputType="textPassword"
-                android:lineSpacingExtra="14sp"
-                android:minHeight="48dp"
-                android:selectAllOnFocus="true"
-                android:textColorHint="#263F53" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/confirmPasswordInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:passwordToggleEnabled="true">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/confirm_password"
+                    android:layout_width="342dp"
+                    android:layout_height="59dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="8dp"
+                    android:autofillHints="Email"
+                    android:background="@drawable/rounded_text"
+                    android:hint="@string/new_confirm_password_tip"
+                    android:inputType="textPassword"
+                    android:lineSpacingExtra="14sp"
+                    android:minHeight="48dp"
+                    android:selectAllOnFocus="true"
+                    android:textColorHint="#263F53" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
 
             <CheckedTextView
                 android:id="@+id/confirm_password_requirements"

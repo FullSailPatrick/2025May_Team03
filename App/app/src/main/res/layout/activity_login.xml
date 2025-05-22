@@ -25,24 +25,31 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView5" />
 
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/password"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/passwordLayout"
         android:layout_width="342dp"
         android:layout_height="59dp"
         android:layout_marginTop="48dp"
-        android:autofillHints="@string/prompt_password_tip"
-        android:background="@drawable/rounded_text"
-        android:hint="@string/prompt_password_tip"
-        android:imeActionLabel="@string/action_sign_in_short"
-        android:imeOptions="actionDone"
-        android:inputType="textPassword"
-        android:minHeight="48dp"
-        android:selectAllOnFocus="true"
-        android:textColorHint="#263F53"
+        app:passwordToggleEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.536"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username" />
+        app:layout_constraintTop_toBottomOf="@+id/username">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="@string/prompt_password_tip"
+            android:background="@drawable/rounded_text"
+            android:hint="@string/prompt_password_tip"
+            android:imeActionLabel="@string/action_sign_in_short"
+            android:imeOptions="actionDone"
+            android:inputType="textPassword"
+            android:minHeight="48dp"
+            android:selectAllOnFocus="true"
+            android:textColorHint="#263F53"
+             />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/login"
@@ -60,7 +67,7 @@
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Forgot_Password"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.163"
         app:strokeColor="@color/Gray_900"
         app:strokeWidth="1dp" />
 
@@ -88,7 +95,6 @@
         android:id="@+id/Forgot_Password"
         android:layout_width="230dp"
         android:layout_height="50dp"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         android:background="#00FFFFFF"
         android:clickable="true"
@@ -96,7 +102,7 @@
         android:text="@string/action_forgot_password"
         android:textColor="@color/button_text_color"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password"
+        app:layout_constraintTop_toBottomOf="@+id/passwordLayout"
         app:strokeColor="#00FFFFFF"
         tools:ignore="TextSizeCheck" />
 
@@ -131,15 +137,16 @@
         android:id="@+id/password_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
         android:layout_marginTop="12dp"
-        android:layout_marginBottom="16dp"
         android:fontFamily="@font/inter"
         android:text="@string/password"
         android:textColor="@color/button_text_color"
-        app:layout_constraintBottom_toTopOf="@+id/password"
+        app:layout_constraintBottom_toTopOf="@+id/passwordLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.135"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username" />
+        app:layout_constraintTop_toBottomOf="@+id/username"
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
