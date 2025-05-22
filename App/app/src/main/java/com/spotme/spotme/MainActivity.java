@@ -115,6 +115,16 @@ public class MainActivity extends AppCompatActivity
         View view = inflater.inflate(layoutResId, viewContainer, false);
 
         viewContainer.addView(view);
+
+//        if (layoutResId == R.layout.settings)
+//        {
+//            // Load the SettingsFragment inside the placeholder
+//            getSupportFragmentManager()
+//                    .beginTransaction()
+//                    .replace(R.id.view_container, new SettingsFragment())
+//                    .commit();
+//
+//        }
     }
     private void handleLoginEvent() {
         // Set login value to true
