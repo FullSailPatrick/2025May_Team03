@@ -69,8 +69,8 @@
 
                 <Switch
                     android:id="@+id/toggleNotificationId"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_width="64dp"
+                    android:layout_height="32dp"/>
             </LinearLayout>
 
             <!-- Dark Mode -->
@@ -101,9 +101,8 @@
 
                 <Switch
                     android:id="@+id/toggleThemeId"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:ignore="UseSwitchCompatOrMaterialXml" />
+                    android:layout_width="64dp"
+                    android:layout_height="32dp"/>
             </LinearLayout>
 
             <!-- Privacy policy-->
