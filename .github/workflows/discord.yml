@@ -1,39 +1,84 @@
-name: Commit feed to Discord
+name: Discord Notifications
 
+# 1) Listen for pushes _and_ GitHub Projects events
 on:
   push:
     branches:
       - "**"
+  project_card:
+    types: [created, moved, converted_to_issue, deleted]
+  project:
+    types: [column_created, column_deleted]
 
 jobs:
-  notify:
+  # ────────────────
+  # 2) Commit feed → Discord
+  # ────────────────
+  commits:
+    name: Post commit to Discord
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Get commit data
-        id: get_data
+      - name: Gather commit data
+        id: commit
         run: |
-          echo "Repo=${{ github.repository }}" >> $GITHUB_ENV
-          echo "Branch=${GITHUB_REF##*/}" >> $GITHUB_ENV
+          echo "Repo=${{ github.repository }}"  >> $GITHUB_ENV
+          echo "Branch=${GITHUB_REF##*/}"      >> $GITHUB_ENV
           echo "Author=${{ github.event.pusher.name }}" >> $GITHUB_ENV
-          echo "Timestamp=$(date -u '+%A %m-%d-%Y %I:%M %p EST')" >> $GITHUB_ENV
+          echo "Timestamp=$(date -u '+%A %m-%d-%Y %I:%M %p UTC')" >> $GITHUB_ENV
           echo "CommitInfo=$(git log -1 --pretty=format:'%h %s')" >> $GITHUB_ENV
           echo "Link=https://github.com/${{ github.repository }}/commit/${{ github.sha }}" >> $GITHUB_ENV
 
-      - name: Post to Discord
+      - name: Post commit message
         env:
-          # Webhook config for Team 3 – matches version 24.2 layout
-         WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: |
-          echo ":white_check_mark: GitHub push detected" > message.txt
-          echo "Repo: $Repo" >> message.txt
-          echo "Branch: $Branch" >> message.txt
-          echo "Author: $Author" >> message.txt
-          echo "Time: $Timestamp" >> message.txt
-          echo "Commit: $CommitInfo" >> message.txt
-          echo "Link: $Link" >> message.txt
+          cat <<EOF > payload.json
+{"content":":white_check_mark: **GitHub push detected**
+Repo: $Repo  
+Branch: $Branch  
+Author: $Author  
+Time: $Timestamp  
+Commit: $CommitInfo  
+Link: $Link"}
+EOF
+          curl -H "Content-Type: application/json" -d @payload.json "$WEBHOOK"
 
-          PAYLOAD=$(jq -Rs '{content: .}' < message.txt)
-          curl -s -H "Content-Type: application/json" -d "$PAYLOAD" "$WEBHOOK"
+  # ─────────────────────────
+  # 3) Project-board → Discord
+  # ─────────────────────────
+  project:
+    name: Post project event to Discord
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build project payload
+        id: build
+        run: |
+          TYPE="${{ github.event_name }}:${{ github.event.action }}"
+          # for project_card events:
+          CARD_ID="${{ github.event.project_card.id || '' }}"
+          COL="${{ github.event.project_card.column_name || '' }}"
+          # for project events:
+          PROJ="${{ github.event.project.name || github.event.project_node_id }}"
+          USER="${{ github.actor }}"
+          URL=""
+
+          if [[ "${{ github.event_name }}" == "project_card" ]]; then
+            URL="https://github.com/${{ github.repository }}/projects/${PROJ}/#card-${CARD_ID}"
+          fi
+
+          cat <<EOF > payload.json
+{"content":"📦 **Project:** ${PROJ}
+🔄 **Event:** ${TYPE}
+🏷️ **Column:** ${COL}
+👤 **By:** ${USER}
+$( [[ -n "$URL" ]] && echo "🔗 **Link:** $URL" )"}
+EOF
+
+      - name: Post project message
+        env:
+          WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: |
+          curl -H "Content-Type: application/json" -d @payload.json "$WEBHOOK"
