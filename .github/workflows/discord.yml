@@ -46,20 +46,20 @@ jobs:
           # Build payload.json depending on event
           if [ "$EVENT" = "push" ]; then
             cat <<EOF > payload.json
-{
-  "content": ":white_check_mark: Push to \`$REPO\` on \`$BRANCH\` by \`$ACTOR\`
-Commit: $COMMIT
-$LINK"
-}
-EOF
+          {
+            "content": ":white_check_mark: Push to \`$REPO\` on \`$BRANCH\` by \`$ACTOR\`
+            Commit: $COMMIT
+            $LINK"
+            }
+          EOF
           else
             cat <<EOF > payload.json
-{
-  "content": ":card_index_dividers: Project card \`$ACTION\` in \`$REPO\` by \`$ACTOR\`
-Card: $CARD_URL
-Column: $COLUMN"
-}
-EOF
+            {
+              "content": ":card_index_dividers: Project card \`$ACTION\` in \`$REPO\` by \`$ACTOR\`
+              Card: $CARD_URL
+              Column: $COLUMN"
+            }
+          EOF
           fi
 
           # Debug: show exactly what we’re sending
