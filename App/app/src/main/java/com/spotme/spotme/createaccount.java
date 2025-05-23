@@ -47,7 +47,6 @@ public class createaccount extends AppCompatActivity {
                finish();
             }
         });
-
         signUpBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
