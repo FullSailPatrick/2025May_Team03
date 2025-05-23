@@ -74,6 +74,9 @@ public class createaccount extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 Toast.makeText(createaccount.this, "Account Created.",
                                         Toast.LENGTH_SHORT).show();
+                                Intent  loginIntent = new Intent(getApplicationContext(), login.class);
+                                startActivity(loginIntent);
+                                finish();
 
                             } else {
                                 // If sign in fails, display a message to the user.
