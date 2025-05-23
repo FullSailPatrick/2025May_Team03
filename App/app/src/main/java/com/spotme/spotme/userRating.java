@@ -1,12 +1,13 @@
 /**
  * Preliminary User Rating Formula for SpotMe App
  *
- * v 0.1
+ * v 0.2
  *
  * Simple calculations for user ratings with weighted formula
+ * Modified to start new users with zero rating until they complete transactions
  *
- * Calculate Reliability, Communicaiton, TransactionSmoothness before
- * calculating wnow i need to push to teighted average
+ * Calculate Reliability, Communication, TransactionSmoothness before
+ * calculating weighted average
  */
 public class UserRating {
 
@@ -16,9 +17,15 @@ public class UserRating {
      * @param daysLate                - number of days late (0 if on time)
      * @param wasCompleted            - true if obligation was completed, false if not
      * @param previousReliabilityRate - historical reliability rate (0.0 to 1.0)
-     * @return reliability score from 1.0 to 5.0
+     * @param hasTransactionHistory   - true if user has completed transactions before
+     * @return reliability score from 1.0 to 5.0, or 0.0 if no history
      */
-    public static double calculateReliability(int daysLate, boolean wasCompleted, double previousReliabilityRate) {
+    public static double calculateReliability(int daysLate, boolean wasCompleted, double previousReliabilityRate, boolean hasTransactionHistory) {
+
+        // New users with no transaction history get 0.0
+        if (!hasTransactionHistory) {
+            return 0.0;
+        }
 
         double score = 5.0;
 
@@ -65,10 +72,16 @@ public class UserRating {
      * @param messageCount         - total number of messages exchanged
      * @param wasProactive         - true if user initiated communication proactively
      * @param hadConflicts         - true if there were communication conflicts
-     * @return communication score from 1.0 to 5.0
+     * @param hasTransactionHistory - true if user has completed transactions before
+     * @return communication score from 1.0 to 5.0, or 0.0 if no history
      */
     public static double calculateCommunication(double avgResponseTimeHours, int messageCount, boolean wasProactive,
-            boolean hadConflicts) {
+                                                boolean hadConflicts, boolean hasTransactionHistory) {
+
+        // New users with no transaction history get 0.0
+        if (!hasTransactionHistory) {
+            return 0.0;
+        }
 
         double score = 3.0; // Start with neutral score
 
@@ -125,10 +138,16 @@ public class UserRating {
      * @param hadTechnicalIssues - true if there were technical problems
      * @param requiredSupport    - true if customer support was needed
      * @param changesRequested   - number of changes/modifications requested
-     * @return transaction smoothness score from 1.0 to 5.0
+     * @param hasTransactionHistory - true if user has completed transactions before
+     * @return transaction smoothness score from 1.0 to 5.0, or 0.0 if no history
      */
     public static double calculateTransaction(double setupTimeHours, boolean hadTechnicalIssues,
-            boolean requiredSupport, int changesRequested) {
+                                              boolean requiredSupport, int changesRequested, boolean hasTransactionHistory) {
+
+        // New users with no transaction history get 0.0
+        if (!hasTransactionHistory) {
+            return 0.0;
+        }
 
         double score = 4.0; // Start with good score
 
@@ -174,15 +193,20 @@ public class UserRating {
 
     /**
      * Calculates user rating using weighted formula
-     * Formula: UserRating = 0.5 * reliability + 0.25 * communication + 0.25 *
-     * transaction
+     * Formula: UserRating = 0.5 * reliability + 0.25 * communication + 0.25 * transaction
+     * Returns 0.0 for users with no transaction history
      *
-     * @param reliability   - score from 1.0 to 5.0 for user reliability
-     * @param communication - score from 1.0 to 5.0 for communication quality
-     * @param transaction   - score from 1.0 to 5.0 for transaction smoothness
-     * @return final user rating from 1.0 to 5.0
+     * @param reliability   - score from 1.0 to 5.0 for user reliability (or 0.0 for no history)
+     * @param communication - score from 1.0 to 5.0 for communication quality (or 0.0 for no history)
+     * @param transaction   - score from 1.0 to 5.0 for transaction smoothness (or 0.0 for no history)
+     * @return final user rating from 1.0 to 5.0, or 0.0 if no transaction history
      */
     public static double calculateRating(double reliability, double communication, double transaction) {
+
+        // If any score is 0.0 (no history), return 0.0
+        if (reliability == 0.0 || communication == 0.0 || transaction == 0.0) {
+            return 0.0;
+        }
 
         // Check if inputs are valid
         if (reliability < 1.0 || reliability > 5.0) {
@@ -220,22 +244,25 @@ public class UserRating {
      * @param hadTechnicalIssues      - had technical issues
      * @param requiredSupport         - required customer support
      * @param changesRequested        - number of changes requested
-     * @return final user rating from 1.0 to 5.0
+     * @param hasTransactionHistory   - true if user has completed transactions before
+     * @return final user rating from 1.0 to 5.0, or 0.0 if no transaction history
      */
     public static double calculateCompleteRating(int daysLate, boolean wasCompleted, double previousReliabilityRate,
-            double avgResponseTimeHours, int messageCount, boolean wasProactive, boolean hadConflicts,
-            double setupTimeHours, boolean hadTechnicalIssues, boolean requiredSupport, int changesRequested) {
+                                                 double avgResponseTimeHours, int messageCount, boolean wasProactive, boolean hadConflicts,
+                                                 double setupTimeHours, boolean hadTechnicalIssues, boolean requiredSupport, int changesRequested,
+                                                 boolean hasTransactionHistory) {
 
-        double reliability = calculateReliability(daysLate, wasCompleted, previousReliabilityRate);
-        double communication = calculateCommunication(avgResponseTimeHours, messageCount, wasProactive, hadConflicts);
+        double reliability = calculateReliability(daysLate, wasCompleted, previousReliabilityRate, hasTransactionHistory);
+        double communication = calculateCommunication(avgResponseTimeHours, messageCount, wasProactive, hadConflicts, hasTransactionHistory);
         double transaction = calculateTransaction(setupTimeHours, hadTechnicalIssues, requiredSupport,
-                changesRequested);
+                changesRequested, hasTransactionHistory);
 
         return calculateRating(reliability, communication, transaction);
     }
 
     /**
      * Calculates average rating from multiple individual ratings
+     * Excludes zero ratings (no history) from the average calculation
      *
      * @param ratings - array of individual rating scores
      * @return average rating
@@ -249,7 +276,7 @@ public class UserRating {
         double total = 0.0;
         int validRatings = 0;
 
-        // Add up all valid ratings
+        // Add up all valid ratings (excluding 0.0 which means no history)
         for (int i = 0; i < ratings.length; i++) {
             if (ratings[i] >= 1.0 && ratings[i] <= 5.0) {
                 total = total + ratings[i];
@@ -270,12 +297,44 @@ public class UserRating {
     }
 
     /**
-     * Checks if a rating is valid (between 1.0 and 5.0)
+     * Checks if a rating is valid (between 1.0 and 5.0, or 0.0 for no history)
      *
      * @param rating - rating to check
      * @return true if valid, false if invalid
      */
     public static boolean isValidRating(double rating) {
-        return (rating >= 1.0 && rating <= 5.0);
+        return (rating == 0.0 || (rating >= 1.0 && rating <= 5.0));
+    }
+
+    /**
+     * Gets the total number of users with transaction history from ratings array
+     *
+     * @param ratings - array of individual rating scores
+     * @return count of users with ratings > 0.0
+     */
+    public static int getExperiencedUserCount(double[] ratings) {
+        int count = 0;
+        for (int i = 0; i < ratings.length; i++) {
+            if (ratings[i] > 0.0) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    /**
+     * Gets the total number of new users (zero ratings) from ratings array
+     *
+     * @param ratings - array of individual rating scores
+     * @return count of users with 0.0 ratings
+     */
+    public static int getNewUserCount(double[] ratings) {
+        int count = 0;
+        for (int i = 0; i < ratings.length; i++) {
+            if (ratings[i] == 0.0) {
+                count++;
+            }
+        }
+        return count;
     }
 }
