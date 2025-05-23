@@ -31,8 +31,12 @@
                 android:layout_marginTop="12dp"
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 android:autoSizeTextType="uniform"
                 android:text="12 days"
+=======
+                android:text="Time Remaining"
+>>>>>>> Stashed changes
 =======
                 android:text="Time Remaining"
 >>>>>>> Stashed changes
@@ -50,8 +54,12 @@
                 android:layout_marginTop="12dp"
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 android:autoSizeTextType="uniform"
                 android:text="$2,000"
+=======
+                android:text="$Amount"
+>>>>>>> Stashed changes
 =======
                 android:text="$Amount"
 >>>>>>> Stashed changes
@@ -66,6 +74,7 @@
                 android:layout_width="170dp"
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 android:layout_height="25dp"
                 android:layout_marginStart="36dp"
                 android:layout_marginTop="12dp"
@@ -74,11 +83,16 @@
 =======
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
                 android:layout_height="52dp"
                 android:layout_marginStart="36dp"
                 android:layout_marginTop="12dp"
                 android:text="Loan"
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -93,8 +107,12 @@
                 android:layout_marginTop="28dp"
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 android:autoSizeTextType="uniform"
                 android:text="Niel Legstrong"
+=======
+                android:text="Name"
+>>>>>>> Stashed changes
 =======
                 android:text="Name"
 >>>>>>> Stashed changes
@@ -140,8 +158,12 @@
                 android:layout_marginTop="12dp"
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 android:autoSizeTextType="uniform"
                 android:text="1 yr."
+=======
+                android:text="Time Remaining"
+>>>>>>> Stashed changes
 =======
                 android:text="Time Remaining"
 >>>>>>> Stashed changes
@@ -159,8 +181,12 @@
                 android:layout_marginTop="12dp"
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 android:autoSizeTextType="uniform"
                 android:text="$20,000"
+=======
+                android:text="$Amount"
+>>>>>>> Stashed changes
 =======
                 android:text="$Amount"
 >>>>>>> Stashed changes
@@ -175,6 +201,7 @@
                 android:layout_width="170dp"
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 android:layout_height="25dp"
                 android:layout_marginStart="36dp"
                 android:layout_marginTop="12dp"
@@ -183,11 +210,16 @@
 =======
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
                 android:layout_height="52dp"
                 android:layout_marginStart="36dp"
                 android:layout_marginTop="12dp"
                 android:text="Loan"
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -202,8 +234,12 @@
                 android:layout_marginTop="28dp"
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 android:autoSizeTextType="uniform"
                 android:text="Chris Johnson"
+=======
+                android:text="Name"
+>>>>>>> Stashed changes
 =======
                 android:text="Name"
 >>>>>>> Stashed changes
@@ -274,7 +310,11 @@
         app:layout_constraintStart_toStartOf="parent"
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         app:layout_constraintTop_toBottomOf="@+id/searchView">
+=======
+        app:layout_constraintTop_toBottomOf="@+id/button">
+>>>>>>> Stashed changes
 =======
         app:layout_constraintTop_toBottomOf="@+id/button">
 >>>>>>> Stashed changes
@@ -304,8 +344,12 @@
                 android:layout_marginTop="28dp"
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 android:autoSizeTextType="uniform"
                 android:text="John Smith"
+=======
+                android:text="Name"
+>>>>>>> Stashed changes
 =======
                 android:text="Name"
 >>>>>>> Stashed changes
@@ -320,6 +364,7 @@
                 android:layout_width="170dp"
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 android:layout_height="25dp"
                 android:layout_marginStart="36dp"
                 android:layout_marginTop="12dp"
@@ -328,11 +373,16 @@
 =======
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
                 android:layout_height="52dp"
                 android:layout_marginStart="36dp"
                 android:layout_marginTop="12dp"
                 android:text="Loan"
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -347,8 +397,12 @@
                 android:layout_marginTop="12dp"
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 android:autoSizeTextType="uniform"
                 android:text="$4.49"
+=======
+                android:text="$Amount"
+>>>>>>> Stashed changes
 =======
                 android:text="$Amount"
 >>>>>>> Stashed changes
@@ -366,8 +420,12 @@
                 android:layout_marginTop="12dp"
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 android:autoSizeTextType="uniform"
                 android:text="10 Months"
+=======
+                android:text="Time Remaining"
+>>>>>>> Stashed changes
 =======
                 android:text="Time Remaining"
 >>>>>>> Stashed changes
@@ -383,6 +441,7 @@
 
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     <SearchView
         android:id="@+id/searchView"
         android:layout_width="360dp"
@@ -393,6 +452,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button" />
 
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
