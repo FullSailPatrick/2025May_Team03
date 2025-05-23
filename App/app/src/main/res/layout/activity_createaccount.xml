@@ -60,20 +60,25 @@
                 android:text="@string/new_user_email"
                 android:textColor="@color/button_text_color" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/new_email"
-                android:layout_width="340dp"
-                android:layout_height="59dp"
-                android:layout_marginTop="3dp"
-                android:layout_marginBottom="8dp"
-                android:autofillHints="Email"
-                android:background="@drawable/rounded_text"
-                android:hint="@string/new_user_email_tip"
-                android:inputType="textEmailAddress"
-                android:minHeight="48dp"
-                android:selectAllOnFocus="true"
-                android:textColorHint="#263F53"
-                tools:ignore="DuplicateSpeakableTextCheck" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/new_emailLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/new_email"
+                    android:layout_width="340dp"
+                    android:layout_height="59dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="8dp"
+                    android:autofillHints="Email"
+                    android:background="@drawable/rounded_text"
+                    android:hint="@string/new_user_email_tip"
+                    android:inputType="textEmailAddress"
+                    android:minHeight="48dp"
+                    android:selectAllOnFocus="true"
+                    android:textColorHint="#263F53"
+                    tools:ignore="DuplicateSpeakableTextCheck" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/create_username_label"
@@ -84,23 +89,28 @@
                 android:text="@string/new_username"
                 android:textColor="@color/button_text_color" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/create_username"
-                android:layout_width="340dp"
-                android:layout_height="59dp"
-                android:layout_marginTop="3dp"
-                android:layout_marginBottom="8dp"
-                android:autofillHints="Email"
-                android:background="@drawable/rounded_text"
-                android:hint="@string/new_username_tip"
-                android:inputType="textEmailAddress"
-                android:minHeight="48dp"
-                android:selectAllOnFocus="true"
-                android:textColorHint="#263F53"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView5"
-                tools:ignore="DuplicateSpeakableTextCheck" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/create_usernameLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/create_username"
+                    android:layout_width="340dp"
+                    android:layout_height="59dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="8dp"
+                    android:autofillHints="Email"
+                    android:background="@drawable/rounded_text"
+                    android:hint="@string/new_username_tip"
+                    android:inputType="textEmailAddress"
+                    android:minHeight="48dp"
+                    android:selectAllOnFocus="true"
+                    android:textColorHint="#263F53"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView5"
+                    tools:ignore="DuplicateSpeakableTextCheck" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/create_username_requirements"
@@ -198,20 +208,25 @@
                 android:text="@string/first_name"
                 android:textColor="@color/button_text_color" />
 
-            <EditText
-                android:id="@+id/first_name"
-                android:layout_width="340dp"
-                android:layout_height="59dp"
-                android:layout_marginTop="3dp"
-                android:layout_marginBottom="8dp"
-                android:autofillHints="Email"
-                android:background="@drawable/rounded_text"
-                android:ems="10"
-                android:inputType="text"
-                android:minHeight="48dp"
-                android:selectAllOnFocus="true"
-                android:text="@string/new_first_name_tip"
-                android:textColorHint="#263F53" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/first_nameLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/first_name"
+                    android:layout_width="340dp"
+                    android:layout_height="59dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="8dp"
+                    android:autofillHints="Name"
+                    android:background="@drawable/rounded_text"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:minHeight="48dp"
+                    android:selectAllOnFocus="true"
+                    android:hint="@string/new_first_name_tip"
+                    android:textColorHint="#263F53" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/last_name_label"
@@ -222,20 +237,25 @@
                 android:text="@string/last_name"
                 android:textColor="@color/button_text_color" />
 
-            <EditText
-                android:id="@+id/last_name"
-                android:layout_width="340dp"
-                android:layout_height="59dp"
-                android:layout_marginTop="3dp"
-                android:layout_marginBottom="8dp"
-                android:autofillHints="Email"
-                android:background="@drawable/rounded_text"
-                android:ems="10"
-                android:inputType="text"
-                android:minHeight="48dp"
-                android:selectAllOnFocus="true"
-                android:text="@string/last_name_tip"
-                android:textColorHint="#263F53" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/last_nameLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/last_name"
+                    android:layout_width="340dp"
+                    android:layout_height="59dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="8dp"
+                    android:autofillHints="Name"
+                    android:background="@drawable/rounded_text"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:minHeight="48dp"
+                    android:selectAllOnFocus="true"
+                    android:hint="@string/last_name_tip"
+                    android:textColorHint="#263F53" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/user_phone_label"
@@ -304,7 +324,7 @@
         android:id="@+id/return_to_login"
         android:layout_width="410dp"
         android:layout_height="60dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="36dp"
         android:background="#00FFFFFF"
         android:contextClickable="true"
         android:fontFamily="@font/inter"
@@ -312,7 +332,10 @@
         android:textColor="@color/button_text_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signup"
+        app:layout_constraintVertical_bias="1.0"
         app:strokeColor="#00FFFFFF"
         tools:ignore="TextSizeCheck" />
 

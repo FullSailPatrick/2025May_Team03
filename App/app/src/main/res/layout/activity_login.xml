@@ -8,33 +8,41 @@
     android:background="@drawable/screen_back_ground">
 
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/username"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/usernameLayout"
         android:layout_width="342dp"
         android:layout_height="59dp"
         android:layout_marginTop="48dp"
-        android:autofillHints="Email"
-        android:background="@drawable/rounded_text"
-        android:hint="@string/Email_tip"
-        android:inputType="textEmailAddress"
-        android:minHeight="48dp"
-        android:selectAllOnFocus="true"
-        android:textColorHint="#263F53"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView5">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="emailAddress"
+            android:background="@drawable/rounded_text"
+            android:hint="@string/Email_tip"
+            android:inputType="textEmailAddress"
+            android:minHeight="48dp"
+            android:selectAllOnFocus="true"
+            android:textColorHint="#263F53" />
+    </com.google.android.material.textfield.TextInputLayout>
 
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/passwordLayout"
         android:layout_width="342dp"
-        android:layout_height="59dp"
+        android:layout_height="0dp"
         android:layout_marginTop="48dp"
-        app:passwordToggleEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.536"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username">
+        app:layout_constraintTop_toBottomOf="@+id/usernameLayout"
+        app:passwordToggleEnabled="true">
+
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/password"
             android:layout_width="match_parent"
@@ -47,8 +55,7 @@
             android:inputType="textPassword"
             android:minHeight="48dp"
             android:selectAllOnFocus="true"
-            android:textColorHint="#263F53"
-             />
+            android:textColorHint="#263F53" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
@@ -64,7 +71,7 @@
         android:textColor="#263F53"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Forgot_Password"
         app:layout_constraintVertical_bias="0.163"
@@ -75,8 +82,6 @@
         android:id="@+id/Create_Account"
         android:layout_width="230dp"
         android:layout_height="50dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="40dp"
         android:background="#00FFFFFF"
         android:contextClickable="true"
         android:fontFamily="@font/inter"
@@ -84,7 +89,7 @@
         android:textColor="@color/button_text_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.645"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login"
         app:layout_constraintVertical_bias="0.466"
@@ -125,11 +130,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="44dp"
         android:layout_marginTop="18dp"
-        android:layout_marginBottom="10dp"
         android:fontFamily="@font/inter"
         android:text="@string/username"
         android:textColor="@color/button_text_color"
-        app:layout_constraintBottom_toTopOf="@+id/username"
+        app:layout_constraintBottom_toTopOf="@+id/usernameLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView5" />
 
