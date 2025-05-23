@@ -1,69 +1,44 @@
-name: Notify Discord
-
-on:
-  push:
-    branches:
-      - "**"
-  project_card:
-    types:
-      - created
-      - moved
-      - converted
-
-jobs:
-  notify:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
-
-      - name: Gather commit data
-        if: github.event_name == 'push'
-        id: commit
-        run: |
-          echo "repo=${{ github.repository }}"            >> $GITHUB_ENV
-          echo "branch=${GITHUB_REF##*/}"                  >> $GITHUB_ENV
-          echo "author=${{ github.event.pusher.name }}"    >> $GITHUB_ENV
-          echo "timestamp=$(date -u '+%A %m-%d-%Y %I:%M %p UTC')" >> $GITHUB_ENV
-          echo "commitInfo=$(git log -1 --pretty=format:'%h %s')" >> $GITHUB_ENV
-          echo "link=https://github.com/${{ github.repository }}/commit/${{ github.sha }}" >> $GITHUB_ENV
-
-      - name: Gather project-card data
-        if: github.event_name == 'project_card'
-        id: project
-        run: |
-          echo "action=${{ github.event.action }}"                          >> $GITHUB_ENV
-          echo "user=${{ github.actor }}"                                   >> $GITHUB_ENV
-          echo "card=${{ github.event.project_card.content_url }}"          >> $GITHUB_ENV
-          echo "column=${{ github.event.project_card.column_name }}"        >> $GITHUB_ENV
-
       - name: Post to Discord
         env:
           WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: |
-          if [ "${{ github.event_name }}" = "push" ]; then
-            cat <<EOF > payload.json
-            { "content": ":white_check_mark: **GitHub push detected** \
-                Repo: $repo \
-                Branch: $branch \
-                Author: $author \
-                Time: $timestamp \
-                Commit: $commitInfo \
-                Link: $link" }
-            EOF
+          # ————————————————
+          # 1) pull in all the GitHub context we need
+          EVENT="${{ github.event_name }}"
+          REPO="${{ github.repository }}"
+          BRANCH="${GITHUB_REF##*/}"
+          ACTOR="${{ github.actor }}"
+          COMMIT=$(git log -1 --pretty=format:'%h %s')
+          LINK="https://github.com/${{ github.repository }}/commit/${{ github.sha }}"
 
-          elif [ "${{ github.event_name }}" = "project_card" ]; then
+          # ————————————————
+          # 2) build the JSON payload based on event type
+          if [ "$EVENT" = "push" ]; then
             cat <<EOF > payload.json
-            { "content": ":card_index_dividers: **Project board updated** \
-                Action: $action \
-                User: $user \
-                Card: $card \
-              Column: $column" }
-          EOF
-
+{
+  "content": ":white_check_mark: Push to \`$REPO\` on \`$BRANCH\` by \`$ACTOR\`
+Commit: $COMMIT
+$LINK"
+}
+EOF
           else
-            echo "Nothing to post for event ${{ github.event_name }}"
-            exit 0
+            cat <<EOF > payload.json
+{
+  "content": ":card_index_dividers: Project card \`$EVENT\` in \`$REPO\` by \`$ACTOR\`
+Card: $CARD_URL
+Column: $COLUMN"
+}
+EOF
           fi
 
-          curl -s -H "Content-Type: application/json" -d @payload.json "$WEBHOOK"
+          # ————————————————
+          # 3) debug output so you can see what went out
+          echo "=== payload.json ==="
+          cat payload.json
+          echo "===================="
+
+          # ————————————————
+          # 4) send it to Discord
+          curl -s -H "Content-Type: application/json" \
+               -d @payload.json \
+               "$WEBHOOK"
