@@ -115,7 +115,7 @@
             <TextView
                 android:id="@+id/create_username_requirements"
                 android:layout_width="340dp"
-                android:layout_height="wrap_content"
+                android:layout_height="8dp"
                 android:layout_marginBottom="20dp"
                 android:fontFamily="@font/inter"
                 android:text="@string/new_username_requirements"
@@ -152,12 +152,38 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
-                android:id="@+id/create_password_requirements"
+                android:id="@+id/password_length_requirements"
+                android:layout_width="340dp"
+                android:layout_height="21dp"
+                android:layout_marginBottom="0dp"
+                android:fontFamily="@font/inter"
+                android:text="@string/new_length_requirement"
+                android:textColor="@color/button_text_color" />
+
+            <TextView
+                android:id="@+id/password_capitol_requirements"
+                android:layout_width="340dp"
+                android:layout_height="21dp"
+                android:layout_marginBottom="0dp"
+                android:fontFamily="@font/inter"
+                android:text="@string/new_capitol_requirement"
+                android:textColor="@color/button_text_color" />
+
+            <TextView
+                android:id="@+id/password_digit_requirements"
+                android:layout_width="340dp"
+                android:layout_height="21dp"
+                android:layout_marginBottom="0dp"
+                android:fontFamily="@font/inter"
+                android:text="@string/new_digit_requirement"
+                android:textColor="@color/button_text_color" />
+            <TextView
+                android:id="@+id/password_special_requirements"
                 android:layout_width="340dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:fontFamily="@font/inter"
-                android:text="@string/new_password_requirements"
+                android:text="@string/new_special_requirement"
                 android:textColor="@color/button_text_color" />
 
             <TextView
