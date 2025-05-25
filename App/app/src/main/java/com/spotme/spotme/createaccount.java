@@ -10,7 +10,7 @@ import android.widget.Toast;
 import android.widget.TextView;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.widget.EditText;
+
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -63,6 +63,8 @@ public class createaccount extends AppCompatActivity {
                finish();
             }
         });
+
+        //TODO Implement text listeners for other text inputs (email, user name, name, phone, address)
         userPassword.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -134,7 +136,8 @@ public class createaccount extends AppCompatActivity {
 
                             } else {
                                 // If sign in fails, display a message to the user.
-                                Toast.makeText(createaccount.this, "Authentication failed."+ Objects.requireNonNull(task.getException()).getMessage(),
+                                Toast.makeText(createaccount.this,
+                                        "Authentication failed."+ Objects.requireNonNull(task.getException()).getMessage(),
                                         Toast.LENGTH_LONG).show();
                             }
                         }
