@@ -1,7 +1,7 @@
 /**
  * Preliminary User Rating Formula for SpotMe App
  *
- * v 0.2
+ * v 0.2.1
  *
  * Simple calculations for user ratings with weighted formula
  * Modified to start new users with zero rating until they complete transactions
