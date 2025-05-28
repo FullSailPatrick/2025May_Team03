@@ -44,13 +44,14 @@
     <string name="new_special_requirement"><![CDATA[
     - Must contain: 1 Special character
         ]]></string>
+    <string name="user_special_requirement"><![CDATA[
+    - Can\'t contain: Special character
+        ]]></string>
     <string name="new_digit_requirement"><![CDATA[
     - Must contain: 1 Number\n
         ]]></string>
-    <string name="new_username_requirements"><![CDATA[
-    - Must be at least 8 characters long\n
+    <string name="unique_username_requirements"><![CDATA[
     - Can not match email\n
-    - Can not contain special characters
         ]]></string>
 
 </resources>
