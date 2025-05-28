@@ -53,5 +53,6 @@
     <string name="unique_username_requirements"><![CDATA[
     - Can not match email\n
         ]]></string>
+    <string name="return_to_login_screen">return to login screen</string>
 
 </resources>

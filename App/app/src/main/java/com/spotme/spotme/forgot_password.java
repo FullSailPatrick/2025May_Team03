@@ -31,12 +31,23 @@ import com.google.firebase.auth.FirebaseUser;
 import java.util.Objects;
 
 public class forgot_password extends AppCompatActivity {
-
+    Button toLoginButton;
+    FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_forgot_password);
+        toLoginButton = findViewById(R.id.to_login);
+        toLoginButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent  loginIntent = new Intent(getApplicationContext(), login.class);
+                startActivity(loginIntent);
+                finish();
+            }
+        });
+
 
     }
 }
