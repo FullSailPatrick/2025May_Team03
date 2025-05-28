@@ -8,4 +8,5 @@
     <string name="action_create_account">Create Account</string>
     <string name="action_forgot_password">Forgot Password?</string>
     <string name="spotme">SpotMe</string>
+    <string name="repayment_prompt">Choose a repayment term</string>
 </resources>
