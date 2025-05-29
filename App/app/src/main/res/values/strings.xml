@@ -1,11 +1,86 @@
 <resources>
+
+    <!-- Screen Element Labels -->
     <string name="app_name">SpotMe</string>
     <string name="app_logo">app_logo</string>
-    <string name="Email">Email</string>
-    <string name="prompt_password">prompt_password</string>
     <string name="action_sign_in_short">action_sign_in_short</string>
     <string name="action_sign_in">Log In</string>
     <string name="action_create_account">Create Account</string>
-    <string name="action_forgot_password">Forgot Password</string>
+    <string name="action_forgot_password">Forgot Password?</string>
     <string name="spotme">SpotMe</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="return_to_login">Already have an account? Login</string>
+
+    <!-- Text Box Labels -->
+    <string name="last_name">Last Name</string>
+    <string name="new_username">Create A Username</string>
+    <string name="new_password">Create Password</string>
+    <string name="first_name">First Name</string>
+    <string name="new_user_password">Re-enter Password</string>
+    <string name="new_user_email">Email Address</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="user_phone">Phone Number</string>
+    <string name="user_address">Mailing Address</string>
+
+    <!-- Text Input tips text -->
+    <string name="Email_tip">Enter Email Or Username</string>
+    <string name="prompt_password_tip">Enter Password</string>
+    <string name="new_user_email_tip">Email</string>
+    <string name="new_confirm_password_tip">Passwords must match</string>
+    <string name="new_password_tip">Password</string>
+    <string name="new_first_name_tip">Legal First Name</string>
+    <string name="new_username_tip">Username</string>
+    <string name="last_name_tip">Legal Last Name</string>
+
+    <!-- Requirements text -->
+    <string name="confirm_password_requirements">Passwords Must Match</string>
+    <string name="new_length_requirement"><![CDATA[
+    - Must be at least 8 characters long\n
+        ]]></string>
+    <string name="new_capitol_requirement"><![CDATA[
+    - Must contain: 1 Capitol letter\n
+        ]]></string>
+    <string name="new_special_requirement"><![CDATA[
+    - Must contain: 1 Special character
+        ]]></string>
+    <string name="user_special_requirement"><![CDATA[
+    - Can\'t contain: Special character
+        ]]></string>
+    <string name="new_digit_requirement"><![CDATA[
+    - Must contain: 1 Number\n
+        ]]></string>
+    <string name="unique_username_requirements"><![CDATA[
+    - Can not match email\n
+        ]]></string>
+    <string name="notifications">Notifications</string>
+    <string name="d">d</string>
+    <string name="notification_icon">Notification Icon</string>
+    <string name="todo">TODO</string>
+    <string name="dark_mode_icon">dark_mode_icon</string>
+    <string name="dark_mode">Dark mode</string>
+    <string name="setting_icon">Setting Icon</string>
+    <string name="privacy_policy">Privacy policy</string>
+    <string name="terms_icon">terms Icon</string>
+    <string name="terms">Terms</string>
+    <string name="cookies_icon">cookies Icon</string>
+    <string name="cookies">Cookies</string>
+    <string name="contact_icon">Contact Icon</string>
+    <string name="contact">Contact</string>
+    <string name="feedback_icon">Feedback Icon</string>
+    <string name="feedback">Feedback</string>
+    <string name="logout_icon">Logout Icon</string>
+    <string name="logout">Logout</string>
+    <string name="loan_summary">Loan summary</string>
+    <string name="active">Active</string>
+    <string name="pending">Pending</string>
+    <string name="completed">Completed</string>
+    <string name="suggested_opportunities">Suggested Opportunities</string>
+    <string name="rating_badge">Rating badge</string>
+    <string name="all">All</string>
+    <string name="this_week">This week</string>
+    <string name="clear">Clear</string>
+
+    <string name="repayment_prompt">Choose a repayment term</string>    <string name="return_to_login_screen">return to login screen</string>
+
 </resources>

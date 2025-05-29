@@ -31,6 +31,7 @@
     <color name="Brand_900">#044C24</color>
     <color name="Brand_950">#012712</color>
 
+
     <color name="Sub_Brand_50">#F4FBF4</color>
     <color name="Sub_Brand_100">#ECF8ED</color>
     <color name="Sub_Brand_200">#D6F0D8</color>
@@ -102,4 +103,8 @@
     <color name="Success_800">#087037</color>
     <color name="Success_900">#074513</color>
     <color name="Success_950">#04250A</color>
+
+
+    <color name="pressed_text_color">#4D7DA8</color>
+    <color name="default_text_color">#172F45</color>
 </resources>

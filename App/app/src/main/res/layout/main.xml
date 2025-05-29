@@ -14,8 +14,16 @@
 
     <!-- Navigation -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
+        android:id="@+id/main_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:menu="@menu/bottom_nav_menu" />
+        app:itemTextColor="@color/Brand_800"
+        app:itemIconTint="@color/Brand_800"
+        app:itemIconSize="50dp"
+        android:background="@color/Sub_Brand_100"
+        android:minHeight="90dp"
+        app:itemBackground="@drawable/menu_item_background"
+        app:itemTextAppearanceActive="@style/menuTextStyles"
+        app:itemTextAppearanceInactive="@style/menuTextStyles"
+        app:menu="@menu/main_nav" />
 </LinearLayout>
