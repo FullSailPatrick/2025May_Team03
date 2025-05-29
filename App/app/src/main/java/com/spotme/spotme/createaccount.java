@@ -31,9 +31,11 @@ import com.google.firebase.auth.FirebaseUser;
 import java.util.Objects;
 
 public class createaccount extends AppCompatActivity {
-    TextInputEditText userEmail, userPassword,userConfirmPassword;
+    TextInputEditText userEmail, userPassword,userConfirmPassword,userName, phoneNum, address,
+            userFirstName, userLastName;
     Button signUpBtn, backToLoginButton;
-    TextView confirmPasswordText,passwordLen,passwordCap,passwordDigit,passwordSpecial;
+    TextView confirmPasswordText,passwordLen,passwordCap,passwordDigit,passwordSpecial,
+            emailLabel, userLen, userUnique, userChar, userPhone, userAddress;
     FirebaseAuth mAuth;
     String specialCharRegex = ".*[!@#$%^&*()_+\\-=\\[\\];':\"\\\\|,.<>/?~*].*";
 
@@ -42,19 +44,41 @@ public class createaccount extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_createaccount);
+        int successColor = ContextCompat.getColor(this,R.color.Success_900);
+        int errorColor = ContextCompat.getColor(this, R.color.Error_700);
         mAuth= FirebaseAuth.getInstance();
-        userEmail = findViewById(R.id.new_email);
-        userPassword = findViewById(R.id.create_password);
-        userConfirmPassword = findViewById(R.id.confirm_password);
+
+        // Button initialization
         signUpBtn = findViewById(R.id.signup);
         backToLoginButton = findViewById(R.id.return_to_login);
+
+        // User Email  input Validation
+        userEmail = findViewById(R.id.new_email);
+
+
+
+
+
+        userName = findViewById(R.id.create_username);
+        userUnique = findViewById(R.id.create_unique_username);
+        userLen = findViewById(R.id.username_length_requirements);
+        userChar = findViewById(R.id.username_char_requirements);
+
+
+
+
+        // User Password validation formating configuration
+        userPassword = findViewById(R.id.create_password);
         passwordLen = findViewById(R.id.password_length_requirements);
         passwordCap = findViewById(R.id.password_capitol_requirements);
         passwordDigit = findViewById(R.id.password_digit_requirements);
         passwordSpecial = findViewById(R.id.password_special_requirements);
+
+        // Confirm password validation
+        userConfirmPassword = findViewById(R.id.confirm_password);
         confirmPasswordText=findViewById(R.id.confirm_password_requirements);
-        int successColor = ContextCompat.getColor(this,R.color.Success_700);
-        int errorColor = ContextCompat.getColor(this, R.color.Error_700);
+
+        // Back to login screen functionality
         backToLoginButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
@@ -65,6 +89,20 @@ public class createaccount extends AppCompatActivity {
         });
 
         //TODO Implement text listeners for other text inputs (email, user name, name, phone, address)
+        userName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+                validateUsername(successColor,errorColor);
+            }
+        });
         userPassword.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -120,6 +158,11 @@ public class createaccount extends AppCompatActivity {
                 if(!validatePassword(successColor,errorColor))
                 {
                     Toast.makeText(createaccount.this, "Password is to weak", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if(!validateUsername(successColor,errorColor))
+                {
+                    Toast.makeText(createaccount.this, "Username is invalid", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -214,5 +257,66 @@ public class createaccount extends AppCompatActivity {
             passwordOK = true;
         }
         return passwordOK;
+    }
+    private boolean validateUsername(int _successColor, int _errorColor){
+        String email, username, emailPrefix;
+        email = String.valueOf(userEmail.getText());
+        username = String.valueOf(userName.getText());
+        boolean usernameOK = false;
+        int sum;
+        int uniqueUsername;
+        int usernameLengthOk;
+        int usernameCharOk;
+
+        // make sure username and email aren't blank
+        if(TextUtils.isEmpty(username))
+        {
+            userUnique.setTextColor(_errorColor);
+            userChar.setTextColor(_errorColor);
+            userLen.setTextColor(_errorColor);
+        }
+        // compare email to username and make sure they don't match
+        if(!TextUtils.isEmpty(email))
+        {
+            int indexOfAt = email.indexOf('@');
+            emailPrefix = email.substring(0, indexOfAt);
+            if(username.equals(emailPrefix)) {
+                userUnique.setTextColor(_errorColor);
+                uniqueUsername = 0;
+            }
+            else{
+                userUnique.setTextColor(_successColor);
+                uniqueUsername = 1;
+            }
+        }
+        else {
+            uniqueUsername = 0;
+            userUnique.setTextColor(_errorColor);
+        }
+        if (username.matches(specialCharRegex))
+        {
+            userChar.setTextColor(_errorColor);
+            usernameCharOk = 0;
+        }
+        else
+        {
+            userChar.setTextColor(_successColor);
+            usernameCharOk = 1;
+        }
+        if (username.length()<8)
+        {
+            userLen.setTextColor(_errorColor);
+            usernameLengthOk = 0;
+        }
+        else
+        {
+            userLen.setTextColor(_successColor);
+            usernameLengthOk = 1;
+        }
+        sum = usernameCharOk + usernameLengthOk + uniqueUsername;
+        if(sum == 3){
+            usernameOK = true;
+        }
+        return usernameOK;
     }
 }

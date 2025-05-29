@@ -23,7 +23,7 @@ public class login extends AppCompatActivity {
     TextInputEditText userEmail, userPassword;
     Button logInBtn;
     FirebaseAuth mAuth;
-    Button createAccountBtn;
+    Button createAccountBtn, forgotPasswordBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +33,15 @@ public class login extends AppCompatActivity {
         userPassword = findViewById(R.id.password);
         logInBtn = findViewById(R.id.login);
         createAccountBtn= findViewById(R.id.Create_Account);
+        forgotPasswordBtn=findViewById(R.id.Forgot_Password);
+        forgotPasswordBtn.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View view) {
+                 Intent loginIntent = new Intent(getApplicationContext(), forgot_password.class);
+                 startActivity(loginIntent);
+                 finish();
+             }
+         });
         createAccountBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
