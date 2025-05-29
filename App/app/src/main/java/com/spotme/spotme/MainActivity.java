@@ -1,13 +1,15 @@
 package com.spotme.spotme;
 
 //Imports
+
+import static com.spotme.spotme.R.*;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.WindowCompat;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -16,6 +18,9 @@ public class MainActivity extends AppCompatActivity
 {
     FrameLayout viewContainer;
     LayoutInflater inflater;
+    private boolean isLoggedIn=false;
+    Button myLoansButton;
+    Button myDebtsButton;
 
 
     @Override
@@ -49,6 +54,16 @@ public class MainActivity extends AppCompatActivity
             else if (id == R.id.nav_deals)
             {
                 switchView(R.layout.deals);
+                myDebtsButton = findViewById(R.id.debtButton);
+                myDebtsButton.setOnClickListener(view ->
+                {
+                    switchView(R.layout.mydebts);
+                    myLoansButton = findViewById(R.id.loanButton);
+                    myLoansButton.setOnClickListener(View ->
+                    {
+                        switchView(R.layout.deals);
+                    });
+                });
             }
             else if (id == R.id.nav_borrow)
             {
@@ -65,6 +80,7 @@ public class MainActivity extends AppCompatActivity
 
             return true;
         });
+
     }
 
 
