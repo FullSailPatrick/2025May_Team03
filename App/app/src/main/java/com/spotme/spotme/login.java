@@ -24,6 +24,7 @@ public class login extends AppCompatActivity {
     Button logInBtn;
     FirebaseAuth mAuth;
     Button createAccountBtn, forgotPasswordBtn;
+    boolean developer = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,32 +59,56 @@ public class login extends AppCompatActivity {
                 email = String.valueOf(userEmail.getText());
                 password = String.valueOf(userPassword.getText());
 
-                if (TextUtils.isEmpty(email)){
-                    Toast.makeText(login.this, "Enter email", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if (TextUtils.isEmpty(password)){
-                    Toast.makeText(login.this, "Enter a password", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                mAuth.signInWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    // Sign in success, update UI with the signed-in user's information
-                                    Toast.makeText(login.this, "Authentication Success.",
-                                            Toast.LENGTH_SHORT).show();
-                                    Intent loginIntent = new Intent(getApplicationContext(), MainActivity.class);
-                                    startActivity(loginIntent);
-                                    finish();
-                                } else {
-                                    // If sign in fails, display a message to the user.
-                                    Toast.makeText(login.this, "Authentication failed.",
-                                            Toast.LENGTH_SHORT).show();
+                if (!developer) {
+                    if (TextUtils.isEmpty(email)) {
+                        Toast.makeText(login.this, "Enter email", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if (TextUtils.isEmpty(password)) {
+                        Toast.makeText(login.this, "Enter a password", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    mAuth.signInWithEmailAndPassword(email, password)
+                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        // Sign in success, update UI with the signed-in user's information
+                                        Toast.makeText(login.this, "Authentication Success.",
+                                                Toast.LENGTH_SHORT).show();
+                                        Intent loginIntent = new Intent(getApplicationContext(), MainActivity.class);
+                                        startActivity(loginIntent);
+                                        finish();
+                                    } else {
+                                        // If sign in fails, display a message to the user.
+                                        Toast.makeText(login.this, "Authentication failed.",
+                                                Toast.LENGTH_SHORT).show();
+                                    }
                                 }
-                            }
-                        });
+                            });
+                }
+                else{
+                    email = "admin@spotme.com";
+                    password = "Adm!n52025";
+                    mAuth.signInWithEmailAndPassword(email, password)
+                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        // Sign in success, update UI with the signed-in user's information
+                                        Toast.makeText(login.this, "Authentication Success.",
+                                                Toast.LENGTH_SHORT).show();
+                                        Intent loginIntent = new Intent(getApplicationContext(), MainActivity.class);
+                                        startActivity(loginIntent);
+                                        finish();
+                                    } else {
+                                        // If sign in fails, display a message to the user.
+                                        Toast.makeText(login.this, "Authentication failed.",
+                                                Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+                }
             }
         });
 
