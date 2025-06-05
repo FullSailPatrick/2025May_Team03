@@ -27,8 +27,17 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
 
 import java.util.Objects;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Date;
 
 public class createaccount extends AppCompatActivity {
     TextInputEditText userEmail, userPassword,userConfirmPassword,userName, phoneNum, address,
@@ -54,18 +63,10 @@ public class createaccount extends AppCompatActivity {
 
         // User Email  input Validation
         userEmail = findViewById(R.id.new_email);
-
-
-
-
-
         userName = findViewById(R.id.create_username);
         userUnique = findViewById(R.id.create_unique_username);
         userLen = findViewById(R.id.username_length_requirements);
         userChar = findViewById(R.id.username_char_requirements);
-
-
-
 
         // User Password validation formating configuration
         userPassword = findViewById(R.id.create_password);
