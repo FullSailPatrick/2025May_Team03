@@ -4,6 +4,7 @@ package com.spotme.spotme;
 
 import static com.spotme.spotme.R.*;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +19,6 @@ public class MainActivity extends AppCompatActivity
 {
     FrameLayout viewContainer;
     LayoutInflater inflater;
-    private boolean isLoggedIn=false;
     Button myLoansButton;
     Button myDebtsButton;
 
@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity
             }
             else if (id == R.id.nav_settings)
             {
-                switchView(R.layout.settings);
+                startActivity(new Intent(MainActivity.this, Settings.class));
             }
 
             return true;
@@ -92,16 +92,5 @@ public class MainActivity extends AppCompatActivity
         View view = inflater.inflate(layoutResId, viewContainer, false);
 
         viewContainer.addView(view);
-
-//        if (layoutResId == R.layout.settings)
-//        {
-//            // Load the SettingsFragment inside the placeholder
-//            getSupportFragmentManager()
-//                    .beginTransaction()
-//                    .replace(R.id.view_container, new SettingsFragment())
-//                    .commit();
-//
-//        }
     }
-
 }

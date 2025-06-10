@@ -1,6 +1,5 @@
 package com.spotme.spotme;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -16,9 +15,6 @@ import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -26,18 +22,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.Task;
 
 import java.util.Objects;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Date;
 
 public class createaccount extends AppCompatActivity {
     TextInputEditText userEmail, userPassword,userConfirmPassword,userName, phoneNum, address,
@@ -83,7 +69,7 @@ public class createaccount extends AppCompatActivity {
         backToLoginButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-               Intent  loginIntent = new Intent(getApplicationContext(), login.class);
+               Intent  loginIntent = new Intent(getApplicationContext(), Login.class);
                startActivity(loginIntent);
                finish();
             }
@@ -174,7 +160,7 @@ public class createaccount extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 Toast.makeText(createaccount.this, "Account Created.",
                                         Toast.LENGTH_LONG).show();
-                                Intent  loginIntent = new Intent(getApplicationContext(), login.class);
+                                Intent  loginIntent = new Intent(getApplicationContext(), Login.class);
                                 startActivity(loginIntent);
                                 finish();
 

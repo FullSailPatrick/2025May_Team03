@@ -242,15 +242,18 @@
 
             <!-- Logout-->
             <LinearLayout
-                android:id="@+id/logout"
+                android:id="@+id/logoutAction"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
                 android:paddingStart="16dp"
+                android:clickable="true"
+                android:focusable="true"
                 android:paddingEnd="16dp"
                 android:layout_marginBottom="12dp"
-                android:background="@drawable/rounded_white_box">
+                android:background="@drawable/rounded_white_box"
+                android:foreground="?attr/selectableItemBackground">
 
                 <ImageView
                     android:layout_width="24dp"
