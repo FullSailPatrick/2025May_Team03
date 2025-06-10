@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Settings extends AppCompatActivity
@@ -25,6 +27,10 @@ public class Settings extends AppCompatActivity
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 finish();
+
+                //Little message
+                Toast.makeText(Settings.this, "Logged out Successfully!",
+                        Toast.LENGTH_SHORT).show();
             }
         });
     }
