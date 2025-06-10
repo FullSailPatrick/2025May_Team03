@@ -35,16 +35,23 @@
 
     <!-- Requirements text -->
     <string name="confirm_password_requirements">Passwords Must Match</string>
-    <string name="new_password_requirements"><![CDATA[
-      - Must be at least 8 characters long\n
-    - Must contain: 1 Number\n
+    <string name="new_length_requirement"><![CDATA[
+    - Must be at least 8 characters long\n
+        ]]></string>
+    <string name="new_capitol_requirement"><![CDATA[
     - Must contain: 1 Capitol letter\n
+        ]]></string>
+    <string name="new_special_requirement"><![CDATA[
     - Must contain: 1 Special character
         ]]></string>
-    <string name="new_username_requirements"><![CDATA[
-    - Must be at least 8 characters long\n
+    <string name="user_special_requirement"><![CDATA[
+    - Can\'t contain: Special character
+        ]]></string>
+    <string name="new_digit_requirement"><![CDATA[
+    - Must contain: 1 Number\n
+        ]]></string>
+    <string name="unique_username_requirements"><![CDATA[
     - Can not match email\n
-    - Can not contain special characters
         ]]></string>
     <string name="notifications">Notifications</string>
     <string name="d">d</string>
@@ -73,5 +80,8 @@
     <string name="all">All</string>
     <string name="this_week">This week</string>
     <string name="clear">Clear</string>
+
+    <string name="repayment_prompt">Choose a repayment term</string>    <string name="return_to_login_screen">return to login screen</string>
+    <string name="reset_password_text">It’s okay, bad things happen. Please enter your email below and we’ll send you instructions to reset your password.</string>
 
 </resources>

@@ -1,13 +1,15 @@
 package com.spotme.spotme;
 
 //Imports
+
+import static com.spotme.spotme.R.*;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.WindowCompat;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -17,6 +19,9 @@ public class MainActivity extends AppCompatActivity
     FrameLayout viewContainer;
     LayoutInflater inflater;
     private boolean isLoggedIn=false;
+    Button myLoansButton;
+    Button myDebtsButton;
+
 
     @Override
     protected void onCreate(Bundle instance)
@@ -36,46 +41,7 @@ public class MainActivity extends AppCompatActivity
         //navbar title settings
         BottomNavigationView bottomNav = findViewById(R.id.main_navigation);
         bottomNav.setLabelVisibilityMode(NavigationBarView.LABEL_VISIBILITY_LABELED);
-        // Inflate views
-        View loginView = inflater.inflate(R.layout.login, viewContainer, false);
-        View createAccountView = inflater.inflate(R.layout.createaccount, viewContainer, false);
-
-        // Add views to container
-        viewContainer.addView(loginView);
-        viewContainer.addView(createAccountView);
-
-        // Show login view by default, hide create account view
-        loginView.setVisibility(View.VISIBLE);
-        createAccountView.setVisibility(View.GONE);
-
-        // Button references
-        Button loginButton = loginView.findViewById(R.id.login);
-        Button createAccountButton = loginView.findViewById(R.id.Create_Account);
-        Button forgotPasswordButton = loginView.findViewById(R.id.Forgot_Password);
-        Button backToLoginButton = createAccountView.findViewById(R.id.return_to_login);
-
-        // Set up button actions
-        loginButton.setOnClickListener(view -> {
-            handleLoginEvent();
-            if (!isLoggedIn) {
-                loginView.setVisibility(View.VISIBLE);
-                createAccountView.setVisibility(View.GONE);
-            } else {
-                switchView(R.layout.home);
-            }
-        });
-
-        createAccountButton.setOnClickListener(view -> {
-            loginView.setVisibility(View.GONE);
-            createAccountView.setVisibility(View.VISIBLE);
-        });
-
-        backToLoginButton.setOnClickListener(view -> {
-            loginView.setVisibility(View.VISIBLE);
-            createAccountView.setVisibility(View.GONE);
-        });
-
-        forgotPasswordButton.setOnClickListener(view -> switchView(R.layout.forgotpassword));
+        switchView(R.layout.home);
 
         bottomNav.setOnItemSelectedListener(item ->
         {
@@ -88,6 +54,16 @@ public class MainActivity extends AppCompatActivity
             else if (id == R.id.nav_deals)
             {
                 switchView(R.layout.deals);
+                myDebtsButton = findViewById(R.id.debtButton);
+                myDebtsButton.setOnClickListener(view ->
+                {
+                    switchView(R.layout.mydebts);
+                    myLoansButton = findViewById(R.id.loanButton);
+                    myLoansButton.setOnClickListener(View ->
+                    {
+                        switchView(R.layout.deals);
+                    });
+                });
             }
             else if (id == R.id.nav_borrow)
             {
@@ -104,6 +80,7 @@ public class MainActivity extends AppCompatActivity
 
             return true;
         });
+
     }
 
 
@@ -126,11 +103,5 @@ public class MainActivity extends AppCompatActivity
 //
 //        }
     }
-    private void handleLoginEvent() {
-        // Set login value to true
-        isLoggedIn = true;
-        // Transition to home screen
-        switchView(R.layout.home);
 
-    }
 }

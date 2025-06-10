@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "317844138924",
+    "project_id": "spotme-38c4b",
+    "storage_bucket": "spotme-38c4b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:317844138924:android:bc966634d62ea7ea96a809",
+        "android_client_info": {
+          "package_name": "com.spotme.spotme"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOHvBNy-b5uHIGIsAPKtQMM49Wmat8Wrg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

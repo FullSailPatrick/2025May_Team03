@@ -17,13 +17,13 @@
         android:id="@+id/main_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:itemTextColor="@color/Brand_800"
-        app:itemIconTint="@color/Brand_800"
-        app:itemIconSize="50dp"
         android:background="@color/Sub_Brand_100"
         android:minHeight="90dp"
         app:itemBackground="@drawable/menu_item_background"
+        app:itemIconSize="50dp"
+        app:itemIconTint="@color/Brand_800"
         app:itemTextAppearanceActive="@style/menuTextStyles"
         app:itemTextAppearanceInactive="@style/menuTextStyles"
+        app:itemTextColor="@color/Brand_800"
         app:menu="@menu/main_nav" />
 </LinearLayout>
