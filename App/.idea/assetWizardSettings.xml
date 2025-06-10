@@ -80,7 +80,7 @@
                                               <map>
                                                 <entry key="color" value="000000" />
                                                 <entry key="imagePath" value="C:\FS\ProjectPorfollioII\spotme_icon.png" />
-                                                <entry key="scalingPercent" value="48" />
+                                                <entry key="scalingPercent" value="52" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -113,7 +113,8 @@
                                   <option name="values">
                                     <map>
                                       <entry key="backgroundAssetType" value="COLOR" />
-                                      <entry key="backgroundColor" value="95f3c3" />
+                                      <entry key="backgroundColor" value="f4fbf4" />
+                                      <entry key="generateWebpIcons" value="false" />
                                     </map>
                                   </option>
                                 </PersistentState>

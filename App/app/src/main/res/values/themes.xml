@@ -15,7 +15,7 @@
         <item name="android:buttonStyle">@style/GradientButton</item>
         <item name="buttonTint">@null</item>
         <item name="materialButtonStyle">@style/GradientButton</item>
-        <item name="android:windowSplashScreenBackground">@color/Brand_100</item>
+        <item name="android:windowSplashScreenBackground">@color/Sub_Brand_200</item>
 
     </style>
 
