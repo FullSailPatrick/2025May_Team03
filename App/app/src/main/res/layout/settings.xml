@@ -197,7 +197,7 @@
 
             <!-- Contact-->
             <LinearLayout
-                android:id="@+id/contact"
+                android:id="@+id/contactAction"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:orientation="horizontal"
@@ -227,7 +227,7 @@
 
             <!-- Feedback-->
             <LinearLayout
-                android:id="@+id/feedback"
+                android:id="@+id/feedbackAction"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:orientation="horizontal"

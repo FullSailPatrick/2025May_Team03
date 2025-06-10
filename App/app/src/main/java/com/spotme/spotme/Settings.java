@@ -40,6 +40,21 @@ public class Settings extends AppCompatActivity
             termsDialog.show(getSupportFragmentManager(), "Cookies");
         });
 
+        //Show contact dialog
+        LinearLayout contactAction = findViewById(R.id.contactAction);
+        contactAction.setOnClickListener(v ->
+        {
+            TermsDialogFragment termsDialog = new TermsDialogFragment();
+            termsDialog.show(getSupportFragmentManager(), "Cookies");
+        });
+
+        //Show cookies dialog
+        LinearLayout feedbackAction = findViewById(R.id.feedbackAction);
+        feedbackAction.setOnClickListener(v ->
+        {
+            TermsDialogFragment termsDialog = new TermsDialogFragment();
+            termsDialog.show(getSupportFragmentManager(), "Cookies");
+        });
 
 
         //Listen to the logoutAction click and redirect the user to the login screen.
