@@ -1,19 +1,206 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/constraintLayout"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/screen_back_ground">
+    android:background="@drawable/screen_back_ground"
+    android:padding="20dp">
 
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="250dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="45dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/spotme_logo" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <!-- Logo -->
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="250dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="32dp"
+            android:src="@drawable/spotme_logo" />
+
+        <!-- Page Title -->
+        <TextView
+            android:id="@+id/title"
+            android:text="Request money"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="24dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <!-- Lender Email Field -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Lender Email"
+            android:textStyle="bold"
+            android:layout_marginBottom="4dp" />
+
+        <EditText
+            android:id="@+id/lenderEmailInput"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/rounded_text"
+            android:paddingHorizontal="16dp"
+            android:hint="lender@mail.com"
+            android:inputType="textEmailAddress" />
+
+        <!-- Lender Phone Field -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Lender Phone"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="4dp" />
+
+        <EditText
+            android:id="@+id/lenderPhoneInput"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/rounded_text"
+            android:paddingHorizontal="16dp"
+            android:hint="(123) - 456-4512"
+            android:inputType="phone" />
+
+        <!-- Amount Field -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Amount Requested"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="4dp" />
+
+        <EditText
+            android:id="@+id/amountRequestedInput"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/rounded_text"
+            android:paddingHorizontal="16dp"
+            android:hint="$500"
+            android:inputType="numberDecimal" />
+
+        <!-- Reason Field -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Reason for Request"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="4dp" />
+
+        <EditText
+            android:id="@+id/reasonInput"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@drawable/rounded_text"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="12dp"
+            android:hint="Emergency car repair, medical bills, etc."
+            android:inputType="textMultiLine"
+            android:gravity="top"
+            android:maxLines="3" />
+
+        <!-- Repayment Terms -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Proposed repayment terms"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="4dp" />
+
+        <RadioGroup
+            android:id="@+id/repaymentOptions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/term4weeks"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4 weeks" />
+
+            <RadioButton
+                android:id="@+id/term8weeks"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="8 weeks" />
+
+            <RadioButton
+                android:id="@+id/term3months"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3 months" />
+
+            <RadioButton
+                android:id="@+id/term6months"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="6 months" />
+
+            <RadioButton
+                android:id="@+id/term12months"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12 months" />
+        </RadioGroup>
+
+        <!-- Urgency Level -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Urgency Level"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="4dp" />
+
+        <RadioGroup
+            android:id="@+id/urgencyOptions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/urgencyLow"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Low" />
+
+            <RadioButton
+                android:id="@+id/urgencyMedium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Medium" />
+
+            <RadioButton
+                android:id="@+id/urgencyHigh"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="High" />
+        </RadioGroup>
+
+        <!-- Submit Button -->
+        <Button
+            android:id="@+id/submitRequestBtn"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="16dp"
+            android:text="Send Request"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            android:background="@drawable/gradient_background" />
+
+    </LinearLayout>
+</ScrollView>
