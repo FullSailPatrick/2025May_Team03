@@ -81,7 +81,11 @@
     <string name="this_week">This week</string>
     <string name="clear">Clear</string>
 
-    <string name="repayment_prompt">Choose a repayment term</string>    <string name="return_to_login_screen">return to login screen</string>
+    <string name="repayment_prompt">Choose a repayment term</string>
+    <string name="return_to_login_screen">return to login screen</string>
     <string name="reset_password_text">It’s okay, bad things happen. Please enter your email below and we’ll send you instructions to reset your password.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="close">Close</string>
 
 </resources>

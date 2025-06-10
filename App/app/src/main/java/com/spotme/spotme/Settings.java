@@ -16,6 +16,23 @@ public class Settings extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
 
+        //Show privacy policy dialog
+        LinearLayout privacyPolicyAction = findViewById(R.id.privacyPolicyAction);
+        privacyPolicyAction.setOnClickListener(v ->
+        {
+            PrivacyPolicyDialogFragment dialog = new PrivacyPolicyDialogFragment();
+            dialog.show(getSupportFragmentManager(), "PrivacyPolicy");
+        });
+
+        //Show terms dialog
+        LinearLayout termsAction = findViewById(R.id.termsAction);
+        termsAction.setOnClickListener(v ->
+        {
+            TermsDialogFragment termsDialog = new TermsDialogFragment();
+            termsDialog.show(getSupportFragmentManager(), "Terms");
+        });
+
+
         //Listen to the logoutAction click and redirect the user to the login screen.
         LinearLayout logoutAction = findViewById(R.id.logoutAction);
         logoutAction.setOnClickListener(new View.OnClickListener()

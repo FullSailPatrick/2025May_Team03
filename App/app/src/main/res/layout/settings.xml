@@ -107,11 +107,14 @@
 
             <!-- Privacy policy-->
             <LinearLayout
-                android:id="@+id/privacy_policy"
+                android:id="@+id/privacyPolicyAction"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
                 android:layout_marginBottom="12dp"
@@ -134,11 +137,14 @@
 
             <!-- Terms-->
             <LinearLayout
-                android:id="@+id/terms"
+                android:id="@+id/termsAction"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
                 android:layout_marginBottom="12dp"
@@ -166,6 +172,9 @@
                 android:layout_height="60dp"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
                 android:layout_marginBottom="12dp"
@@ -192,6 +201,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:orientation="horizontal"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
                 android:gravity="center_vertical"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
@@ -222,6 +234,9 @@
                 android:gravity="center_vertical"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
                 android:layout_marginBottom="12dp"
                 android:background="@drawable/rounded_white_box">
 
@@ -250,10 +265,10 @@
                 android:paddingStart="16dp"
                 android:clickable="true"
                 android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
                 android:paddingEnd="16dp"
                 android:layout_marginBottom="12dp"
-                android:background="@drawable/rounded_white_box"
-                android:foreground="?attr/selectableItemBackground">
+                android:background="@drawable/rounded_white_box">
 
                 <ImageView
                     android:layout_width="24dp"
