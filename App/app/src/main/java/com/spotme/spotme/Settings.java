@@ -37,7 +37,7 @@ public class Settings extends AppCompatActivity
         cookiesAction.setOnClickListener(v ->
         {
             TermsDialogFragment termsDialog = new TermsDialogFragment();
-            termsDialog.show(getSupportFragmentManager(), "Terms");
+            termsDialog.show(getSupportFragmentManager(), "Cookies");
         });
 
 
