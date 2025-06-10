@@ -36,26 +36,25 @@ public class Settings extends AppCompatActivity
         LinearLayout cookiesAction = findViewById(R.id.cookiesAction);
         cookiesAction.setOnClickListener(v ->
         {
-            TermsDialogFragment termsDialog = new TermsDialogFragment();
-            termsDialog.show(getSupportFragmentManager(), "Cookies");
+            CookiesDialogFragment cookieDialog = new CookiesDialogFragment();
+            cookieDialog.show(getSupportFragmentManager(), "Cookies");
         });
 
         //Show contact dialog
         LinearLayout contactAction = findViewById(R.id.contactAction);
         contactAction.setOnClickListener(v ->
         {
-            TermsDialogFragment termsDialog = new TermsDialogFragment();
-            termsDialog.show(getSupportFragmentManager(), "Cookies");
+            ContactDialogFragment contactDialog = new ContactDialogFragment();
+            contactDialog.show(getSupportFragmentManager(), "Contact");
         });
 
         //Show cookies dialog
         LinearLayout feedbackAction = findViewById(R.id.feedbackAction);
         feedbackAction.setOnClickListener(v ->
         {
-            TermsDialogFragment termsDialog = new TermsDialogFragment();
-            termsDialog.show(getSupportFragmentManager(), "Cookies");
+            FeedbackDialogFragment feedbackDialog = new FeedbackDialogFragment();
+            feedbackDialog.show(getSupportFragmentManager(), "Feedback");
         });
-
 
         //Listen to the logoutAction click and redirect the user to the login screen.
         LinearLayout logoutAction = findViewById(R.id.logoutAction);

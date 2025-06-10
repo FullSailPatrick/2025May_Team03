@@ -21,7 +21,6 @@
             android:contentDescription="@string/close"
             android:background="?attr/selectableItemBackgroundBorderless" />
 
-
     </LinearLayout>
 
 </FrameLayout>
