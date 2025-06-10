@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="Theme.SpotMe" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorPrimary">@color/Gray_800</item>
+        <item name="colorPrimaryVariant">@color/Gray_700</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
@@ -15,5 +15,8 @@
         <item name="android:buttonStyle">@style/GradientButton</item>
         <item name="buttonTint">@null</item>
         <item name="materialButtonStyle">@style/GradientButton</item>
+        <item name="android:windowSplashScreenBackground">@color/Sub_Brand_200</item>
+
     </style>
+
 </resources>
