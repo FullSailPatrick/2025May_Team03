@@ -83,5 +83,8 @@
 
     <string name="repayment_prompt">Choose a repayment term</string>    <string name="return_to_login_screen">return to login screen</string>
     <string name="reset_password_text">It’s okay, bad things happen. Please enter your email below and we’ll send you instructions to reset your password.</string>
+    <string name="forgot_password_header">Forgot password</string>
+    <string name="Forgot_password_Submit">Send Instructions</string>
+    <string name="enter_email_hint_text">Enter Email</string>
 
 </resources>

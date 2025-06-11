@@ -1,6 +1,5 @@
 package com.spotme.spotme;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -16,9 +15,6 @@ import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -26,20 +22,10 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.Task;
 
 import java.util.Objects;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Date;
 
-public class createaccount extends AppCompatActivity {
+public class Create_Account extends AppCompatActivity {
     TextInputEditText userEmail, userPassword,userConfirmPassword,userName, phoneNum, address,
             userFirstName, userLastName;
     Button signUpBtn, backToLoginButton;
@@ -79,11 +65,11 @@ public class createaccount extends AppCompatActivity {
         userConfirmPassword = findViewById(R.id.confirm_password);
         confirmPasswordText=findViewById(R.id.confirm_password_requirements);
 
-        // Back to login screen functionality
+        // Back to Login_Activity screen functionality
         backToLoginButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-               Intent  loginIntent = new Intent(getApplicationContext(), login.class);
+               Intent  loginIntent = new Intent(getApplicationContext(), Login_Activity.class);
                startActivity(loginIntent);
                finish();
             }
@@ -145,25 +131,25 @@ public class createaccount extends AppCompatActivity {
                 confirmPassword = String.valueOf(userConfirmPassword.getText());
 
                 if (TextUtils.isEmpty(email)){
-                    Toast.makeText(createaccount.this, "Enter email", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Create_Account.this, "Enter email", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (TextUtils.isEmpty(password)){
-                    Toast.makeText(createaccount.this, "Enter a password", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Create_Account.this, "Enter a password", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (TextUtils.isEmpty(confirmPassword)|| !password.equals(confirmPassword)){
-                    Toast.makeText(createaccount.this, "Passwords do not match", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Create_Account.this, "Passwords do not match", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if(!validatePassword(successColor,errorColor))
                 {
-                    Toast.makeText(createaccount.this, "Password is to weak", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Create_Account.this, "Password is to weak", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if(!validateUsername(successColor,errorColor))
                 {
-                    Toast.makeText(createaccount.this, "Username is invalid", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Create_Account.this, "Username is invalid", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -172,15 +158,15 @@ public class createaccount extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                Toast.makeText(createaccount.this, "Account Created.",
+                                Toast.makeText(Create_Account.this, "Account Created.",
                                         Toast.LENGTH_LONG).show();
-                                Intent  loginIntent = new Intent(getApplicationContext(), login.class);
+                                Intent  loginIntent = new Intent(getApplicationContext(), Login_Activity.class);
                                 startActivity(loginIntent);
                                 finish();
 
                             } else {
                                 // If sign in fails, display a message to the user.
-                                Toast.makeText(createaccount.this,
+                                Toast.makeText(Create_Account.this,
                                         "Authentication failed."+ Objects.requireNonNull(task.getException()).getMessage(),
                                         Toast.LENGTH_LONG).show();
                             }
