@@ -5,32 +5,29 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 import android.widget.TextView;
 import android.text.Editable;
 import android.text.TextWatcher;
-
-
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-
 import java.util.Objects;
+import java.util.Map;
+import java.util.HashMap;
 
 public class Create_Account extends AppCompatActivity {
-    TextInputEditText userEmail, userPassword,userConfirmPassword,userName, phoneNum, address,
-            userFirstName, userLastName;
+    TextInputEditText userEmail, userPassword,userConfirmPassword,userName;
+    EditText userPhone, userAddress, userFirstName, userLastName;
     Button signUpBtn, backToLoginButton;
-    TextView confirmPasswordText,passwordLen,passwordCap,passwordDigit,passwordSpecial,
-            emailLabel, userLen, userUnique, userChar, userPhone, userAddress;
+    TextView confirmPasswordText,passwordLen,passwordCap,passwordDigit,passwordSpecial, userLen, userUnique, userChar;
     FirebaseAuth mAuth;
     String specialCharRegex = ".*[!@#$%^&*()_+\\-=\\[\\];':\"\\\\|,.<>/?~*].*";
 
@@ -42,14 +39,15 @@ public class Create_Account extends AppCompatActivity {
         int successColor = ContextCompat.getColor(this,R.color.Success_900);
         int errorColor = ContextCompat.getColor(this, R.color.Error_700);
         mAuth= FirebaseAuth.getInstance();
+        User_Database userDatabase = new User_Database();
 
         // Button initialization
         signUpBtn = findViewById(R.id.signup);
         backToLoginButton = findViewById(R.id.return_to_login);
 
         // User Email  input Validation
-        userEmail = findViewById(R.id.new_email);
-        userName = findViewById(R.id.create_username);
+        userEmail = findViewById(R.id.new_email); // User Email Address Entry Field
+        userName = findViewById(R.id.create_username); // User Name Entry Field
         userUnique = findViewById(R.id.create_unique_username);
         userLen = findViewById(R.id.username_length_requirements);
         userChar = findViewById(R.id.username_char_requirements);
@@ -64,6 +62,13 @@ public class Create_Account extends AppCompatActivity {
         // Confirm password validation
         userConfirmPassword = findViewById(R.id.confirm_password);
         confirmPasswordText=findViewById(R.id.confirm_password_requirements);
+
+        //User Data Fields
+        userAddress = findViewById(R.id.user_postal_address);
+        userPhone = findViewById(R.id.user_phone_number);
+        userFirstName = findViewById(R.id.first_name);
+        userLastName = findViewById(R.id.last_name);
+
 
         // Back to Login_Activity screen functionality
         backToLoginButton.setOnClickListener(new View.OnClickListener(){
@@ -123,12 +128,14 @@ public class Create_Account extends AppCompatActivity {
            }
        });
         signUpBtn.setOnClickListener(new View.OnClickListener(){
+
             @Override
             public void onClick(View view){
                 String email, password, confirmPassword;
                 email = String.valueOf(userEmail.getText());
                 password = String.valueOf(userPassword.getText());
                 confirmPassword = String.valueOf(userConfirmPassword.getText());
+
 
                 if (TextUtils.isEmpty(email)){
                     Toast.makeText(Create_Account.this, "Enter email", Toast.LENGTH_SHORT).show();
@@ -158,6 +165,11 @@ public class Create_Account extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
+                                String userID = task.getResult().getUser().getUid();
+
+
+                                User_Database userDatabase = new User_Database();
+                                userDatabase.addUser(userID, buildUserData());
                                 Toast.makeText(Create_Account.this, "Account Created.",
                                         Toast.LENGTH_LONG).show();
                                 Intent  loginIntent = new Intent(getApplicationContext(), Login_Activity.class);
@@ -306,4 +318,37 @@ public class Create_Account extends AppCompatActivity {
         }
         return usernameOK;
     }
+
+    private Map<String,Object> buildUserData(){
+        String email = String.valueOf(userEmail.getText());
+        String username = String.valueOf(userName.getText());
+        String firstName = String.valueOf(userFirstName.getText());
+        String lastName = String.valueOf(userLastName.getText());
+        String phone = String.valueOf(userPhone.getText());
+        String address = String.valueOf(userAddress.getText());
+
+        Map<String,Object> userInfo = new HashMap<>();
+        userInfo.put("UserName", username);
+        userInfo.put("UserEmail", email);
+        userInfo.put("UserPhone", phone);
+        userInfo.put("UserAddress", address);
+        userInfo.put("FirstName", firstName);
+        userInfo.put("LastName", lastName);
+
+        Map<String,Object> userRatings = new HashMap<>();
+        userRatings.put("LenderRating", 0);
+        userRatings.put("BorrowerRating", 0);
+
+        Map<String,Object> userLimits = new HashMap<>();
+        userLimits.put("LoanLimit", 1000);
+
+        Map<String, Object> userData = new HashMap<>();
+        userData.put("User Information",userInfo);
+        userData.put("User Ratings", userRatings);
+        userData.put("User Limits", userLimits);
+
+        return userData;
+
+    }
+
 }
