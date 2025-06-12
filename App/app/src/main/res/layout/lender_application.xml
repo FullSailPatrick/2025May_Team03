@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/screen_back_ground"
+    android:padding="24dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="80dp"
+            android:src="@drawable/spotme_logo"
+            android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:text="Lender application"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:layout_marginBottom="24dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <!-- First Name -->
+        <TextView
+            android:text="First Name*"
+            android:textStyle="bold"
+            android:layout_marginBottom="4dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/firstNameInput"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/rounded_text"
+            android:hint="Text"
+            android:paddingHorizontal="16dp"
+            android:inputType="textPersonName"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Last Name -->
+        <TextView
+            android:text="Last Name*"
+            android:textStyle="bold"
+            android:layout_marginBottom="4dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/lastNameInput"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/rounded_text"
+            android:hint="Text"
+            android:paddingHorizontal="16dp"
+            android:inputType="textPersonName"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Peer Lending Question -->
+        <TextView
+            android:text="Have you ever lent money peer to peer before?*"
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp" />
+
+        <RadioGroup
+            android:id="@+id/peerLendingGroup"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp">
+
+            <RadioButton
+                android:id="@+id/peerYes"
+                android:text="Yes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <RadioButton
+                android:id="@+id/peerNo"
+                android:text="No"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp" />
+        </RadioGroup>
+
+        <!-- Income Question -->
+        <TextView
+            android:text="Do you have an active source of income?*"
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp" />
+
+        <RadioGroup
+            android:id="@+id/incomeGroup"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp">
+
+            <RadioButton
+                android:id="@+id/incomeYes"
+                android:text="Yes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <RadioButton
+                android:id="@+id/incomeNo"
+                android:text="No"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp" />
+        </RadioGroup>
+
+        <!-- Buttons -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="16dp">
+
+            <Button
+                android:id="@+id/goBackBtn"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="50dp"
+                android:text="Go Back"
+                android:background="@drawable/button_gradient"
+                android:textColor="@android:color/white" />
+
+            <View
+                android:layout_width="16dp"
+                android:layout_height="0dp" />
+
+            <Button
+                android:id="@+id/nextBtn"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="50dp"
+                android:text="Next"
+                android:background="@drawable/button_gradient"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+
+        <!-- Optional required notice -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="*required"
+            android:textColor="#AA0000"
+            android:textSize="12sp"
+            android:layout_marginTop="12dp"
+            android:layout_gravity="center" />
+    </LinearLayout>
+</ScrollView>
