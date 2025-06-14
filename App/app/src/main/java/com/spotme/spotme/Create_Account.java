@@ -20,8 +20,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
+
 
 public class Create_Account extends AppCompatActivity {
     TextInputEditText userEmail, userPassword,userConfirmPassword,userName;
@@ -166,10 +165,9 @@ public class Create_Account extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 String userID = task.getResult().getUser().getUid();
-
-
                                 User_Database userDatabase = new User_Database();
-                                userDatabase.addUser(userID, buildUserData());
+                                userDatabase.addUser(userID, userDatabase.buildUserData(userEmail,userName,
+                                        userFirstName,userLastName,userPhone,userAddress));
                                 Toast.makeText(Create_Account.this, "Account Created.",
                                         Toast.LENGTH_LONG).show();
                                 Intent  loginIntent = new Intent(getApplicationContext(), Login_Activity.class);
@@ -319,36 +317,6 @@ public class Create_Account extends AppCompatActivity {
         return usernameOK;
     }
 
-    private Map<String,Object> buildUserData(){
-        String email = String.valueOf(userEmail.getText());
-        String username = String.valueOf(userName.getText());
-        String firstName = String.valueOf(userFirstName.getText());
-        String lastName = String.valueOf(userLastName.getText());
-        String phone = String.valueOf(userPhone.getText());
-        String address = String.valueOf(userAddress.getText());
 
-        Map<String,Object> userInfo = new HashMap<>();
-        userInfo.put("UserName", username);
-        userInfo.put("UserEmail", email);
-        userInfo.put("UserPhone", phone);
-        userInfo.put("UserAddress", address);
-        userInfo.put("FirstName", firstName);
-        userInfo.put("LastName", lastName);
-
-        Map<String,Object> userRatings = new HashMap<>();
-        userRatings.put("LenderRating", 0);
-        userRatings.put("BorrowerRating", 0);
-
-        Map<String,Object> userLimits = new HashMap<>();
-        userLimits.put("LoanLimit", 1000);
-
-        Map<String, Object> userData = new HashMap<>();
-        userData.put("User Information",userInfo);
-        userData.put("User Ratings", userRatings);
-        userData.put("User Limits", userLimits);
-
-        return userData;
-
-    }
 
 }
