@@ -18,13 +18,13 @@
 
 
         <activity
-            android:name=".forgot_password"
+            android:name=".Forgot_Password"
             android:exported="false" />
         <activity
-            android:name=".createaccount"
+            android:name=".Create_Account"
             android:exported="false" />
         <activity
-            android:name=".Login"
+            android:name=".Login_Activity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

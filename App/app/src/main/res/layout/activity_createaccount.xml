@@ -8,7 +8,7 @@
     android:background="@drawable/screen_back_ground"
     android:isScrollContainer="true"
     android:scrollbarAlwaysDrawHorizontalTrack="false"
-    tools:context=".createaccount">
+    tools:context=".Create_Account">
 
 
     <androidx.core.widget.NestedScrollView
