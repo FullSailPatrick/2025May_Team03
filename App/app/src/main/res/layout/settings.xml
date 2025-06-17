@@ -69,8 +69,8 @@
 
                 <Switch
                     android:id="@+id/toggleNotificationId"
-                    android:layout_width="64dp"
-                    android:layout_height="32dp"/>
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"/>
             </LinearLayout>
 
             <!-- Dark Mode -->
@@ -101,8 +101,8 @@
 
                 <Switch
                     android:id="@+id/toggleThemeId"
-                    android:layout_width="64dp"
-                    android:layout_height="32dp"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
                     tools:ignore="UseSwitchCompatOrMaterialXml" />
             </LinearLayout>
 

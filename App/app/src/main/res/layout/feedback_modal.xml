@@ -79,12 +79,14 @@
 
                 <!-- Submit Button -->
                 <Button
-                    android:id="@+id/submitButton"
+                    android:id="@+id/submitFeedbackButton"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="48dp"
                     android:text="@string/send_feedback"
                     android:fontFamily="@font/inter"
-                    android:layout_marginTop="16dp"/>
+                    android:textColor="@android:color/white"
+                    android:backgroundTint="@color/Sub_Brand_800"
+                    android:textStyle="bold" />
             </LinearLayout>
         </ScrollView>
 
