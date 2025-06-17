@@ -40,7 +40,7 @@
             android:resource="@array/preloaded_fonts" />
 
 
-        <activity android:name=".Settings" android:exported="true"/>
+        <activity android:name=".SettingsFragment" android:exported="true"/>
 
     </application>
 

@@ -2,8 +2,6 @@ package com.spotme.spotme;
 
 //Imports
 
-import static com.spotme.spotme.R.*;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -75,7 +73,10 @@ public class MainActivity extends AppCompatActivity
             }
             else if (id == R.id.nav_settings)
             {
-                startActivity(new Intent(MainActivity.this, Settings.class));
+                getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.view_container, new SettingsFragment())
+                    .commit();
             }
 
             return true;
