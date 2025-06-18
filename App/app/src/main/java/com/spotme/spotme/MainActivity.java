@@ -10,13 +10,20 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.android.material.tabs.TabLayout;
+import com.spotme.spotme.deals.Debts;
+import com.spotme.spotme.deals.Loans;
 
 public class MainActivity extends AppCompatActivity
 {
     FrameLayout viewContainer;
+    FrameLayout frameLayout;
+    TabLayout tabLayout;
     LayoutInflater inflater;
     private boolean isLoggedIn=false;
     Button myLoansButton;
@@ -54,15 +61,41 @@ public class MainActivity extends AppCompatActivity
             else if (id == R.id.nav_deals)
             {
                 switchView(R.layout.deals);
-                myDebtsButton = findViewById(R.id.debtButton);
-                myDebtsButton.setOnClickListener(view ->
-                {
-                    switchView(R.layout.mydebts);
-                    myLoansButton = findViewById(R.id.loanButton);
-                    myLoansButton.setOnClickListener(View ->
-                    {
-                        switchView(R.layout.deals);
-                    });
+                getSupportFragmentManager().beginTransaction().replace(R.id.frame_Layout, new Loans())
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .commit();
+
+
+                frameLayout = (FrameLayout) findViewById(R.id.frame_Layout);
+                tabLayout = (TabLayout) findViewById(R.id.tab_Layout);
+
+                tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+                    @Override
+                    public void onTabSelected(TabLayout.Tab tab) {
+                        Fragment fragment = null;
+                        switch (tab.getPosition()){
+                            case 0:
+                                fragment = new Loans();
+                                break;
+                            case 1:
+                                fragment = new Debts();
+                                break;
+
+                        }
+                        getSupportFragmentManager().beginTransaction().replace(R.id.frame_Layout, fragment)
+                                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                                .commit();
+                    }
+
+                    @Override
+                    public void onTabUnselected(TabLayout.Tab tab) {
+
+                    }
+
+                    @Override
+                    public void onTabReselected(TabLayout.Tab tab) {
+
+                    }
                 });
             }
             else if (id == R.id.nav_borrow)
@@ -80,6 +113,8 @@ public class MainActivity extends AppCompatActivity
 
             return true;
         });
+
+
 
     }
 
