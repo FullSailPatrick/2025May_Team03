@@ -1,26 +1,19 @@
 package com.spotme.spotme;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 import android.widget.TextView;
 import android.text.Editable;
 import android.text.TextWatcher;
-
-
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
@@ -28,14 +21,16 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.Date;
+import java.util.Map;
 import java.util.Objects;
 
-public class createaccount extends AppCompatActivity {
-    TextInputEditText userEmail, userPassword,userConfirmPassword,userName, phoneNum, address,
-            userFirstName, userLastName;
+
+public class Create_Account extends AppCompatActivity {
+    TextInputEditText userEmail, userPassword,userConfirmPassword,userName;
+    EditText userPhone, userAddress, userFirstName, userLastName;
     Button signUpBtn, backToLoginButton;
-    TextView confirmPasswordText,passwordLen,passwordCap,passwordDigit,passwordSpecial,
-            emailLabel, userLen, userUnique, userChar, userPhone, userAddress;
+    TextView confirmPasswordText,passwordLen,passwordCap,passwordDigit,passwordSpecial, userLen, userUnique, userChar;
     FirebaseAuth mAuth;
     String specialCharRegex = ".*[!@#$%^&*()_+\\-=\\[\\];':\"\\\\|,.<>/?~*].*";
 
@@ -53,19 +48,11 @@ public class createaccount extends AppCompatActivity {
         backToLoginButton = findViewById(R.id.return_to_login);
 
         // User Email  input Validation
-        userEmail = findViewById(R.id.new_email);
-
-
-
-
-
-        userName = findViewById(R.id.create_username);
+        userEmail = findViewById(R.id.new_email); // User Email Address Entry Field
+        userName = findViewById(R.id.create_username); // User Name Entry Field
         userUnique = findViewById(R.id.create_unique_username);
         userLen = findViewById(R.id.username_length_requirements);
         userChar = findViewById(R.id.username_char_requirements);
-
-
-
 
         // User Password validation formating configuration
         userPassword = findViewById(R.id.create_password);
@@ -78,11 +65,18 @@ public class createaccount extends AppCompatActivity {
         userConfirmPassword = findViewById(R.id.confirm_password);
         confirmPasswordText=findViewById(R.id.confirm_password_requirements);
 
-        // Back to login screen functionality
+        //User Data Fields
+        userAddress = findViewById(R.id.user_postal_address);
+        userPhone = findViewById(R.id.user_phone_number);
+        userFirstName = findViewById(R.id.first_name);
+        userLastName = findViewById(R.id.last_name);
+
+
+        // Back to Login_Activity screen functionality
         backToLoginButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-               Intent  loginIntent = new Intent(getApplicationContext(), login.class);
+               Intent  loginIntent = new Intent(getApplicationContext(), Login_Activity.class);
                startActivity(loginIntent);
                finish();
             }
@@ -136,6 +130,7 @@ public class createaccount extends AppCompatActivity {
            }
        });
         signUpBtn.setOnClickListener(new View.OnClickListener(){
+
             @Override
             public void onClick(View view){
                 String email, password, confirmPassword;
@@ -143,26 +138,27 @@ public class createaccount extends AppCompatActivity {
                 password = String.valueOf(userPassword.getText());
                 confirmPassword = String.valueOf(userConfirmPassword.getText());
 
+
                 if (TextUtils.isEmpty(email)){
-                    Toast.makeText(createaccount.this, "Enter email", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Create_Account.this, "Enter email", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (TextUtils.isEmpty(password)){
-                    Toast.makeText(createaccount.this, "Enter a password", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Create_Account.this, "Enter a password", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (TextUtils.isEmpty(confirmPassword)|| !password.equals(confirmPassword)){
-                    Toast.makeText(createaccount.this, "Passwords do not match", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Create_Account.this, "Passwords do not match", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if(!validatePassword(successColor,errorColor))
                 {
-                    Toast.makeText(createaccount.this, "Password is to weak", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Create_Account.this, "Password is to weak", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if(!validateUsername(successColor,errorColor))
                 {
-                    Toast.makeText(createaccount.this, "Username is invalid", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Create_Account.this, "Username is invalid", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -171,15 +167,62 @@ public class createaccount extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                Toast.makeText(createaccount.this, "Account Created.",
-                                        Toast.LENGTH_LONG).show();
-                                Intent  loginIntent = new Intent(getApplicationContext(), login.class);
-                                startActivity(loginIntent);
-                                finish();
+                                AuthResult result = task.getResult();
+                                if(result != null) {
+                                    FirebaseUser user = result.getUser();
+                                    if(user != null) {
+                                        String userID = user.getUid();
+                                        User_Database userDatabase = new User_Database();
+                                        Borrow_Management borrowCreate = new Borrow_Management();
+                                        Loan_Management loanCreate = new Loan_Management();
+                                        String transactionID = borrowCreate.createTransactionID(user);
+                                        Map<String,Object> userData = userDatabase.buildUserData(
+                                                userEmail,
+                                                userName,
+                                                userFirstName,
+                                                userLastName,
+                                                userPhone,
+                                                userAddress);
 
+                                        Map<String,Object> borrowDetails = borrowCreate.CreateNewRequest(
+                                                Create_Account.this,
+                                                user,
+                                                "Broke as a joke",
+                                                transactionID,
+                                                "Yesterday",
+                                                500.00f,
+                                                12
+                                                );
+
+                                        Map<String,Object> loanDetails= loanCreate.CreateNewLoan(transactionID,
+                                                "Matt",
+                                                user.getDisplayName(),
+                                                500.00f,
+                                                2.5f,
+                                                "05/30/2025",
+                                                12,
+                                                true,
+                                                true,
+                                                true,
+                                                false,
+                                                false,
+                                                5.0f
+                                        );
+
+                                        userDatabase.addUser(userID, userData);
+                                        loanCreate.addNewLoan(transactionID,loanDetails);
+                                        borrowCreate.newRequest(transactionID,borrowDetails);
+                                        Toast.makeText(Create_Account.this, "Account Created.",
+                                                Toast.LENGTH_LONG).show();
+
+                                        Intent loginIntent = new Intent(getApplicationContext(), Login_Activity.class);
+                                        startActivity(loginIntent);
+                                        finish();
+                                    }
+                                }
                             } else {
                                 // If sign in fails, display a message to the user.
-                                Toast.makeText(createaccount.this,
+                                Toast.makeText(Create_Account.this,
                                         "Authentication failed."+ Objects.requireNonNull(task.getException()).getMessage(),
                                         Toast.LENGTH_LONG).show();
                             }

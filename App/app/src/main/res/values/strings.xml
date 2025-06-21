@@ -81,7 +81,23 @@
     <string name="this_week">This week</string>
     <string name="clear">Clear</string>
 
-    <string name="repayment_prompt">Choose a repayment term</string>    <string name="return_to_login_screen">return to login screen</string>
+    <string name="repayment_prompt">Choose a repayment term</string>
+    <string name="return_to_login_screen">return to login screen</string>
     <string name="reset_password_text">It’s okay, bad things happen. Please enter your email below and we’ll send you instructions to reset your password.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="close">Close</string>
+    <string name="forgot_password_header">Forgot password</string>
+    <string name="Forgot_password_Submit">Send Instructions</string>
+    <string name="enter_email_hint_text">Enter Email</string>
+    <string name="how_would_you_rate_us">How would you rate us?</string>
+    <string name="send_feedback">Send feedback</string>
+    <string name="tell_us_more_about_your_experience">Tell us more about your experience</string>
+    <string name="submit">Submit</string>
+    <string name="contact_us">CONTACT US</string>
+    <string name="we_d_love_to_hear_from_you_drop_us_a_message_and_we_ll_connect_with_you_soon">We\'d love to hear from you! Drop us a message, and we\'ll connect with you soon.</string>
+    <string name="name">Name</string>
+    <string name="e_mail">E-Mail</string>
+    <string name="message">Message</string>
 
 </resources>
