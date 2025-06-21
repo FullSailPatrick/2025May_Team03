@@ -65,7 +65,7 @@
             android:layout_height="50dp"
             android:background="@drawable/rounded_text"
             android:paddingHorizontal="16dp"
-            android:hint="(123) - 456-4512"
+            android:hint="+1 (123) - 456 - 7890"
             android:inputType="phone" />
 
         <!-- Amount Field -->
@@ -83,7 +83,7 @@
             android:layout_height="50dp"
             android:background="@drawable/rounded_text"
             android:paddingHorizontal="16dp"
-            android:hint="$500"
+            android:hint="$500.00"
             android:inputType="numberDecimal" />
 
         <!-- Reason Field -->
@@ -151,43 +151,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="12 months" />
-        </RadioGroup>
-
-        <!-- Urgency Level -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Urgency Level"
-            android:textStyle="bold"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="4dp" />
-
-        <RadioGroup
-            android:id="@+id/urgencyOptions"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/urgencyLow"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Low" />
-
-            <RadioButton
-                android:id="@+id/urgencyMedium"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Medium" />
-
-            <RadioButton
-                android:id="@+id/urgencyHigh"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="High" />
         </RadioGroup>
 
         <!-- Submit Button -->
