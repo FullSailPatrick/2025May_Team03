@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity
         //navbar title settings
         bottomNav = findViewById(R.id.main_navigation);
         bottomNav.setLabelVisibilityMode(NavigationBarView.LABEL_VISIBILITY_LABELED);
-        
+
         // Check if we should show specific screen (coming back from other activities)
         Intent intent = getIntent();
         if (intent != null) {
@@ -89,18 +89,18 @@ public class MainActivity extends AppCompatActivity
             }
             else if (id == R.id.nav_borrow)
             {
-                // FIXED: Launch BorrowActivity instead of just switching view
+                // ENHANCED: Launch BorrowActivity as separate activity with navigation
                 Intent borrowIntent = new Intent(MainActivity.this, BorrowActivity.class);
                 startActivity(borrowIntent);
             }
             else if (id == R.id.nav_lend)
             {
-                // OPTION 1: If you want LendActivity to be a separate activity
-                Intent lendIntent = new Intent(MainActivity.this, LendActivity.class);
-                startActivity(lendIntent);
+                // REVERTED: Switch back to layout switching (was working before)
+                switchView(R.layout.lend);
 
-                // OPTION 2: If you want to keep the old layout switching behavior
-                // switchView(R.layout.lend);
+                // COMMENTED OUT: Launch LendActivity (this was causing crashes)
+                // Intent lendIntent = new Intent(MainActivity.this, LendActivity.class);
+                // startActivity(lendIntent);
             }
             else if (id == R.id.nav_settings)
             {
@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         setIntent(intent);
-        
+
         // Handle the intent if coming back from other activities
         if (intent != null) {
             if (intent.getBooleanExtra("show_home", false)) {
