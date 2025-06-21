@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity
     LayoutInflater inflater;
     Button myLoansButton;
     Button myDebtsButton;
+    BottomNavigationView bottomNav;
 
 
     @Override
@@ -37,9 +38,32 @@ public class MainActivity extends AppCompatActivity
         viewContainer = findViewById(R.id.view_container);
 
         //navbar title settings
-        BottomNavigationView bottomNav = findViewById(R.id.main_navigation);
+        bottomNav = findViewById(R.id.main_navigation);
         bottomNav.setLabelVisibilityMode(NavigationBarView.LABEL_VISIBILITY_LABELED);
-        switchView(R.layout.home);
+        
+        // Check if we should show specific screen (coming back from other activities)
+        Intent intent = getIntent();
+        if (intent != null) {
+            if (intent.getBooleanExtra("show_home", false)) {
+                bottomNav.setSelectedItemId(R.id.nav_home);
+                switchView(R.layout.home);
+            } else if (intent.getBooleanExtra("show_deals", false)) {
+                bottomNav.setSelectedItemId(R.id.nav_deals);
+                switchView(R.layout.deals);
+            } else if (intent.getBooleanExtra("show_settings", false)) {
+                bottomNav.setSelectedItemId(R.id.nav_settings);
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.view_container, new SettingsFragment())
+                        .commit();
+            } else {
+                // Default behavior
+                switchView(R.layout.home);
+            }
+        } else {
+            // Default behavior
+            switchView(R.layout.home);
+        }
 
         bottomNav.setOnItemSelectedListener(item ->
         {
@@ -65,23 +89,53 @@ public class MainActivity extends AppCompatActivity
             }
             else if (id == R.id.nav_borrow)
             {
-                switchView(R.layout.borrow);
+                // FIXED: Launch BorrowActivity instead of just switching view
+                Intent borrowIntent = new Intent(MainActivity.this, BorrowActivity.class);
+                startActivity(borrowIntent);
             }
             else if (id == R.id.nav_lend)
             {
-                switchView(R.layout.lend);
+                // OPTION 1: If you want LendActivity to be a separate activity
+                Intent lendIntent = new Intent(MainActivity.this, LendActivity.class);
+                startActivity(lendIntent);
+
+                // OPTION 2: If you want to keep the old layout switching behavior
+                // switchView(R.layout.lend);
             }
             else if (id == R.id.nav_settings)
             {
                 getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.view_container, new SettingsFragment())
-                    .commit();
+                        .beginTransaction()
+                        .replace(R.id.view_container, new SettingsFragment())
+                        .commit();
             }
 
             return true;
         });
 
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+        
+        // Handle the intent if coming back from other activities
+        if (intent != null) {
+            if (intent.getBooleanExtra("show_home", false)) {
+                bottomNav.setSelectedItemId(R.id.nav_home);
+                switchView(R.layout.home);
+            } else if (intent.getBooleanExtra("show_deals", false)) {
+                bottomNav.setSelectedItemId(R.id.nav_deals);
+                switchView(R.layout.deals);
+            } else if (intent.getBooleanExtra("show_settings", false)) {
+                bottomNav.setSelectedItemId(R.id.nav_settings);
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.view_container, new SettingsFragment())
+                        .commit();
+            }
+        }
     }
 
 

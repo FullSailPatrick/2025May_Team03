@@ -1,6 +1,7 @@
 package com.spotme.spotme;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -11,7 +12,11 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -24,9 +29,11 @@ import java.util.Map;
 public class BorrowActivity extends AppCompatActivity {
 
     // UI Components
-    EditText lenderEmailInput, lenderPhoneInput, amountRequestedInput, reasonInput;
-    RadioGroup repaymentOptions;
+    EditText borrowerNameInput, borrowerEmailInput, borrowerPhoneInput;
+    EditText amountRequestedInput, reasonInput;
+    RadioGroup repaymentOptions, urgencyOptions;
     Button submitRequestBtn;
+    BottomNavigationView bottomNav;
 
     // Firebase Components
     FirebaseAuth mAuth;
@@ -48,42 +55,102 @@ public class BorrowActivity extends AppCompatActivity {
         currentUser = mAuth.getCurrentUser();
         requestInfo = FirebaseFirestore.getInstance();
 
-        // Check if user is logged in
-        if (currentUser == null) {
-            Toast.makeText(this, "Please log in to request money", Toast.LENGTH_SHORT).show();
-            finish();
-            return;
-        }
-
         // Initialize UI components
-        initializeUIComponents();
+        findViews();
 
-        // Set up auto-formatting
-        setupPhoneFormatter();
-        setupCurrencyFormatter();
+        // Set up navigation
+        setupBottomNavigation();
 
-        // Set up button click listener
-        submitRequestBtn.setOnClickListener(v -> submitBorrowRequest());
+        // Set up button listener
+        setupSubmitButton();
+
+        // Auto-populate user info
+        populateUserInfo();
+
+        // Set up formatters
+        setupFormatters();
     }
 
-    /**
-     * Initialize all UI components
-     */
-    private void initializeUIComponents() {
-        lenderEmailInput = findViewById(R.id.lenderEmailInput);
-        lenderPhoneInput = findViewById(R.id.lenderPhoneInput);
+    private void findViews() {
+        borrowerNameInput = findViewById(R.id.borrowerNameInput);
+        borrowerEmailInput = findViewById(R.id.borrowerEmailInput);
+        borrowerPhoneInput = findViewById(R.id.borrowerPhoneInput);
         amountRequestedInput = findViewById(R.id.amountRequestedInput);
         reasonInput = findViewById(R.id.reasonInput);
         repaymentOptions = findViewById(R.id.repaymentOptions);
+        urgencyOptions = findViewById(R.id.urgencyOptions);
         submitRequestBtn = findViewById(R.id.submitRequestBtn);
+        bottomNav = findViewById(R.id.main_navigation);
     }
 
-    /**
-     * Sets up automatic phone number formatting
-     * Formats to: +1 (123) - 456 - 7890
-     */
-    private void setupPhoneFormatter() {
-        lenderPhoneInput.addTextChangedListener(new TextWatcher() {
+    private void setupBottomNavigation() {
+        bottomNav.setLabelVisibilityMode(NavigationBarView.LABEL_VISIBILITY_LABELED);
+        // Set the current item to borrow
+        bottomNav.setSelectedItemId(R.id.nav_borrow);
+
+        bottomNav.setOnItemSelectedListener(item -> {
+            int id = item.getItemId();
+
+            if (id == R.id.nav_home) {
+                // Return to MainActivity and show home
+                Intent intent = new Intent(BorrowActivity.this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("show_home", true);
+                startActivity(intent);
+                finish();
+            } else if (id == R.id.nav_deals) {
+                // Return to MainActivity and show deals
+                Intent intent = new Intent(BorrowActivity.this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("show_deals", true);
+                startActivity(intent);
+                finish();
+            } else if (id == R.id.nav_borrow) {
+                // Already on borrow screen, do nothing
+                return true;
+            } else if (id == R.id.nav_lend) {
+                // Go to LendActivity
+                Intent intent = new Intent(BorrowActivity.this, LendActivity.class);
+                startActivity(intent);
+                finish();
+            } else if (id == R.id.nav_settings) {
+                // Return to MainActivity and show settings
+                Intent intent = new Intent(BorrowActivity.this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("show_settings", true);
+                startActivity(intent);
+                finish();
+            }
+
+            return true;
+        });
+    }
+
+    private void setupSubmitButton() {
+        if (submitRequestBtn != null) {
+            submitRequestBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    handleSubmit();
+                }
+            });
+        }
+    }
+
+    private void populateUserInfo() {
+        if (currentUser != null) {
+            if (currentUser.getDisplayName() != null) {
+                borrowerNameInput.setText(currentUser.getDisplayName());
+            }
+            if (currentUser.getEmail() != null) {
+                borrowerEmailInput.setText(currentUser.getEmail());
+            }
+        }
+    }
+
+    private void setupFormatters() {
+        // Phone formatter
+        borrowerPhoneInput.addTextChangedListener(new TextWatcher() {
             private boolean isEditing = false;
 
             @Override
@@ -95,335 +162,229 @@ public class BorrowActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 if (isEditing) return;
-
                 isEditing = true;
+
                 String input = s.toString().replaceAll("[^\\d]", "");
-
                 if (input.length() > 0) {
-                    StringBuilder formatted = new StringBuilder("+1 ");
-
+                    StringBuilder formatted = new StringBuilder();
                     if (input.length() >= 3) {
-                        formatted.append("(").append(input.substring(0, 3)).append(")");
+                        formatted.append("(").append(input.substring(0, 3)).append(") ");
                         if (input.length() >= 6) {
-                            formatted.append(" - ").append(input.substring(3, 6));
+                            formatted.append(input.substring(3, 6)).append("-");
                             if (input.length() >= 10) {
-                                formatted.append(" - ").append(input.substring(6, 10));
+                                formatted.append(input.substring(6, 10));
                             } else if (input.length() > 6) {
-                                formatted.append(" - ").append(input.substring(6));
+                                formatted.append(input.substring(6));
                             }
                         } else if (input.length() > 3) {
-                            formatted.append(" - ").append(input.substring(3));
+                            formatted.append(input.substring(3));
                         }
                     } else {
                         formatted.append("(").append(input);
                     }
-
                     s.replace(0, s.length(), formatted.toString());
                 }
                 isEditing = false;
             }
         });
-    }
 
-    /**
-     * Sets up automatic currency formatting
-     * Formats to: $1,000.00
-     */
-    private void setupCurrencyFormatter() {
-        amountRequestedInput.addTextChangedListener(new TextWatcher() {
-            private boolean isEditing = false;
-
+        // Currency formatter - only format on focus loss, not while typing
+        amountRequestedInput.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {}
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                if (isEditing) return;
-
-                isEditing = true;
-                String input = s.toString().replaceAll("[^\\d.]", "");
-
-                if (!input.isEmpty()) {
-                    try {
-                        double amount = Double.parseDouble(input);
-                        NumberFormat formatter = NumberFormat.getCurrencyInstance(Locale.US);
-                        String formatted = formatter.format(amount);
-                        s.replace(0, s.length(), formatted);
-                    } catch (NumberFormatException e) {
-                        // Keep original if parsing fails
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    // Format when user finishes typing (loses focus)
+                    String input = amountRequestedInput.getText().toString().replaceAll("[^\\d.]", "");
+                    if (!input.isEmpty()) {
+                        try {
+                            double amount = Double.parseDouble(input);
+                            NumberFormat formatter = NumberFormat.getCurrencyInstance(Locale.US);
+                            String formatted = formatter.format(amount);
+                            amountRequestedInput.setText(formatted);
+                        } catch (NumberFormatException e) {
+                            // Keep original if parsing fails
+                        }
                     }
                 }
-                isEditing = false;
             }
         });
     }
 
-    /**
-     * Main submission method - pulls user input, validates, and submits request
-     */
-    private void submitBorrowRequest() {
-        clearErrors();
-
-        // Pull user input and store in variables
-        String lenderEmail = lenderEmailInput.getText().toString().trim();
-        String lenderPhone = lenderPhoneInput.getText().toString().trim();
+    private void handleSubmit() {
+        // Get form data
+        String name = borrowerNameInput.getText().toString().trim();
+        String email = borrowerEmailInput.getText().toString().trim();
+        String phone = borrowerPhoneInput.getText().toString().trim();
         String amountStr = amountRequestedInput.getText().toString().trim();
         String reason = reasonInput.getText().toString().trim();
-        int selectedRepaymentId = repaymentOptions.getCheckedRadioButtonId();
 
-        // Validate all fields and highlight fields if user missed them or entered incorrectly
-        if (!validateAllFields(lenderEmail, lenderPhone, amountStr, reason, selectedRepaymentId)) {
+        int repaymentId = repaymentOptions.getCheckedRadioButtonId();
+        int urgencyId = urgencyOptions.getCheckedRadioButtonId();
+
+        // Simple validation
+        if (name.isEmpty() || email.isEmpty() || phone.isEmpty() ||
+                amountStr.isEmpty() || reason.isEmpty() ||
+                repaymentId == -1 || urgencyId == -1) {
+
+            showMissingFieldsDialog();
             return;
         }
 
-        // Get selected repayment term
-        RadioButton selectedRepaymentTerm = findViewById(selectedRepaymentId);
-        String repaymentTerm = selectedRepaymentTerm.getText().toString();
+        // Get selected values
+        RadioButton repaymentBtn = findViewById(repaymentId);
+        RadioButton urgencyBtn = findViewById(urgencyId);
+        String repaymentTerm = repaymentBtn.getText().toString();
+        String urgency = urgencyBtn.getText().toString();
 
-        // Create and submit the request
-        createAndSubmitRequest(lenderEmail, lenderPhone, parseAmount(amountStr), reason, repaymentTerm);
-    }
+        // Create transaction ID
+        String transactionId = createTransactionID();
 
-    /**
-     * Validates all form fields and highlights errors
-     * Returns true if all fields are valid
-     */
-    private boolean validateAllFields(String lenderEmail, String lenderPhone, String amountStr,
-                                      String reason, int selectedRepaymentId) {
-        boolean isValid = true;
+        // Parse amount
+        double amount = parseAmount(amountStr);
 
-        // Email validation
-        if (lenderEmail.isEmpty()) {
-            lenderEmailInput.setError("Lender email is required");
-            lenderEmailInput.requestFocus();
-            isValid = false;
-        } else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(lenderEmail).matches()) {
-            lenderEmailInput.setError("Please enter a valid email address");
-            lenderEmailInput.requestFocus();
-            isValid = false;
+        // Validate amount
+        if (amount <= 0) {
+            Toast.makeText(this, "Please enter a valid amount greater than $0", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (amount > 1000) {
+            Toast.makeText(this, "Maximum loan amount is $1,000", Toast.LENGTH_SHORT).show();
+            return;
         }
 
-        // Phone number validation - auto format country code (area code) - xxx - xxxx
-        if (lenderPhone.isEmpty()) {
-            lenderPhoneInput.setError("Lender phone is required");
-            if (isValid) lenderPhoneInput.requestFocus();
-            isValid = false;
-        } else if (!isValidPhoneNumber(lenderPhone)) {
-            lenderPhoneInput.setError("Please enter a valid phone number");
-            if (isValid) lenderPhoneInput.requestFocus();
-            isValid = false;
+        // Create request data
+        Map<String, Object> requestData = new HashMap<>();
+        requestData.put("Transaction ID", transactionId);
+        requestData.put("Borrower Name", name);
+        requestData.put("Borrower Email", email);
+        requestData.put("Borrower Phone", phone);
+        requestData.put("Loan Amount", amount);
+        requestData.put("Loan Reason", reason);
+        requestData.put("Repayment Term", repaymentTerm);
+        requestData.put("Urgency", urgency);
+        requestData.put("Request Status", "pending");
+        requestData.put("Date Created", System.currentTimeMillis());
+
+        if (currentUser != null) {
+            requestData.put("Borrower User ID", currentUser.getUid());
         }
 
-        // Borrow amount validation - always autoformat to currency
-        if (amountStr.isEmpty()) {
-            amountRequestedInput.setError("Amount is required");
-            if (isValid) amountRequestedInput.requestFocus();
-            isValid = false;
-        } else {
-            try {
-                double amount = parseAmount(amountStr);
-                if (amount <= 0) {
-                    amountRequestedInput.setError("Amount must be greater than $0");
-                    if (isValid) amountRequestedInput.requestFocus();
-                    isValid = false;
-                }
-            } catch (NumberFormatException e) {
-                amountRequestedInput.setError("Please enter a valid amount");
-                if (isValid) amountRequestedInput.requestFocus();
-                isValid = false;
-            }
-        }
-
-        // Reason validation
-        if (reason.isEmpty()) {
-            reasonInput.setError("Reason is required");
-            if (isValid) reasonInput.requestFocus();
-            isValid = false;
-        }
-
-        // Repayment term validation
-        if (selectedRepaymentId == -1) {
-            Toast.makeText(this, "Please select a repayment term", Toast.LENGTH_SHORT).show();
-            isValid = false;
-        }
-
-        return isValid;
+        // Save to database
+        saveToDatabase(transactionId, requestData, amount, repaymentTerm, urgency);
     }
 
-    /**
-     * Creates the borrow request with user information and submits to database
-     */
-    private void createAndSubmitRequest(String lenderEmail, String lenderPhone, double amount,
-                                        String reason, String repaymentTerm) {
+    private void saveToDatabase(String transactionId, Map<String, Object> requestData,
+                                double amount, String repaymentTerm, String urgency) {
 
-        // Get the user ID of the logged in user
-        String borrowerUserId = currentUser.getUid();
-        String borrowerEmail = currentUser.getEmail();
-
-        // Pass the user info to the createTransactionID method
-        String transactionId = createTransactionID(currentUser);
-
-        // Convert repayment term to integer
-        int loanLength = convertRepaymentTermToInt(repaymentTerm);
-
-        // Pass the transaction ID and input variables to the CreateNewRequest function
-        Map<String, Object> borrowData = CreateNewRequest(this, currentUser, reason,
-                transactionId, "Medium",
-                (float) amount, loanLength);
-
-        // Attach the user information to the request
-        if (borrowData != null) {
-            borrowData.put("Borrower User ID", borrowerUserId);
-            borrowData.put("Borrower Email", borrowerEmail);
-            borrowData.put("Lender Email", lenderEmail);
-            borrowData.put("Lender Phone", lenderPhone);
-            borrowData.put("Repayment Term", repaymentTerm);
-            borrowData.put("Request Status", "pending");
-
-            // Pass the request information to the database to be used later
-            newRequest(transactionId, borrowData);
-
-            // Provide feedback to the user if the request was successfully submitted
-            showSuccessMessage(transactionId, amount, repaymentTerm);
-
-            // Clear form and close
-            clearForm();
-            finish();
-        } else {
-            // Provide feedback if request was not successfully submitted
-            showErrorMessage();
-        }
-    }
-
-    /**
-     * Shows success message to user
-     */
-    private void showSuccessMessage(String transactionId, double amount, String repaymentTerm) {
-        String message = "✅ Request submitted successfully!\n" +
-                "Transaction ID: " + transactionId + "\n" +
-                "Amount: " + NumberFormat.getCurrencyInstance(Locale.US).format(amount) + "\n" +
-                "Repayment: " + repaymentTerm;
-
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
-    }
-
-    /**
-     * Shows error message to user
-     */
-    private void showErrorMessage() {
-        Toast.makeText(this,
-                "❌ Failed to submit request. Please check your connection and try again.",
-                Toast.LENGTH_SHORT).show();
-    }
-
-    // Helper Methods
-
-    /**
-     * Validates phone number format: +1 (123) - 456 - 7890
-     */
-    private boolean isValidPhoneNumber(String phone) {
-        String digitsOnly = phone.replaceAll("[^\\d]", "");
-        return digitsOnly.length() == 10;
-    }
-
-    /**
-     * Parses currency amount from formatted string
-     */
-    private double parseAmount(String amountStr) {
-        return Double.parseDouble(amountStr.replaceAll("[^\\d.]", ""));
-    }
-
-    /**
-     * Converts repayment term to integer weeks
-     */
-    private int convertRepaymentTermToInt(String repaymentTerm) {
-        switch (repaymentTerm.toLowerCase()) {
-            case "4 weeks": return 4;
-            case "8 weeks": return 8;
-            case "3 months": return 12;
-            case "6 months": return 24;
-            case "12 months": return 48;
-            default: return 8;
-        }
-    }
-
-    /**
-     * Clears all error messages
-     */
-    private void clearErrors() {
-        lenderEmailInput.setError(null);
-        lenderPhoneInput.setError(null);
-        amountRequestedInput.setError(null);
-        reasonInput.setError(null);
-    }
-
-    /**
-     * Clears all form fields
-     */
-    private void clearForm() {
-        lenderEmailInput.setText("");
-        lenderPhoneInput.setText("");
-        amountRequestedInput.setText("");
-        reasonInput.setText("");
-        repaymentOptions.clearCheck();
-        clearErrors();
-    }
-
-    // Backend Integration Methods (Your existing methods)
-
-    /**
-     * Creates unique transaction ID
-     */
-    public String createTransactionID(FirebaseUser loggedInUser) {
-        String baseID = loggedInUser.getUid() + "_" + System.currentTimeMillis();
-        return Integer.toHexString(baseID.hashCode());
-    }
-
-    /**
-     * Creates new request data structure
-     */
-    public Map<String, Object> CreateNewRequest(Context context, FirebaseUser borrowerName,
-                                                String loanReason, String transactionID,
-                                                String urgency, Float loanAmount,
-                                                Integer loanLength) {
-
-        Map<String, Object> borrowDetails = new HashMap<>();
-        if (borrowerName != null) {
-            borrowDetails.put("Loan ID", transactionID);
-            borrowDetails.put("Loan Reason", loanReason);
-            borrowDetails.put("Loan Urgency", urgency);
-            borrowDetails.put("Borrower Name", borrowerName.getDisplayName());
-            borrowDetails.put("Loan Amount", loanAmount);
-            borrowDetails.put("Loan Term", loanLength);
-            borrowDetails.put("Loan Claimed", false);
-            borrowDetails.put("Loan Rejected", false);
-            borrowDetails.put("Date Created", System.currentTimeMillis());
-        } else {
-            Toast.makeText(context, "No User Logged In", Toast.LENGTH_SHORT).show();
-        }
-        return borrowDetails;
-    }
-
-    /**
-     * Saves request to Firebase database
-     */
-    public void newRequest(String transactionID, Map<String, Object> borrowData) {
-        requestInfo.collection("BorrowRequests").document(transactionID).set(borrowData)
+        requestInfo.collection("BorrowRequests").document(transactionId).set(requestData)
                 .addOnSuccessListener(aVoid -> {
-                    // Success handled in calling method
+                    showSuccessDialog(transactionId, amount, repaymentTerm, urgency);
                 })
                 .addOnFailureListener(e -> {
-                    Toast.makeText(this, "❌ Database error: " + e.getMessage(),
-                            Toast.LENGTH_SHORT).show();
+                    showErrorDialog();
                 });
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        clearForm();
+    private void showSuccessDialog(String transactionId, double amount, String repaymentTerm, String urgency) {
+        String message = "Your loan request has been successfully submitted!\n\n" +
+                "Transaction ID: " + transactionId + "\n" +
+                "Amount: " + NumberFormat.getCurrencyInstance(Locale.US).format(amount) + "\n" +
+                "Repayment: " + repaymentTerm + "\n" +
+                "Urgency: " + urgency + "\n\n" +
+                "Your request is now available for lenders to review.";
+
+        new AlertDialog.Builder(this)
+                .setTitle("✅ Success!")
+                .setMessage(message)
+                .setPositiveButton("OK", (dialog, which) -> {
+                    dialog.dismiss();
+                    // Return to MainActivity and switch to home view
+                    returnToHome();
+                })
+                .setCancelable(false) // Prevent dismissing by tapping outside
+                .show();
+    }
+
+    private void showErrorDialog() {
+        new AlertDialog.Builder(this)
+                .setTitle("❌ Error")
+                .setMessage("Failed to submit request. Please check your connection and try again.")
+                .setPositiveButton("OK", (dialog, which) -> dialog.dismiss())
+                .show();
+    }
+
+    private void showMissingFieldsDialog() {
+        StringBuilder missingFields = new StringBuilder("Please complete the following required fields:\n\n");
+
+        if (borrowerNameInput.getText().toString().trim().isEmpty()) {
+            missingFields.append("• Your Name\n");
+        }
+        if (borrowerEmailInput.getText().toString().trim().isEmpty()) {
+            missingFields.append("• Your Email\n");
+        }
+        if (borrowerPhoneInput.getText().toString().trim().isEmpty()) {
+            missingFields.append("• Your Phone\n");
+        }
+        if (amountRequestedInput.getText().toString().trim().isEmpty()) {
+            missingFields.append("• Loan Amount\n");
+        }
+        if (reasonInput.getText().toString().trim().isEmpty()) {
+            missingFields.append("• Reason for Request\n");
+        }
+        if (repaymentOptions.getCheckedRadioButtonId() == -1) {
+            missingFields.append("• Repayment Terms\n");
+        }
+        if (urgencyOptions.getCheckedRadioButtonId() == -1) {
+            missingFields.append("• Urgency Level\n");
+        }
+
+        new AlertDialog.Builder(this)
+                .setTitle("⚠️ Missing Information")
+                .setMessage(missingFields.toString())
+                .setPositiveButton("OK", (dialog, which) -> dialog.dismiss())
+                .show();
+    }
+
+    private void returnToHome() {
+        // Create intent to return to MainActivity
+        Intent intent = new Intent(this, MainActivity.class);
+        // Clear the activity stack and create a new task
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        // Add extra to indicate we want to show the home screen
+        intent.putExtra("show_home", true);
+        startActivity(intent);
+        finish(); // Close this activity
+    }
+
+    private String createTransactionID() {
+        if (currentUser != null) {
+            String baseID = currentUser.getUid() + "_" + System.currentTimeMillis();
+            return Integer.toHexString(baseID.hashCode());
+        }
+        return "guest_" + System.currentTimeMillis();
+    }
+
+    private double parseAmount(String amountStr) {
+        try {
+            return Double.parseDouble(amountStr.replaceAll("[^\\d.]", ""));
+        } catch (NumberFormatException e) {
+            return 0.0;
+        }
+    }
+
+    private void clearForm() {
+        borrowerNameInput.setText("");
+        borrowerEmailInput.setText("");
+        borrowerPhoneInput.setText("");
+        amountRequestedInput.setText("");
+        reasonInput.setText("");
+        repaymentOptions.clearCheck();
+        urgencyOptions.clearCheck();
     }
 }
+
+
+
+
+
+
