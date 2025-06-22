@@ -19,6 +19,10 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import java.util.Date;
+import java.util.Map;
 import java.util.Objects;
 
 
@@ -38,7 +42,6 @@ public class Create_Account extends AppCompatActivity {
         int successColor = ContextCompat.getColor(this,R.color.Success_900);
         int errorColor = ContextCompat.getColor(this, R.color.Error_700);
         mAuth= FirebaseAuth.getInstance();
-        User_Database userDatabase = new User_Database();
 
         // Button initialization
         signUpBtn = findViewById(R.id.signup);
@@ -164,16 +167,59 @@ public class Create_Account extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                String userID = task.getResult().getUser().getUid();
-                                User_Database userDatabase = new User_Database();
-                                userDatabase.addUser(userID, userDatabase.buildUserData(userEmail,userName,
-                                        userFirstName,userLastName,userPhone,userAddress));
-                                Toast.makeText(Create_Account.this, "Account Created.",
-                                        Toast.LENGTH_LONG).show();
-                                Intent  loginIntent = new Intent(getApplicationContext(), Login_Activity.class);
-                                startActivity(loginIntent);
-                                finish();
+                                AuthResult result = task.getResult();
+                                if(result != null) {
+                                    FirebaseUser user = result.getUser();
+                                    if(user != null) {
+                                        String userID = user.getUid();
+                                        User_Database userDatabase = new User_Database();
+                                        Borrow_Management borrowCreate = new Borrow_Management();
+                                        Loan_Management loanCreate = new Loan_Management();
+                                        String transactionID = borrowCreate.createTransactionID(user);
+                                        Map<String,Object> userData = userDatabase.buildUserData(
+                                                userEmail,
+                                                userName,
+                                                userFirstName,
+                                                userLastName,
+                                                userPhone,
+                                                userAddress);
 
+                                        Map<String,Object> borrowDetails = borrowCreate.CreateNewRequest(
+                                                Create_Account.this,
+                                                user,
+                                                "Broke as a joke",
+                                                transactionID,
+                                                "Yesterday",
+                                                500.00f,
+                                                12
+                                                );
+
+                                        Map<String,Object> loanDetails= loanCreate.CreateNewLoan(transactionID,
+                                                "Matt",
+                                                user.getDisplayName(),
+                                                500.00f,
+                                                2.5f,
+                                                "05/30/2025",
+                                                12,
+                                                true,
+                                                true,
+                                                true,
+                                                false,
+                                                false,
+                                                5.0f
+                                        );
+
+                                        userDatabase.addUser(userID, userData);
+                                        loanCreate.addNewLoan(transactionID,loanDetails);
+                                        borrowCreate.newRequest(transactionID,borrowDetails);
+                                        Toast.makeText(Create_Account.this, "Account Created.",
+                                                Toast.LENGTH_LONG).show();
+
+                                        Intent loginIntent = new Intent(getApplicationContext(), Login_Activity.class);
+                                        startActivity(loginIntent);
+                                        finish();
+                                    }
+                                }
                             } else {
                                 // If sign in fails, display a message to the user.
                                 Toast.makeText(Create_Account.this,
@@ -316,7 +362,4 @@ public class Create_Account extends AppCompatActivity {
         }
         return usernameOK;
     }
-
-
-
 }

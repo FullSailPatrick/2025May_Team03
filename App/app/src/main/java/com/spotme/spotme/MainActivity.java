@@ -4,7 +4,6 @@ package com.spotme.spotme;
 import static com.spotme.spotme.R.*;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -57,7 +56,9 @@ public class MainActivity extends AppCompatActivity {
                     });
                 });
             } else if (id == R.id.nav_borrow) {
-                switchView(R.layout.borrow);
+                //switchView(R.layout.borrow);
+                Intent borrowIntent = new Intent(MainActivity.this, BorrowActivity.class);
+                startActivity(borrowIntent);
             } else if (id == R.id.nav_lend) {
                 SharedPreferences prefs = getSharedPreferences("spotme_prefs", MODE_PRIVATE);
                 boolean hasSubmittedLenderApp = prefs.getBoolean("lender_app_done", false);
@@ -66,6 +67,9 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(new Intent(this, LenderApplicationActivity.class));
                 } else {
                     switchView(R.layout.lend);
+                    // COMMENTED OUT: Launch LendActivity (this was causing crashes)
+                    // Intent lendIntent = new Intent(MainActivity.this, LendActivity.class);
+                    // startActivity(lendIntent);
                 }
             } else if (id == R.id.nav_settings) {
                 getSupportFragmentManager()
@@ -83,10 +87,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
     // Switch view function based on a layout ID.
     private void switchView(int layoutResId) {
         viewContainer.removeAllViews();
+
         View view = inflater.inflate(layoutResId, viewContainer, false);
+
         viewContainer.addView(view);
     }
 }

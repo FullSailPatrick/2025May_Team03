@@ -6,7 +6,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.Date;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,43 +33,43 @@ public class User_Database {
         String address = String.valueOf(_userAddress.getText());
 
         Map<String, Object> userInfo = new HashMap<>();
-        userInfo.put("User Name", username);
-        userInfo.put("User Email", email);
-        userInfo.put("User Phone", phone);
-        userInfo.put("User Address", address);
-        userInfo.put("First Name", firstName);
-        userInfo.put("Last Name", lastName);
-        userInfo.put("Approved Lender", false);
+        userInfo.put("UserName", username);
+        userInfo.put("UserEmail", email);
+        userInfo.put("UserPhone", phone);
+        userInfo.put("UserAddress", address);
+        userInfo.put("FirstName", firstName);
+        userInfo.put("LastName", lastName);
+        userInfo.put("ApprovedLender", false);
 
         Map<String, Object> userSummary = new HashMap<>();
-        userSummary.put("Lender Rating", 0);
-        userSummary.put("Borrower Rating", 0);
-        userSummary.put("Active Loans",new HashMap<>());
-        userSummary.put("Pending Loans",new HashMap<>());
-        userSummary.put("Closed Loans",new HashMap<>());
+        userSummary.put("LenderRating", 0);
+        userSummary.put("BorrowerRating", 0);
+        userSummary.put("ActiveLoans",new HashMap<>());
+        userSummary.put("PendingLoans",new HashMap<>());
+        userSummary.put("ClosedLoans",new HashMap<>());
 
         Map<String, Object> userLimits = new HashMap<>();
-        userLimits.put("Loan Limit", 1000);
-        userLimits.put("Active Loan Limit", 1);
+        userLimits.put("LoanLimit", 1000);
+        userLimits.put("ActiveLoan Limit", 1);
 
         Map<String, Object> userSettings = new HashMap<>();
-        userSettings.put("Notifications On", true);
-        userSettings.put("Dark Mode On", false);
+        userSettings.put("NotificationsOn", true);
+        userSettings.put("DarkModeOn", false);
 
         Map<String, Object> userNotifications = new HashMap<>();
         userNotifications.put("ID", "username");
-        userNotifications.put("Is Seen", false);
+        userNotifications.put("IsSeen", false);
         userNotifications.put("Message", " ");
-        userNotifications.put("Created At", Timestamp.now());
-        userNotifications.put("Deleted At", Timestamp.now());
+        userNotifications.put("CreatedAt", Timestamp.now());
+        userNotifications.put("DeletedAt", Timestamp.now());
 
         Map<String, Object> suggestedOpportunities = new HashMap<>();
         suggestedOpportunities.put("ID", "username");
-        suggestedOpportunities.put("User Name", " ");
+        suggestedOpportunities.put("UserName", " ");
         suggestedOpportunities.put("Amount", 0.0);
         suggestedOpportunities.put("Rating", 0.0);
         suggestedOpportunities.put("Avatar", " ");
-        suggestedOpportunities.put("Date Created", Timestamp.now());
+        suggestedOpportunities.put("DateCreated", Timestamp.now());
 
         Map<String, Object> userData = new HashMap<>();
         userData.put("User Information", userInfo);
@@ -81,38 +81,5 @@ public class User_Database {
         userData.put("Date Created", Timestamp.now());
 
         return userData;
-    }
-    public Map<String,Object> CreateNewLoan(String loanName,
-                                       String lenderName,
-                                       String borrowerName,
-                                       Float loanAmount,
-                                       Float interestRate,
-                                       Date dueDate,
-                                       Integer loanLength,
-                                       Boolean isPending,
-                                       Boolean lenderApproved,
-                                       Boolean borrowerApproved,
-                                       Boolean loanComplete,
-                                       Boolean isLender,
-                                       Float rating
-                                       ){
-
-        Map<String, Object> loanDetails = new HashMap<>();
-        loanDetails.put("Loan Name", loanName);
-        loanDetails.put("Lender Name", lenderName);
-        loanDetails.put("Borrower Name", borrowerName);
-        loanDetails.put("Loan Amount", loanAmount);
-        loanDetails.put("Interest Rate", interestRate);
-        loanDetails.put("Loan Term", loanLength);
-        loanDetails.put("Loan Due", dueDate);
-        loanDetails.put("Loan Pending", isPending);
-        loanDetails.put("Lender Approved", lenderApproved);
-        loanDetails.put("Borrower Approved", borrowerApproved);
-        loanDetails.put("Loan Complete", loanComplete);
-        loanDetails.put("User Is Lender", isLender);
-        loanDetails.put("Loan Rating", rating);
-        loanDetails.put("Date Created", Timestamp.now());
-
-        return loanDetails;
     }
 }
