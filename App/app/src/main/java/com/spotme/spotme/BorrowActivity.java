@@ -1,6 +1,5 @@
 package com.spotme.spotme;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -16,7 +15,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -33,7 +31,7 @@ public class BorrowActivity extends AppCompatActivity {
     EditText amountRequestedInput, reasonInput;
     RadioGroup repaymentOptions, urgencyOptions;
     Button submitRequestBtn;
-    BottomNavigationView bottomNav;
+
 
     // Firebase Components
     FirebaseAuth mAuth;
@@ -45,10 +43,6 @@ public class BorrowActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.borrow);
 
-        // Hide title bar
-       //if (getSupportActionBar() != null) {
-            //getSupportActionBar().hide();
-        //}
 
         // Initialize Firebase
         mAuth = FirebaseAuth.getInstance();
@@ -57,8 +51,6 @@ public class BorrowActivity extends AppCompatActivity {
 
         // Initialize UI components
         findViews();
-
-        // Set up navigation
 
         // Set up button listener
         setupSubmitButton();
