@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ContactDialogFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:orientation="vertical"
+        android:padding="16dp"
+        tools:ignore="UselessParent">
+
+        <ImageButton
+            android:id="@+id/closeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_white_box"
+            android:src="@android:drawable/ic_menu_close_clear_cancel"
+            android:contentDescription="@string/close"
+            android:layout_gravity="end" />
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            android:padding="24dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
+
+                <!-- Title -->
+                <TextView
+                    android:id="@+id/contactTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/contact_us"
+                    android:textSize="24sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginBottom="4dp" />
+
+                <!-- Subtitle -->
+                <TextView
+                    android:id="@+id/contactSubtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/we_d_love_to_hear_from_you_drop_us_a_message_and_we_ll_connect_with_you_soon"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/inter"
+                    android:layout_marginBottom="24dp" />
+
+                <!-- Name Input -->
+                <EditText
+                    android:id="@+id/inputName"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:hint="@string/name"
+                    android:fontFamily="@font/inter"
+                    android:padding="12dp"
+                    android:inputType="textPersonName"
+                    android:textColorHint="#888888"
+                    android:layout_marginBottom="16dp" />
+
+                <!-- Email Input -->
+                <EditText
+                    android:id="@+id/inputEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:hint="@string/e_mail"
+                    android:padding="12dp"
+                    android:fontFamily="@font/inter"
+                    android:inputType="textEmailAddress"
+                    android:textColorHint="#888888"
+                    android:layout_marginBottom="16dp" />
+
+                <!-- Message Input -->
+                <EditText
+                    android:id="@+id/inputMessage"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:hint="@string/message"
+                    android:gravity="top"
+                    android:padding="12dp"
+                    android:fontFamily="@font/inter"
+                    android:inputType="textMultiLine"
+                    android:textColorHint="#888888"
+                    android:layout_marginBottom="24dp" />
+
+                <!-- Submit -->
+                <Button
+                    android:id="@+id/submitButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:text="@string/submit"
+                    android:fontFamily="@font/inter"
+                    android:textColor="@android:color/white"
+                    android:backgroundTint="@color/Sub_Brand_800"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+
+</FrameLayout>

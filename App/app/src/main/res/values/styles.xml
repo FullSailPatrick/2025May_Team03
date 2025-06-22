@@ -15,7 +15,12 @@
         <item name="android:textStyle">bold</item>
     </style>
 
-    <!--Theme styles -->
+    <!-- Full screen dialog theme-->
+    <style name="FullScreenDialogTheme" parent="Theme.MaterialComponents.DayNight.Dialog">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowCloseOnTouchOutside">false</item>
+    </style>
 
 
 </resources>

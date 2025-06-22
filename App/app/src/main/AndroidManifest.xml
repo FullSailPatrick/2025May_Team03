@@ -13,6 +13,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SpotMe">
+
+
+
+
         <activity
             android:name=".Forgot_Password"
             android:exported="false" />
@@ -34,6 +38,10 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+
+        <activity android:name=".SettingsFragment" android:exported="true"/>
+
     </application>
 
 </manifest>
