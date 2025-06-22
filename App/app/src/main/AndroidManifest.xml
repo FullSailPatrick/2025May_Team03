@@ -38,9 +38,7 @@
             android:exported="true" />
         <activity
             android:name=".LendActivity"
-            android:exported="false" /> <meta-data
-            android:name="preloaded_fonts"
-            android:resource="@array/preloaded_fonts" />
+            android:exported="false" />
 
         <activity android:name=".LenderApplicationActivity" />
         <activity android:name=".ConfirmationActivity" />

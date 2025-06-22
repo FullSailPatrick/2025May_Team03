@@ -46,9 +46,9 @@ public class BorrowActivity extends AppCompatActivity {
         setContentView(R.layout.borrow);
 
         // Hide title bar
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().hide();
-        }
+       //if (getSupportActionBar() != null) {
+            //getSupportActionBar().hide();
+        //}
 
         // Initialize Firebase
         mAuth = FirebaseAuth.getInstance();
@@ -59,7 +59,6 @@ public class BorrowActivity extends AppCompatActivity {
         findViews();
 
         // Set up navigation
-        setupBottomNavigation();
 
         // Set up button listener
         setupSubmitButton();
@@ -80,51 +79,9 @@ public class BorrowActivity extends AppCompatActivity {
         repaymentOptions = findViewById(R.id.repaymentOptions);
         urgencyOptions = findViewById(R.id.urgencyOptions);
         submitRequestBtn = findViewById(R.id.submitRequestBtn);
-        bottomNav = findViewById(R.id.main_navigation);
     }
 
-    private void setupBottomNavigation() {
-        bottomNav.setLabelVisibilityMode(NavigationBarView.LABEL_VISIBILITY_LABELED);
-        // Set the current item to borrow
-        bottomNav.setSelectedItemId(R.id.nav_borrow);
 
-        bottomNav.setOnItemSelectedListener(item -> {
-            int id = item.getItemId();
-
-            if (id == R.id.nav_home) {
-                // Return to MainActivity and show home
-                Intent intent = new Intent(BorrowActivity.this, MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("show_home", true);
-                startActivity(intent);
-                finish();
-            } else if (id == R.id.nav_deals) {
-                // Return to MainActivity and show deals
-                Intent intent = new Intent(BorrowActivity.this, MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("show_deals", true);
-                startActivity(intent);
-                finish();
-            } else if (id == R.id.nav_borrow) {
-                // Already on borrow screen, do nothing
-                return true;
-            } else if (id == R.id.nav_lend) {
-                // Go to LendActivity
-                Intent intent = new Intent(BorrowActivity.this, LendActivity.class);
-                startActivity(intent);
-                finish();
-            } else if (id == R.id.nav_settings) {
-                // Return to MainActivity and show settings
-                Intent intent = new Intent(BorrowActivity.this, MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("show_settings", true);
-                startActivity(intent);
-                finish();
-            }
-
-            return true;
-        });
-    }
 
     private void setupSubmitButton() {
         if (submitRequestBtn != null) {

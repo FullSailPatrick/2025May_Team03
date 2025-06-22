@@ -90,8 +90,7 @@ public class MainActivity extends AppCompatActivity
             else if (id == R.id.nav_borrow)
             {
                 // ENHANCED: Launch BorrowActivity as separate activity with navigation
-                Intent borrowIntent = new Intent(MainActivity.this, BorrowActivity.class);
-                startActivity(borrowIntent);
+                switchView(R.layout.borrow);
             }
             else if (id == R.id.nav_lend)
             {
