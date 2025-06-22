@@ -14,9 +14,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SpotMe">
 
-
-
-
         <activity
             android:name=".Forgot_Password"
             android:exported="false" />
@@ -34,14 +31,18 @@
         <activity
             android:name=".MainActivity"
             android:exported="true" />
-
+        <activity
+            android:name=".LenderApplicationActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".ConfirmationActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".SettingsFragment"
+            android:exported="true"/>
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-
-
-        <activity android:name=".SettingsFragment" android:exported="true"/>
-
     </application>
 
 </manifest>
