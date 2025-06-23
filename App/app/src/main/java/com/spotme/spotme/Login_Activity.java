@@ -107,3 +107,4 @@ public class Login_Activity extends AppCompatActivity {
         });
     }
 }
+//TODO Add persistence for notifications and dark mode

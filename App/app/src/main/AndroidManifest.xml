@@ -32,7 +32,6 @@
         <activity
             android:name=".BorrowActivity"
             android:exported="false" />
-
         <activity
             android:name=".MainActivity"
             android:exported="true" />
@@ -52,7 +51,6 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <!-- REMOVED: SettingsFragment line - Fragments don't go in manifest -->
 
     </application>
 
