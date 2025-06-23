@@ -37,12 +37,17 @@
             android:name=".MainActivity"
             android:exported="true" />
         <activity
+            android:name=".LenderApplicationActivity"
+            android:exported="true"/>
+        <activity
             android:name=".LendActivity"
-            android:exported="false" />
-
-        <activity android:name=".LenderApplicationActivity" />
-        <activity android:name=".ConfirmationActivity" />
-
+            android:exported="true"/>
+        <activity
+            android:name=".ConfirmationActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".SettingsFragment"
+            android:exported="true"/>
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

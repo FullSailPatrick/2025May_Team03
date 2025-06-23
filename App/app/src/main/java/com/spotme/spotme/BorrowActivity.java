@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -159,7 +160,7 @@ public class BorrowActivity extends AppCompatActivity {
         });
     }
 
-    private void handleSubmit() {
+    public void handleSubmit() {
         // Get form data
         String name = borrowerNameInput.getText().toString().trim();
         String email = borrowerEmailInput.getText().toString().trim();
@@ -220,6 +221,8 @@ public class BorrowActivity extends AppCompatActivity {
 
         // Save to database
         saveToDatabase(transactionId, requestData, amount, repaymentTerm, urgency);
+
+        Log.d("BorrowActivity", "handleSubmit: Button was clicked");
     }
 
     private void saveToDatabase(String transactionId, Map<String, Object> requestData,
