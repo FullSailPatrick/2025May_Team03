@@ -248,5 +248,6 @@
         app:itemTextColor="@color/Brand_800"
         app:menu="@menu/main_nav" />
 
+    <!-- Bottom Navigation - EXACTLY like MainActivity -->
 
 </LinearLayout>
