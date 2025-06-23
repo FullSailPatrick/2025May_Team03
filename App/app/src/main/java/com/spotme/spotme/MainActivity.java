@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
                 });
             } else if (id == R.id.nav_borrow) {
                 //switchView(R.layout.borrow);
-                Intent borrowIntent = new Intent(MainActivity.this, BorrowActivity.class);
+                Intent borrowIntent = new Intent(this, BorrowActivity.class);
                 startActivity(borrowIntent);
             } else if (id == R.id.nav_lend) {
                 SharedPreferences prefs = getSharedPreferences("spotme_prefs", MODE_PRIVATE);
@@ -66,10 +66,10 @@ public class MainActivity extends AppCompatActivity {
                 if (!hasSubmittedLenderApp) {
                     startActivity(new Intent(this, LenderApplicationActivity.class));
                 } else {
-                    switchView(R.layout.lend);
+                    //switchView(R.layout.lend);
                     // COMMENTED OUT: Launch LendActivity (this was causing crashes)
-                    // Intent lendIntent = new Intent(MainActivity.this, LendActivity.class);
-                    // startActivity(lendIntent);
+                    Intent lendIntent = new Intent(this, LendActivity.class);
+                    startActivity(lendIntent);
                 }
             } else if (id == R.id.nav_settings) {
                 getSupportFragmentManager()
@@ -91,9 +91,7 @@ public class MainActivity extends AppCompatActivity {
     // Switch view function based on a layout ID.
     private void switchView(int layoutResId) {
         viewContainer.removeAllViews();
-
         View view = inflater.inflate(layoutResId, viewContainer, false);
-
         viewContainer.addView(view);
     }
 }

@@ -226,7 +226,8 @@
                 android:text="Submit Money Request"
                 android:textColor="@android:color/black"
                 android:textStyle="bold"
-                android:background="@drawable/gradient_background" />
+                android:background="@drawable/gradient_background"
+                />
 
         </LinearLayout>
     </ScrollView>
