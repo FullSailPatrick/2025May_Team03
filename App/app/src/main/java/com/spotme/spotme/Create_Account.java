@@ -20,7 +20,8 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import java.util.Date;
 import java.util.Map;
 import java.util.Objects;
@@ -42,6 +43,7 @@ public class Create_Account extends AppCompatActivity {
         int successColor = ContextCompat.getColor(this,R.color.Success_900);
         int errorColor = ContextCompat.getColor(this, R.color.Error_700);
         mAuth= FirebaseAuth.getInstance();
+
 
         // Button initialization
         signUpBtn = findViewById(R.id.signup);
@@ -173,9 +175,6 @@ public class Create_Account extends AppCompatActivity {
                                     if(user != null) {
                                         String userID = user.getUid();
                                         User_Database userDatabase = new User_Database();
-                                        Borrow_Management borrowCreate = new Borrow_Management();
-                                        Loan_Management loanCreate = new Loan_Management();
-                                        String transactionID = borrowCreate.createTransactionID(user);
                                         Map<String,Object> userData = userDatabase.buildUserData(
                                                 userEmail,
                                                 userName,
@@ -183,41 +182,13 @@ public class Create_Account extends AppCompatActivity {
                                                 userLastName,
                                                 userPhone,
                                                 userAddress);
-
-                                        Map<String,Object> borrowDetails = borrowCreate.CreateNewRequest(
-                                                Create_Account.this,
-                                                user,
-                                                "Broke as a joke",
-                                                transactionID,
-                                                "Yesterday",
-                                                500.00f,
-                                                12
-                                                );
-
-                                        Map<String,Object> loanDetails= loanCreate.CreateNewLoan(transactionID,
-                                                "Matt",
-                                                user.getDisplayName(),
-                                                500.00f,
-                                                2.5f,
-                                                "05/30/2025",
-                                                12,
-                                                true,
-                                                true,
-                                                true,
-                                                false,
-                                                false,
-                                                5.0f
-                                        );
-
                                         userDatabase.addUser(userID, userData);
-                                        loanCreate.addNewLoan(transactionID,loanDetails);
-                                        borrowCreate.newRequest(transactionID,borrowDetails);
                                         Toast.makeText(Create_Account.this, "Account Created.",
                                                 Toast.LENGTH_LONG).show();
-
                                         Intent loginIntent = new Intent(getApplicationContext(), Login_Activity.class);
                                         startActivity(loginIntent);
                                         finish();
+                                        sendVerificationEmail(user);
                                     }
                                 }
                             } else {
@@ -361,5 +332,28 @@ public class Create_Account extends AppCompatActivity {
             usernameOK = true;
         }
         return usernameOK;
+    }
+
+    // Call this method after a user successfully creates an account
+    private void sendVerificationEmail(FirebaseUser _user) {
+        if (_user != null) {
+            _user.sendEmailVerification()
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(this,
+                                    "Verification email sent. Please check your inbox.",
+                                    Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(this,
+                                    "Failed to send verification email: " +
+                                            task.getException().getMessage(),
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        } else {
+            Toast.makeText(this,
+                    "No user signed in.",
+                    Toast.LENGTH_SHORT).show();
+        }
     }
 }
