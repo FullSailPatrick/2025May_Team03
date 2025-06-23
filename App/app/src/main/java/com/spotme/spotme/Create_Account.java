@@ -188,7 +188,7 @@ public class Create_Account extends AppCompatActivity {
                                         Intent loginIntent = new Intent(getApplicationContext(), Login_Activity.class);
                                         startActivity(loginIntent);
                                         finish();
-                                        sendVerificationEmail(user);
+                                        sendVerificationEmail(user); // Added Function
                                     }
                                 }
                             } else {

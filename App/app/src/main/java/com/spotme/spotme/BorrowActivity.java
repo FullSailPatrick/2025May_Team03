@@ -36,7 +36,6 @@ public class BorrowActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNav;
 
-
     // Firebase Components
     FirebaseAuth mAuth;
     FirebaseUser currentUser;
