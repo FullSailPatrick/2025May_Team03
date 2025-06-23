@@ -33,7 +33,7 @@ public class BorrowActivity extends AppCompatActivity {
     EditText amountRequestedInput, reasonInput;
     RadioGroup repaymentOptions, urgencyOptions;
     Button submitRequestBtn;
-
+    // Bottom Navigation Menu
     BottomNavigationView bottomNav;
 
     // Firebase Components
