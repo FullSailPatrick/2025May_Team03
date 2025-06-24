@@ -99,5 +99,9 @@
     <string name="name">Name</string>
     <string name="e_mail">E-Mail</string>
     <string name="message">Message</string>
+    <string name="MFA_Phone_Request_Text">Enter your Phone Number</string>
+    <string name="MFAPhoneHint">+1 (123) 456 7890</string>
+    <string name="MFA_verification_text">Send Verification</string>
+    <string name="MFA_Notice">Notice:\n\nA valid phone number must be used.\nStandard text and data rates may apply!</string>
 
 </resources>

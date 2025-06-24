@@ -40,6 +40,7 @@ public class User_Database {
         userInfo.put("FirstName", firstName);
         userInfo.put("LastName", lastName);
         userInfo.put("ApprovedLender", false);
+        userInfo.put("MFAEnabled",null);
 
         Map<String, Object> userSummary = new HashMap<>();
         userSummary.put("LenderRating", 0);

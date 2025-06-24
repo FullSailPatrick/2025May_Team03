@@ -85,8 +85,8 @@ public class Login_Activity extends AppCompatActivity {
                                 }
                             });
                 } else {
-                    email = "admin@spotme.com";
-                    password = "Adm!n52025";
+                    email = "mjbuchanan@student.fullsail.edu";
+                    password = "T3$t1234";
 
                     mAuth.signInWithEmailAndPassword(email, password)
                             .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
