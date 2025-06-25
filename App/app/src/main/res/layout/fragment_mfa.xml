@@ -7,34 +7,21 @@
     android:layout_height="match_parent"
     android:background="@drawable/screen_back_ground">
 
-    <!-- Logo -->
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="250dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="45dp"
-        android:contentDescription="@string/app_logo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/spotme_logo" />
 
     <TextView
         android:id="@+id/MFA_Text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:textSize="18sp"
         android:fontFamily="@font/inter"
         android:text="@string/MFA_Phone_Request_Text"
         android:textColor="@color/button_text_color"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logo"
-        app:layout_constraintVertical_bias="0.008" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.066" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/MFALayout"
@@ -43,7 +30,8 @@
         android:layout_marginTop="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/MFA_Text">
+        app:layout_constraintTop_toBottomOf="@+id/MFA_Text"
+        app:boxBackgroundMode="none">
 
         <EditText
             android:id="@+id/MFA_phone_number"
@@ -99,5 +87,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/MFA_signup"
         app:layout_constraintVertical_bias="0.363" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
