@@ -31,13 +31,12 @@ android {
         targetCompatibility = JavaVersion.VERSION_11
     }
 }
-
 dependencies {
     val fragment_version = "1.6.1"
     implementation(libs.preference)
-    implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.firebase.auth)
+    implementation(libs.firebase.firestore)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
     implementation(libs.androidx.appcompat)

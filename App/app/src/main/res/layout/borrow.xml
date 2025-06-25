@@ -1,19 +1,253 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/constraintLayout"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@drawable/screen_back_ground">
 
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="250dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="45dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/spotme_logo" />
+    <!-- Main Content -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="30dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal">
+
+            <!-- Logo -->
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="250dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="32dp"
+                android:src="@drawable/spotme_logo" />
+
+            <!-- Page Title -->
+            <TextView
+                android:id="@+id/title"
+                android:text="Request Money"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="24dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <!-- Borrower Name (Auto-populated from logged in user) -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Your Name"
+                android:textStyle="bold"
+                android:layout_marginBottom="4dp" />
+
+            <EditText
+                android:id="@+id/borrowerNameInput"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/rounded_text"
+                android:paddingHorizontal="16dp"
+                android:hint="Your full name"
+                android:inputType="textPersonName" />
+
+            <!-- Borrower Email (Auto-populated from logged in user) -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Your Email"
+                android:textStyle="bold"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="4dp" />
+
+            <EditText
+                android:id="@+id/borrowerEmailInput"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/rounded_text"
+                android:paddingHorizontal="16dp"
+                android:hint="your.email@mail.com"
+                android:inputType="textEmailAddress" />
+
+            <!-- Borrower Phone -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Your Phone Number"
+                android:textStyle="bold"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="4dp" />
+
+            <EditText
+                android:id="@+id/borrowerPhoneInput"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/rounded_text"
+                android:paddingHorizontal="16dp"
+                android:hint="+1 (123) - 456 - 7890"
+                android:inputType="phone" />
+
+            <!-- Loan Amount -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Amount Needed"
+                android:textStyle="bold"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="4dp" />
+
+            <EditText
+                android:id="@+id/amountRequestedInput"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/rounded_text"
+                android:paddingHorizontal="16dp"
+                android:hint="$0.00"
+                android:inputType="numberDecimal" />
+
+            <!-- Reason Field -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Reason for Request"
+                android:textStyle="bold"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="4dp" />
+
+            <EditText
+                android:id="@+id/reasonInput"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:background="@drawable/rounded_text"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="12dp"
+                android:hint="Emergency car repair, medical bills, etc."
+                android:inputType="textMultiLine"
+                android:gravity="top"
+                android:maxLines="3" />
+
+            <!-- Urgency Level -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Urgency Level"
+                android:textStyle="bold"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="4dp" />
+
+            <RadioGroup
+                android:id="@+id/urgencyOptions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RadioButton
+                    android:id="@+id/urgencyLow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Low - Can wait a few weeks" />
+
+                <RadioButton
+                    android:id="@+id/urgencyMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Medium - Need within a week"
+                    android:checked="true" />
+
+                <RadioButton
+                    android:id="@+id/urgencyHigh"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="High - Need ASAP" />
+
+            </RadioGroup>
+
+            <!-- Repayment Terms -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Proposed Repayment Terms"
+                android:textStyle="bold"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="4dp" />
+
+            <RadioGroup
+                android:id="@+id/repaymentOptions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RadioButton
+                    android:id="@+id/term4weeks"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4 weeks" />
+
+                <RadioButton
+                    android:id="@+id/term8weeks"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="8 weeks"
+                    android:checked="true" />
+
+                <RadioButton
+                    android:id="@+id/term3months"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3 months" />
+
+                <RadioButton
+                    android:id="@+id/term6months"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="6 months" />
+
+                <RadioButton
+                    android:id="@+id/term12months"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="12 months" />
+            </RadioGroup>
+
+            <!-- Submit Button -->
+            <Button
+                android:id="@+id/submitRequestBtn"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="32dp"
+                android:text="Submit Money Request"
+                android:textColor="@android:color/black"
+                android:textStyle="bold"
+                android:background="@drawable/gradient_background"
+                />
+
+        </LinearLayout>
+    </ScrollView>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/main_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/Sub_Brand_100"
+        android:minHeight="90dp"
+        app:itemBackground="@drawable/menu_item_background"
+        app:itemIconSize="50dp"
+        app:itemIconTint="@color/Brand_800"
+        app:itemTextAppearanceActive="@style/menuTextStyles"
+        app:itemTextAppearanceInactive="@style/menuTextStyles"
+        app:itemTextColor="@color/Brand_800"
+        app:menu="@menu/main_nav" />
+
+    <!-- Bottom Navigation - EXACTLY like MainActivity -->
+
+</LinearLayout>

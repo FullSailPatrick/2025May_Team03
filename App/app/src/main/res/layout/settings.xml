@@ -69,8 +69,8 @@
 
                 <Switch
                     android:id="@+id/toggleNotificationId"
-                    android:layout_width="64dp"
-                    android:layout_height="32dp"/>
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"/>
             </LinearLayout>
 
             <!-- Dark Mode -->
@@ -101,17 +101,21 @@
 
                 <Switch
                     android:id="@+id/toggleThemeId"
-                    android:layout_width="64dp"
-                    android:layout_height="32dp"/>
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    tools:ignore="UseSwitchCompatOrMaterialXml" />
             </LinearLayout>
 
             <!-- Privacy policy-->
             <LinearLayout
-                android:id="@+id/privacy_policy"
+                android:id="@+id/privacyPolicyAction"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
                 android:layout_marginBottom="12dp"
@@ -134,11 +138,14 @@
 
             <!-- Terms-->
             <LinearLayout
-                android:id="@+id/terms"
+                android:id="@+id/termsAction"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
                 android:layout_marginBottom="12dp"
@@ -161,11 +168,14 @@
 
             <!-- Cookies-->
             <LinearLayout
-                android:id="@+id/cookies"
+                android:id="@+id/cookiesAction"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
                 android:layout_marginBottom="12dp"
@@ -188,10 +198,13 @@
 
             <!-- Contact-->
             <LinearLayout
-                android:id="@+id/contact"
+                android:id="@+id/contactAction"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:orientation="horizontal"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
                 android:gravity="center_vertical"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
@@ -215,13 +228,16 @@
 
             <!-- Feedback-->
             <LinearLayout
-                android:id="@+id/feedback"
+                android:id="@+id/feedbackAction"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
                 android:layout_marginBottom="12dp"
                 android:background="@drawable/rounded_white_box">
 
@@ -242,12 +258,15 @@
 
             <!-- Logout-->
             <LinearLayout
-                android:id="@+id/logout"
+                android:id="@+id/logoutAction"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
                 android:paddingStart="16dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
                 android:paddingEnd="16dp"
                 android:layout_marginBottom="12dp"
                 android:background="@drawable/rounded_white_box">
