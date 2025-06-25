@@ -14,26 +14,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SpotMe">
 
-        <activity
-            android:name=".forgot_password"
-            android:exported="false" />
-        <activity
-            android:name=".createaccount"
-            android:exported="false" />
-        <activity
-            android:name=".login"
-            android:exported="true">
+        <!-- 👇 ADD THIS -->
+        <activity android:name=".LendActivity" />
+
+        <activity android:name=".forgot_password" android:exported="false" />
+        <activity android:name=".createaccount" android:exported="false" />
+        <activity android:name=".login" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".MainActivity"
-            android:exported="true" />
-
+        <activity android:name=".MainActivity" android:exported="true" />
         <activity android:name=".LenderApplicationActivity" />
         <activity android:name=".ConfirmationActivity" />
+        <activity android:name=".LendConfirmationActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

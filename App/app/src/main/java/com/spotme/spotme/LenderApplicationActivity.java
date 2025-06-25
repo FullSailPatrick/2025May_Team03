@@ -42,18 +42,18 @@ public class LenderApplicationActivity extends AppCompatActivity {
                 return;
             }
 
-            // Mark lender application as complete
+            //marks lender application as complete
             SharedPreferences prefs = getSharedPreferences("spotme_prefs", MODE_PRIVATE);
             prefs.edit().putBoolean("lender_app_done", true).apply();
 
-            // Go to confirmation screen
+            //Go to confirmation screen
             Intent intent = new Intent(this, ConfirmationActivity.class);
             intent.putExtra("open_lend", true);
             startActivity(intent);
             finish(); // close this screen
         });
 
-        // Go back button
+        //Go back button
         goBackBtn.setOnClickListener(v -> finish());
     }
 }
