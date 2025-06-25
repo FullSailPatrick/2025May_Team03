@@ -22,13 +22,14 @@ import com.spotme.spotme.deals.Loans;
 
 public class MainActivity extends AppCompatActivity {
     FrameLayout viewContainer;
-    FrameLayout frameLayout;
-    TabLayout tabLayout;
     LayoutInflater inflater;
     private boolean isLoggedIn = false;
     Button myLoansButton;
     Button myDebtsButton;
     BottomNavigationView bottomNav;
+
+    FrameLayout frameLayout;
+    TabLayout tabLayout;
 
     @Override
     protected void onCreate(Bundle instance) {
@@ -53,7 +54,9 @@ public class MainActivity extends AppCompatActivity {
             if (id == R.id.nav_home) {
                 switchView(R.layout.home);
             } else if (id == R.id.nav_deals) {
+
                 switchView(R.layout.deals);
+
                 getSupportFragmentManager().beginTransaction().replace(R.id.frame_Layout, new Loans())
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                         .commit();
@@ -89,13 +92,6 @@ public class MainActivity extends AppCompatActivity {
                     public void onTabReselected(TabLayout.Tab tab) {
 
                     }
-                myDebtsButton = findViewById(R.id.debtButton);
-                myDebtsButton.setOnClickListener(view -> {
-                    switchView(R.layout.mydebts);
-                    myLoansButton = findViewById(R.id.loanButton);
-                    myLoansButton.setOnClickListener(View -> {
-                        switchView(R.layout.deals);
-                    });
                 });
             } else if (id == R.id.nav_borrow) {
                 //switchView(R.layout.borrow);
@@ -122,8 +118,6 @@ public class MainActivity extends AppCompatActivity {
 
             return true;
         });
-
-
 
         // Optional: Open lend layout directly if coming from LenderApplicationActivity
         if (getIntent().getBooleanExtra("open_lend", false)) {
