@@ -28,8 +28,8 @@ public class DealsAdapter extends RecyclerView.Adapter<DealsAdapter.DealViewHold
         Deal deal = deals.get(position);
         holder.name.setText(deal.getName());
         holder.amount.setText(deal.getAmount());
-        holder.name.setText(deal.getName());
-        holder.name.setText(deal.getName());
+        holder.reason.setText(deal.getReason());
+        holder.time.setText(deal.getTime());
     }
 
     @Override

@@ -26,8 +26,6 @@ public class MainActivity extends AppCompatActivity
     TabLayout tabLayout;
     LayoutInflater inflater;
     private boolean isLoggedIn=false;
-    Button myLoansButton;
-    Button myDebtsButton;
 
 
     @Override
