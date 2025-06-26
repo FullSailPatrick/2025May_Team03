@@ -58,7 +58,7 @@ public class User_Database {
         userInfo.put("FirstName", firstName);
         userInfo.put("LastName", lastName);
         userInfo.put("ApprovedLender", false); // Whether user is approved to lend
-        userInfo.put("MFAEnabled",null); // Placeholder for multi-factor auth flag
+        userInfo.put("MFAEnabled",false); // Placeholder for multi-factor auth flag
 
         // Build map for user's summary information
         Map<String, Object> userSummary = new HashMap<>();
