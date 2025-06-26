@@ -1,10 +1,10 @@
 package com.spotme.spotme;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,6 +33,7 @@ public class BorrowActivity extends AppCompatActivity {
     EditText amountRequestedInput, reasonInput;
     RadioGroup repaymentOptions, urgencyOptions;
     Button submitRequestBtn;
+    // Bottom Navigation Menu
     BottomNavigationView bottomNav;
 
     // Firebase Components
@@ -45,10 +46,6 @@ public class BorrowActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.borrow);
 
-        // Hide title bar
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().hide();
-        }
 
         // Initialize Firebase
         mAuth = FirebaseAuth.getInstance();
@@ -58,9 +55,6 @@ public class BorrowActivity extends AppCompatActivity {
         // Initialize UI components
         findViews();
 
-        // Set up navigation
-        setupBottomNavigation();
-
         // Set up button listener
         setupSubmitButton();
 
@@ -69,6 +63,9 @@ public class BorrowActivity extends AppCompatActivity {
 
         // Set up formatters
         setupFormatters();
+
+        setupBottomNavigation();
+
     }
 
     private void findViews() {
@@ -125,6 +122,8 @@ public class BorrowActivity extends AppCompatActivity {
             return true;
         });
     }
+
+
 
     private void setupSubmitButton() {
         if (submitRequestBtn != null) {
@@ -210,7 +209,7 @@ public class BorrowActivity extends AppCompatActivity {
         });
     }
 
-    private void handleSubmit() {
+    public void handleSubmit() {
         // Get form data
         String name = borrowerNameInput.getText().toString().trim();
         String email = borrowerEmailInput.getText().toString().trim();
@@ -271,6 +270,8 @@ public class BorrowActivity extends AppCompatActivity {
 
         // Save to database
         saveToDatabase(transactionId, requestData, amount, repaymentTerm, urgency);
+
+        Log.d("BorrowActivity", "handleSubmit: Button was clicked");
     }
 
     private void saveToDatabase(String transactionId, Map<String, Object> requestData,
