@@ -125,11 +125,6 @@
                 android:layout_height="wrap_content"
                 android:text="6 months" />
 
-            <RadioButton
-                android:id="@+id/term12months"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="12 months" />
         </RadioGroup>
 
         <!-- Submit Button -->
