@@ -96,7 +96,7 @@ public class LoginFragment extends Fragment {
                                 }
                             });
                 } else {
-                    email = "cfscamaroimsaz@gmail.com";
+                    email = "test12345@spotme.com";
                     password = "T3$t1234";
 
                     mAuth.signInWithEmailAndPassword(email, password)
