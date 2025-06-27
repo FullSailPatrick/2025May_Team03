@@ -24,7 +24,7 @@ public class Login_Activity extends AppCompatActivity {
 
         //Get user collection
         DocumentReference mainRef  = FirebaseFirestore.getInstance()
-                .collection("users")
+                .collection("Users")
                 .document(uid);
 
         //apply default value
