@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/screen_back_ground">
+
+
+    <TextView
+        android:id="@+id/MFA_Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/inter"
+        android:text="@string/MFA_Phone_Request_Text"
+        android:textColor="@color/button_text_color"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.066" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/MFALayout"
+        android:layout_width="340dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        app:boxBackgroundMode="none"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/MFA_Text">
+
+        <EditText
+            android:id="@+id/MFA_phone_number"
+            android:layout_width="match_parent"
+            android:layout_height="59dp"
+            android:autofillHints="phone"
+            android:background="@drawable/rounded_text"
+            android:ems="10"
+            android:fontFamily="@font/inter"
+            android:hint="@string/MFAPhoneHint"
+            android:inputType="phone"
+            android:minHeight="48dp"
+            android:paddingStart="40dp"
+            android:paddingEnd="0dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/MFA_signup"
+        style="@style/GradientButton"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@null"
+        android:fontFamily="@font/inter"
+        android:radius="26dp"
+        android:text="@string/MFA_verification_text"
+        android:textColor="#263F53"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/MFALayout"
+        app:layout_constraintVertical_bias="0.319"
+        app:strokeColor="@color/Gray_900"
+        app:strokeWidth="1dp" />
+
+    <TextView
+        android:id="@+id/MFA_Notice_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginRight="30dp"
+        android:backgroundTint="@color/Gray_300"
+        android:backgroundTintMode="add"
+        android:fontFamily="@font/inter"
+        android:text="@string/MFA_Notice"
+        android:textColor="@color/Gray_950"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/MFA_signup"
+        app:layout_constraintVertical_bias="0.394" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
