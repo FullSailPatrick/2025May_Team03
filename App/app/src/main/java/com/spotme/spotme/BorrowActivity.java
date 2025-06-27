@@ -90,18 +90,13 @@ public class BorrowActivity extends AppCompatActivity {
 
             if (id == R.id.nav_home) {
                 // Return to MainActivity and show home
-                Intent intent = new Intent(BorrowActivity.this, MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("show_home", true);
-                startActivity(intent);
-                finish();
+                startActivity(new Intent(this, MainActivity.class));
+                return true;
             } else if (id == R.id.nav_deals) {
-                // Return to MainActivity and show deals
-                Intent intent = new Intent(BorrowActivity.this, MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("show_deals", true);
+                Intent intent = new Intent(this, MainActivity.class);
+                intent.putExtra("open_deals", true);
                 startActivity(intent);
-                finish();
+                return true;
             } else if (id == R.id.nav_borrow) {
                 // Already on borrow screen, do nothing
                 return true;
@@ -111,10 +106,9 @@ public class BorrowActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             } else if (id == R.id.nav_settings) {
-                // Return to MainActivity and show settings
-                Intent intent = new Intent(BorrowActivity.this, MainActivity.class);
+                Intent intent = new Intent(this, MainActivity.class);
+                intent.putExtra("open_settings", true);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("show_settings", true);
                 startActivity(intent);
                 finish();
             }

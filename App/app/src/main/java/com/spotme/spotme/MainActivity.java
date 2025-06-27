@@ -97,6 +97,10 @@ public class MainActivity extends AppCompatActivity {
         //Open Lend directly if coming from LenderApplicationActivity
         if (getIntent().getBooleanExtra("open_lend", false)) {
             bottomNav.setSelectedItemId(R.id.nav_lend); // triggers the listener
+        } else if (getIntent().getBooleanExtra("open_settings", false)) {
+            bottomNav.setSelectedItemId(R.id.nav_settings);
+        }else if (getIntent().getBooleanExtra("open_deals", false)) {
+            bottomNav.setSelectedItemId(R.id.nav_deals);
         }
     }
 

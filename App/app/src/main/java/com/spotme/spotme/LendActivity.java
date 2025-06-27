@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 
 public class LendActivity extends AppCompatActivity {
 
@@ -49,6 +50,8 @@ public class LendActivity extends AppCompatActivity {
             startActivity(intent);
             finish(); //optional but it closes LendActivity so user can’t return to it with back button
         });
+        bottomNav.setLabelVisibilityMode(NavigationBarView.LABEL_VISIBILITY_LABELED);
+        bottomNav.setSelectedItemId(R.id.nav_borrow);
 
         bottomNav.setOnItemSelectedListener(item -> {
             int id = item.getItemId();
@@ -62,14 +65,17 @@ public class LendActivity extends AppCompatActivity {
                 startActivity(intent);
                 return true;
             } else if (id == R.id.nav_borrow) {
-                Intent intent = new Intent(this, MainActivity.class);
-                intent.putExtra("open_borrow", true);
+                Intent intent = new Intent(this, BorrowActivity.class);
                 startActivity(intent);
                 return true;
             } else if (id == R.id.nav_lend) {
                 return true; // already here
             } else if (id == R.id.nav_settings) {
-                startActivity(new Intent(this, SettingsActivity.class));
+                Intent intent = new Intent(this, MainActivity.class);
+                intent.putExtra("open_settings", true);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finish();
                 return true;
             }
 
