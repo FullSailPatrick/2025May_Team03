@@ -12,8 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import com.google.firebase.Timestamp;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.Date;
 import java.util.HashMap;
@@ -48,25 +46,26 @@ public class FeedbackDialogFragment extends DialogFragment
         return view;
     }
 
+    // This function saves the feedback to the Firebase collection
     private void sendFeedback()
     {
         float rating = ratingBar.getRating();
         String feedback = feedbackInput.getText().toString().trim();
 
-        if (feedback.isEmpty()) {
+        //Validate empty fields
+        if (feedback.isEmpty())
+        {
             Toast.makeText(getContext(), "Please enter feedback.", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        //String email = (user != null && user.getEmail() != null) ? user.getEmail() : "jurena@fullsail.edu";
-        String email = "jurena@student.fullsail.edu"; //testing email
+        //Create a map
         Map<String, Object> feedbackData = new HashMap<>();
-        feedbackData.put("email", email);
         feedbackData.put("rating", rating);
         feedbackData.put("feedback", feedback);
         feedbackData.put("timestamp", new Timestamp(new Date()));
 
+        //Instantiate the collection.
         FirebaseFirestore.getInstance()
                 .collection("feedback")
                 .add(feedbackData)
@@ -82,7 +81,8 @@ public class FeedbackDialogFragment extends DialogFragment
     }
 
     @Override
-    public int getTheme() {
+    public int getTheme()
+    {
         return R.style.FullScreenDialogTheme;
     }
 }
