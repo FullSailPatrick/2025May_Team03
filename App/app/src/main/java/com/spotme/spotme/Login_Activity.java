@@ -4,6 +4,8 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -37,29 +39,6 @@ public class Login_Activity extends AppCompatActivity {
                                 AppCompatDelegate.MODE_NIGHT_NO);
             }
         });
-
-
-        // Get Firebase user ID
-        String uid = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
-
-        //Get user collection
-        DocumentReference mainRef  = FirebaseFirestore.getInstance()
-                .collection("users")
-                .document(uid);
-
-        //apply default value
-        mainRef.get().addOnSuccessListener(doc ->
-        {
-            Boolean darkMode = doc.getBoolean("User Settings.Dark Mode On");
-
-            if (darkMode != null)
-            {
-                AppCompatDelegate.setDefaultNightMode(
-                        darkMode ? AppCompatDelegate.MODE_NIGHT_YES :
-                                AppCompatDelegate.MODE_NIGHT_NO);
-            }
-        });
-
 
         getSupportFragmentManager()
                 .beginTransaction()
