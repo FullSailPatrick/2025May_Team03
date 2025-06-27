@@ -17,6 +17,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.tabs.TabLayout;
+import com.spotme.spotme.deals.DealsFragment;
 import com.spotme.spotme.deals.Debts;
 import com.spotme.spotme.deals.Loans;
 
@@ -53,46 +54,51 @@ public class MainActivity extends AppCompatActivity {
 
             if (id == R.id.nav_home) {
                 switchView(R.layout.home);
-            } else if (id == R.id.nav_deals) {
-
-                switchView(R.layout.deals);
-
-                getSupportFragmentManager().beginTransaction().replace(R.id.frame_Layout, new Loans())
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+            } else if (id == R.id.nav_deals)
+            {
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.view_container, new DealsFragment())
                         .commit();
 
-
-                frameLayout = (FrameLayout) findViewById(R.id.frame_Layout);
-                tabLayout = (TabLayout) findViewById(R.id.tab_Layout);
-
-                tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-                    @Override
-                    public void onTabSelected(TabLayout.Tab tab) {
-                        Fragment fragment = null;
-                        switch (tab.getPosition()){
-                            case 0:
-                                fragment = new Loans();
-                                break;
-                            case 1:
-                                fragment = new Debts();
-                                break;
-
-                        }
-                        getSupportFragmentManager().beginTransaction().replace(R.id.frame_Layout, fragment)
-                                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                                .commit();
-                    }
-
-                    @Override
-                    public void onTabUnselected(TabLayout.Tab tab) {
-
-                    }
-
-                    @Override
-                    public void onTabReselected(TabLayout.Tab tab) {
-
-                    }
-                });
+//                //switchView(R.layout.deals);
+//
+//                getSupportFragmentManager().beginTransaction().replace(R.id.frame_Layout, new Loans())
+//                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+//                        .commit();
+//
+//
+//                frameLayout = (FrameLayout) findViewById(R.id.frame_Layout);
+//                tabLayout = (TabLayout) findViewById(R.id.tab_Layout);
+//
+//                tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+//                    @Override
+//                    public void onTabSelected(TabLayout.Tab tab) {
+//                        Fragment fragment = null;
+//                        switch (tab.getPosition()){
+//                            case 0:
+//                                fragment = new Loans();
+//                                break;
+//                            case 1:
+//                                fragment = new Debts();
+//                                break;
+//
+//                        }
+//                        getSupportFragmentManager().beginTransaction().replace(R.id.frame_Layout, fragment)
+//                                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+//                                .commit();
+//                    }
+//
+//                    @Override
+//                    public void onTabUnselected(TabLayout.Tab tab) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onTabReselected(TabLayout.Tab tab) {
+//
+//                    }
+//                });
             } else if (id == R.id.nav_borrow) {
                 //switchView(R.layout.borrow);
                 Intent borrowIntent = new Intent(this, BorrowActivity.class);
