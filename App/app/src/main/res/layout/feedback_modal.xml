@@ -8,25 +8,25 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/white"
+        android:background="@drawable/rounded_white_box"
         android:orientation="vertical"
         android:padding="16dp"
         tools:ignore="UselessParent">
 
         <ImageButton
             android:id="@+id/closeButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rounded_white_box"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:padding="12dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
             android:src="@android:drawable/ic_menu_close_clear_cancel"
             android:contentDescription="@string/close"
-            android:layout_gravity="end" />
+            android:scaleType="center" />
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:background="@android:color/white">
+            android:padding="16dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -69,13 +69,18 @@
                     android:id="@+id/feedbackInput"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
+                    android:autofillHints=""
                     android:gravity="top"
-                    android:background="@android:drawable/edit_text"
                     android:inputType="textMultiLine"
-                    android:fontFamily="@font/inter"
                     android:minLines="3"
                     android:maxLines="6"
-                    android:padding="8dp" />
+                    android:padding="8dp"
+                    android:fontFamily="@font/inter"
+                    android:textColor="?android:textColorPrimary"
+                    android:hint="@string/send_us_your_feedback"
+                    android:textColorHint="?android:textColorHint"
+                    android:background="@drawable/edittext_border"
+                    tools:ignore="LabelFor" />
 
                 <!-- Submit Button -->
                 <Button
