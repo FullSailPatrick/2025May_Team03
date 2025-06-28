@@ -9,10 +9,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.Switch;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -20,6 +22,11 @@ import com.google.android.material.tabs.TabLayout;
 import com.spotme.spotme.deals.DealsFragment;
 import com.spotme.spotme.deals.Debts;
 import com.spotme.spotme.deals.Loans;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
     FrameLayout viewContainer;
@@ -36,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle instance) {
         super.onCreate(instance);
         setContentView(R.layout.main);
+
 
         // Hide title bar
         if (getSupportActionBar() != null) {
@@ -131,9 +139,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
     // Switch view function based on a layout ID.
-    private void switchView(int layoutResId) {
+    private void switchView(int layoutResId)
+    {
         viewContainer.removeAllViews();
         View view = inflater.inflate(layoutResId, viewContainer, false);
         viewContainer.addView(view);
