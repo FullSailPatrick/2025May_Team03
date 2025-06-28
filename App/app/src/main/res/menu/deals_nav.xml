@@ -1,0 +1,13 @@
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/deals_loans"
+        android:title="My Loans" />
+
+    <item
+        android:id="@+id/deals_debts"
+        android:title="My Debts" />
+
+
+</menu>
