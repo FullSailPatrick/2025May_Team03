@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class Loan_Management {
 
-    // Firestore instance for managing loan records
+    // Fire store instance for managing loan records
     private final FirebaseFirestore loanInfo = FirebaseFirestore.getInstance();
 
     /**
