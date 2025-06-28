@@ -1,142 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/screen_back_ground"
-    android:padding="20dp">
+    android:orientation="vertical"
+    android:background="@drawable/screen_back_ground">
 
-    <LinearLayout
-        android:orientation="vertical"
+
+    <!-- Main scrollable content -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="20dp">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal">
+
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="250dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="32dp"
+                android:src="@drawable/spotme_logo" />
+
+            <TextView
+                android:id="@+id/title"
+                android:text="Lend money"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="24dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Email"
+                android:textStyle="bold"
+                android:layout_marginBottom="4dp" />
+
+            <EditText
+                android:id="@+id/emailInput"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/rounded_text"
+                android:paddingHorizontal="16dp"
+                android:hint="emailaddress@mail.com"
+                android:inputType="textEmailAddress" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Phone"
+                android:textStyle="bold"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="4dp" />
+
+            <EditText
+                android:id="@+id/phoneInput"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/rounded_text"
+                android:paddingHorizontal="16dp"
+                android:hint="(123) - 456-4512"
+                android:inputType="phone" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Amount"
+                android:textStyle="bold"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="4dp" />
+
+            <EditText
+                android:id="@+id/amountInput"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/rounded_text"
+                android:paddingHorizontal="16dp"
+                android:hint="$500"
+                android:inputType="numberDecimal" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Repayment terms"
+                android:textStyle="bold"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="4dp" />
+
+            <RadioGroup
+                android:id="@+id/repaymentOptions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RadioButton
+                    android:id="@+id/term4weeks"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4 weeks" />
+
+                <RadioButton
+                    android:id="@+id/term8weeks"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="8 weeks" />
+
+                <RadioButton
+                    android:id="@+id/term3months"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3 months" />
+
+                <RadioButton
+                    android:id="@+id/term6months"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="6 months" />
+            </RadioGroup>
+
+            <Button
+                android:id="@+id/sendApplicationBtn"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="18dp"
+                android:text="SUBMIT"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                android:background="@drawable/gradient_background" />
+        </LinearLayout>
+    </ScrollView>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/main_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal">
-
-        <!-- Logo -->
-        <ImageView
-            android:id="@+id/logo"
-            android:layout_width="250dp"
-            android:layout_height="80dp"
-            android:layout_marginTop="32dp"
-            android:src="@drawable/spotme_logo" />
-
-        <!-- Page Title -->
-        <TextView
-            android:id="@+id/title"
-            android:text="Lend money"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:textColor="#000000"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="24dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <!-- Email Field -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Email"
-            android:textStyle="bold"
-            android:layout_marginBottom="4dp" />
-
-        <EditText
-            android:id="@+id/emailInput"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@drawable/rounded_text"
-            android:paddingHorizontal="16dp"
-            android:hint="emailaddress@mail.com"
-            android:inputType="textEmailAddress" />
-
-        <!-- Phone Field -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Phone"
-            android:textStyle="bold"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="4dp" />
-
-        <EditText
-            android:id="@+id/phoneInput"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@drawable/rounded_text"
-            android:paddingHorizontal="16dp"
-            android:hint="(123) - 456-4512"
-            android:inputType="phone" />
-
-        <!-- Amount Field -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Amount"
-            android:textStyle="bold"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="4dp" />
-
-        <EditText
-            android:id="@+id/amountInput"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@drawable/rounded_text"
-            android:paddingHorizontal="16dp"
-            android:hint="$500"
-            android:inputType="numberDecimal" />
-
-        <!-- Repayment Terms -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Repayment terms"
-            android:textStyle="bold"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="4dp" />
-
-        <RadioGroup
-            android:id="@+id/repaymentOptions"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <RadioButton
-                android:id="@+id/term4weeks"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="4 weeks" />
-
-            <RadioButton
-                android:id="@+id/term8weeks"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="8 weeks" />
-
-            <RadioButton
-                android:id="@+id/term3months"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="3 months" />
-
-            <RadioButton
-                android:id="@+id/term6months"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="6 months" />
-
-        </RadioGroup>
-
-        <!-- Submit Button -->
-        <Button
-            android:id="@+id/sendApplicationBtn"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="24dp"
-            android:text="Submit"
-            android:textColor="@android:color/black"
-            android:textStyle="bold"
-            android:background="@drawable/gradient_background" />
-
-    </LinearLayout>
-</ScrollView>
+        android:background="@color/Sub_Brand_100"
+        android:minHeight="90dp"
+        app:itemBackground="@drawable/menu_item_background"
+        app:itemIconSize="50dp"
+        app:itemIconTint="@color/Brand_800"
+        app:itemTextAppearanceActive="@style/menuTextStyles"
+        app:itemTextAppearanceInactive="@style/menuTextStyles"
+        app:itemTextColor="@color/Brand_800"
+        app:menu="@menu/main_nav" />
+</LinearLayout>

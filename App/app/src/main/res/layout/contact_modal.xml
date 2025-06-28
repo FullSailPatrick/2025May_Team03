@@ -8,25 +8,24 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/white"
+        android:background="@drawable/rounded_white_box"
         android:orientation="vertical"
         android:padding="16dp"
         tools:ignore="UselessParent">
 
         <ImageButton
             android:id="@+id/closeButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rounded_white_box"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:padding="12dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
             android:src="@android:drawable/ic_menu_close_clear_cancel"
             android:contentDescription="@string/close"
-            android:layout_gravity="end" />
-
+            android:scaleType="center" />
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@android:color/white"
             android:padding="24dp">
 
             <LinearLayout
@@ -60,6 +59,7 @@
                     android:id="@+id/inputName"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
+                    android:autofillHints=""
                     android:hint="@string/name"
                     android:fontFamily="@font/inter"
                     android:padding="12dp"
@@ -72,6 +72,7 @@
                     android:id="@+id/inputEmail"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
+                    android:autofillHints=""
                     android:hint="@string/e_mail"
                     android:padding="12dp"
                     android:fontFamily="@font/inter"
@@ -84,6 +85,7 @@
                     android:id="@+id/inputMessage"
                     android:layout_width="match_parent"
                     android:layout_height="120dp"
+                    android:autofillHints=""
                     android:hint="@string/message"
                     android:gravity="top"
                     android:padding="12dp"

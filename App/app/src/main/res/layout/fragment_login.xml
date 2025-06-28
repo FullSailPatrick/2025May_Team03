@@ -65,8 +65,8 @@
     <Button
         android:id="@+id/login"
         style="@style/GradientButton"
-        android:layout_width="230dp"
-        android:layout_height="50dp"
+        android:layout_width="267dp"
+        android:layout_height="64dp"
         android:layout_marginTop="17dp"
         android:backgroundTint="@null"
         android:fontFamily="@font/inter"

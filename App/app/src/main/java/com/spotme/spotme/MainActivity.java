@@ -9,11 +9,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.Switch;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
     FrameLayout viewContainer;
@@ -28,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(instance);
         setContentView(R.layout.main);
 
+
         // Hide title bar
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
@@ -35,10 +43,16 @@ public class MainActivity extends AppCompatActivity {
 
         inflater = LayoutInflater.from(this);
         viewContainer = findViewById(R.id.view_container);
-
         bottomNav = findViewById(R.id.main_navigation);
         bottomNav.setLabelVisibilityMode(NavigationBarView.LABEL_VISIBILITY_LABELED);
         switchView(R.layout.home);
+
+        // OPTIONAL for me: Clear lender app flag for testing new users
+        // Reminder::: Comment out or remove this in production!
+        //getSharedPreferences("spotme_prefs", MODE_PRIVATE)
+        //        .edit()
+        //        .remove("lender_app_done")
+        //        .apply();
 
         bottomNav.setOnItemSelectedListener(item -> {
             int id = item.getItemId();
@@ -66,11 +80,10 @@ public class MainActivity extends AppCompatActivity {
                 if (!hasSubmittedLenderApp) {
                     startActivity(new Intent(this, LenderApplicationActivity.class));
                 } else {
-                    //switchView(R.layout.lend);
-                    // COMMENTED OUT: Launch LendActivity (this was causing crashes)
-                    Intent lendIntent = new Intent(this, LendActivity.class);
-                    startActivity(lendIntent);
+                    startActivity(new Intent(this, LendActivity.class)); // ✅ Launch LendActivity as a full screen
                 }
+                return true;
+
             } else if (id == R.id.nav_settings) {
                 getSupportFragmentManager()
                         .beginTransaction()
@@ -81,14 +94,17 @@ public class MainActivity extends AppCompatActivity {
             return true;
         });
 
-        // Optional: Open lend layout directly if coming from LenderApplicationActivity
+        //Open Lend directly if coming from LenderApplicationActivity
         if (getIntent().getBooleanExtra("open_lend", false)) {
             bottomNav.setSelectedItemId(R.id.nav_lend); // triggers the listener
+        } else if (getIntent().getBooleanExtra("open_settings", false)) {
+            bottomNav.setSelectedItemId(R.id.nav_settings);
+        }else if (getIntent().getBooleanExtra("open_deals", false)) {
+            bottomNav.setSelectedItemId(R.id.nav_deals);
         }
     }
 
-
-    // Switch view function based on a layout ID.
+    //Switch view function based on a layout ID.
     private void switchView(int layoutResId) {
         viewContainer.removeAllViews();
         View view = inflater.inflate(layoutResId, viewContainer, false);

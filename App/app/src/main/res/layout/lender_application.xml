@@ -11,12 +11,14 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal">
 
+        <!-- Logo -->
         <ImageView
             android:layout_width="150dp"
             android:layout_height="80dp"
             android:src="@drawable/spotme_logo"
             android:layout_marginBottom="16dp" />
 
+        <!-- Title -->
         <TextView
             android:text="Lender application"
             android:textSize="22sp"
@@ -91,7 +93,7 @@
                 android:layout_marginStart="16dp" />
         </RadioGroup>
 
-        <!-- Income Question -->
+        <!--The Income Question -->
         <TextView
             android:text="Do you have an active source of income?*"
             android:textStyle="bold"
@@ -151,7 +153,7 @@
                 android:textColor="@android:color/white" />
         </LinearLayout>
 
-        <!-- Optional required notice -->
+        <!-- Required Fields Notice -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

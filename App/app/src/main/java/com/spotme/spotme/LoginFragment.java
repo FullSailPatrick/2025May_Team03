@@ -96,7 +96,7 @@ public class LoginFragment extends Fragment {
                                 }
                             });
                 } else {
-                    email = "Mbuchanan@student.fullsail.edu";
+                    email = "test12345@spotme.com";
                     password = "T3$t1234";
 
                     mAuth.signInWithEmailAndPassword(email, password)
@@ -141,22 +141,25 @@ public class LoginFragment extends Fragment {
         return view;
     }
 
-    private void launchMain(){
+    public void launchMain(){
         Intent loginIntent = new Intent(requireActivity(), MainActivity.class);
         startActivity(loginIntent);
-        requireActivity().finish();
+
     }
 
 
     public void mfaEnrollPopup(String username, DocumentReference userData){
-        String message = username + "Welcome, Would you like to enable MFA?";
+        String message =  "Welcome, "+ username +" Would you like to enable MFA?";
 
         new AlertDialog.Builder(requireActivity())
                 .setTitle("Enable MFA Option")
                 .setMessage(message)
                 .setPositiveButton("Yes", (dialog, which) -> {
                     userData.update("User Information.MFAEnabled", true);
-                    dialog.dismiss();
+                    requireActivity().getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.loginView, new MfaFragment())
+                            .commit();
                 }).setNegativeButton("No", (dialog, which) -> {
                     userData.update("User Information.MFAEnabled", false);
                     launchMain();

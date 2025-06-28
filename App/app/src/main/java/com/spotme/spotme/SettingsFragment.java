@@ -40,7 +40,7 @@ public class SettingsFragment extends Fragment
         // Get Firebase user ID and Firestorm settings reference
         String uid = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
         settingsRef = FirebaseFirestore.getInstance()
-                .collection("users")
+                .collection("Users")
                 .document(uid);
 
         //Show privacy policy dialog
