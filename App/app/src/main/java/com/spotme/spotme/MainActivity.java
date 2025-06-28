@@ -10,16 +10,22 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.Switch;
-
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
-
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import com.google.android.material.tabs.TabLayout;
+import com.spotme.spotme.deals.Debts;
+import com.spotme.spotme.deals.Loans;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-
+import com.google.android.material.tabs.TabLayout;
+import com.spotme.spotme.deals.Debts;
+import com.spotme.spotme.deals.Loans;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
@@ -29,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
     Button myLoansButton;
     Button myDebtsButton;
     BottomNavigationView bottomNav;
+
+    FrameLayout frameLayout;
+    TabLayout tabLayout;
 
     @Override
     protected void onCreate(Bundle instance) {
@@ -43,16 +52,10 @@ public class MainActivity extends AppCompatActivity {
 
         inflater = LayoutInflater.from(this);
         viewContainer = findViewById(R.id.view_container);
+
         bottomNav = findViewById(R.id.main_navigation);
         bottomNav.setLabelVisibilityMode(NavigationBarView.LABEL_VISIBILITY_LABELED);
         switchView(R.layout.home);
-
-        // OPTIONAL for me: Clear lender app flag for testing new users
-        // Reminder::: Comment out or remove this in production!
-        //getSharedPreferences("spotme_prefs", MODE_PRIVATE)
-        //        .edit()
-        //        .remove("lender_app_done")
-        //        .apply();
 
         bottomNav.setOnItemSelectedListener(item -> {
             int id = item.getItemId();
@@ -60,14 +63,44 @@ public class MainActivity extends AppCompatActivity {
             if (id == R.id.nav_home) {
                 switchView(R.layout.home);
             } else if (id == R.id.nav_deals) {
+
                 switchView(R.layout.deals);
-                myDebtsButton = findViewById(R.id.debtButton);
-                myDebtsButton.setOnClickListener(view -> {
-                    switchView(R.layout.mydebts);
-                    myLoansButton = findViewById(R.id.loanButton);
-                    myLoansButton.setOnClickListener(View -> {
-                        switchView(R.layout.deals);
-                    });
+
+                getSupportFragmentManager().beginTransaction().replace(R.id.frame_Layout, new Loans())
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .commit();
+
+
+                frameLayout = (FrameLayout) findViewById(R.id.frame_Layout);
+                tabLayout = (TabLayout) findViewById(R.id.tab_Layout);
+
+                tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+                    @Override
+                    public void onTabSelected(TabLayout.Tab tab) {
+                        Fragment fragment = null;
+                        switch (tab.getPosition()){
+                            case 0:
+                                fragment = new Loans();
+                                break;
+                            case 1:
+                                fragment = new Debts();
+                                break;
+
+                        }
+                        getSupportFragmentManager().beginTransaction().replace(R.id.frame_Layout, fragment)
+                                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                                .commit();
+                    }
+
+                    @Override
+                    public void onTabUnselected(TabLayout.Tab tab) {
+
+                    }
+
+                    @Override
+                    public void onTabReselected(TabLayout.Tab tab) {
+
+                    }
                 });
             } else if (id == R.id.nav_borrow) {
                 //switchView(R.layout.borrow);
@@ -103,6 +136,7 @@ public class MainActivity extends AppCompatActivity {
             bottomNav.setSelectedItemId(R.id.nav_deals);
         }
     }
+
 
     //Switch view function based on a layout ID.
     private void switchView(int layoutResId) {
