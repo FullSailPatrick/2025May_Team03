@@ -40,7 +40,7 @@
                 android:id="@+id/myloans"
                 android:layout_width="176dp"
                 android:layout_height="78dp"
-                android:text="My Loans"></com.google.android.material.tabs.TabItem>
+                android:text="My Loans" />
 
             <com.google.android.material.tabs.TabItem
                 android:id="@+id/mydebts"
