@@ -1,5 +1,5 @@
 package com.spotme.spotme;
-
+// Spot Me PNP II and PNP III
 //Imports
 import static com.spotme.spotme.R.*;
 import android.content.Intent;
